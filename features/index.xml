@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Features on HariKube - Zero-Overhead PaaS for Kubernetes</title><link>/features/</link><description>Recent content in Features on HariKube - Zero-Overhead PaaS for Kubernetes</description><generator>Hugo</generator><language>en-us</language><atom:link href="/features/index.xml" rel="self" type="application/rss+xml"/><item><title>Fine-Grained Data Isolation for Security and Compliance</title><link>/features/data-isolation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/features/data-isolation/</guid><description>&lt;script type="application/ld+json"&gt;
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "headline": "Fine-Grained Data Isolation for Security and Compliance",
+ "description": "HariKube enables strict data separation across namespaces, resource types, or services-helping organizations meet security and compliance requirements without sacrificing scalability or performance.",
+ "url": "https://harikube.info\/features\/data-isolation\/",
+ "dateModified": "2025-04-04",
+ "author": {
+ "@type": "Organization",
+ "name": "HariKube"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "HariKube",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://harikube.info/images/harikube-logo.png"
+ }
+ }
+}
+&lt;/script&gt;
+&lt;p&gt;In today’s multi-tenant, cloud-native environments, maintaining strict data boundaries is not just a best practice-it’s a compliance requirement. However, traditional Kubernetes deployments store all data in a shared ETCD store, making it difficult to enforce clear separation between teams, services, or environments.&lt;/p&gt;</description></item><item><title>Flexible Kubernetes-Native Stack</title><link>/features/flexible-stack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/features/flexible-stack/</guid><description>&lt;script type="application/ld+json"&gt;
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "headline": "Flexible Kubernetes-Native Stack",
+ "description": "Designed to integrate deeply with Kubernetes while staying loosely coupled, HariKube empowers you to build and extend infrastructure on your terms.",
+ "url": "https://harikube.info\/features\/flexible-stack\/",
+ "dateModified": "2025-04-04",
+ "author": {
+ "@type": "Organization",
+ "name": "HariKube"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "HariKube",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://harikube.info/images/harikube-logo.png"
+ }
+ }
+}
+&lt;/script&gt;
+&lt;p&gt;Modern cloud-native platforms demand dynamic infrastructure, interoperable systems, and resilient data routing at scale. As Kubernetes environments grow in complexity, teams must evolve infrastructure independently from application logic-without disrupting developers or compromising control.
+HariKube meets this challenge with a flexible, composable architecture that integrates cleanly into existing Kubernetes workflows and adapts to real-world production needs.&lt;/p&gt;</description></item><item><title>High-Performance Data Management</title><link>/features/performance/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/features/performance/</guid><description>&lt;script type="application/ld+json"&gt;
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "headline": "High-Performance Data Management",
+ "description": "HariKube delivers exceptional performance through data distribution and optimized database routing. By offloading resource-intensive workloads from ETCD, it ensures consistent responsiveness and operational efficiency at scale.",
+ "url": "https://harikube.info\/features\/performance\/",
+ "dateModified": "2025-04-04",
+ "author": {
+ "@type": "Organization",
+ "name": "HariKube"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "HariKube",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://harikube.info/images/harikube-logo.png"
+ }
+ }
+}
+&lt;/script&gt;
+&lt;p&gt;Kubernetes has become the de facto standard for orchestrating containerized applications due to its flexibility, extensibility, and ability to automate deployment, scaling, and operations. It enables teams to adopt microservices architectures, build scalable cloud-native platforms, and maintain service reliability even under dynamic workloads.&lt;/p&gt;</description></item><item><title>Streamlined Cloud-Native Development</title><link>/features/developer-experience/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/features/developer-experience/</guid><description>&lt;p&gt;Kubernetes has become the backbone of modern cloud-native development, offering a consistent and declarative way to manage infrastructure and application lifecycles. But as platforms evolve and microservices scale, infrastructure complexity often seeps into the developer workflow-slowing teams down and introducing friction.&lt;/p&gt;
+&lt;p&gt;While Kubernetes has enabled a powerful cloud-native development workflow, it remains fundamentally limited when it comes to handling data-intensive applications. This is because the underlying data store-ETCD-is optimized for configuration and state management, not high-throughput or large-scale operational data. As a result, cloud-native workflows are often confined to infrastructure automation, while application-level data handling must rely on external systems, breaking the end-to-end cloud-native paradigm.&lt;/p&gt;</description></item><item><title>Strict Consistency &amp; Direct Storage Architecture</title><link>/features/consistency/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/features/consistency/</guid><description>&lt;script type="application/ld+json"&gt;
+{
+ "@context": "https://schema.org",
+ "@type": "TechArticle",
+ "headline": "Strict Consistency \u0026 Direct Storage Architecture",
+ "description": "Eliminating the \u0027Stale Read\u0027 problem. HariKube bypasses the traditional watch cache to deliver real-time data accuracy through high-performance storage-level filtering.",
+ "url": "https://harikube.info\/features\/consistency\/",
+ "dateModified": "2025-04-04",
+ "author": {
+ "@type": "Organization",
+ "name": "HariKube"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "HariKube",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://harikube.info/images/harikube-logo.png"
+ }
+ }
+}
+&lt;/script&gt;
+&lt;p&gt;Traditional Kubernetes architecture makes a trade-off: it uses an in-memory Watch Cache to protect the database, but this introduces eventual consistency. In high-traffic clusters, this leads to &amp;ldquo;ghost&amp;rdquo; resources, stale list views, and race conditions that plague platform engineers and developers alike.&lt;/p&gt;</description></item></channel></rss>

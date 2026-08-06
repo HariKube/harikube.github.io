@@ -1,0 +1,425 @@
+<!doctype html><html lang=en-us class=h-full><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Unlock your Kubernetes to run custom resource based microservices in any scale | HariKube - Zero-Overhead PaaS for Kubernetes</title><meta name=description content="Learn about how to distributes Kubernetes database load across multiple databases."><meta name=author content="Richárd Kovács"><meta name=robots content="index, follow"><meta property="og:title" content="Unlock your Kubernetes to run custom resource based microservices in any scale | HariKube - Zero-Overhead PaaS for Kubernetes"><meta property="og:description" content="Learn about how to distributes Kubernetes database load across multiple databases."><meta property="og:type" content="article"><meta property="og:url" content="/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/"><meta property="og:site_name" content="HariKube - Zero-Overhead PaaS for Kubernetes"><meta property="og:image" content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Unlock your Kubernetes to run custom resource based microservices in any scale | HariKube - Zero-Overhead PaaS for Kubernetes"><meta name=twitter:description content="Learn about how to distributes Kubernetes database load across multiple databases."><meta name=twitter:image content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><link rel=icon type=image/x-icon href=/images/favicon.ico><link rel=canonical href=/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel=stylesheet><link rel=stylesheet href=/css/main.css></head><body class="min-h-screen flex flex-col"><div class="fixed top-0 left-0 right-0 z-50"><div class=mobile-menu-wrapper><input type=checkbox id=nav-toggle class=nav-toggle><header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><nav class="flex items-center justify-between h-20"><a href=/ class="flex items-center space-x-4"><img src=/images/harikube-logo.png alt="HariKube - Zero-Overhead PaaS for Kubernetes" class=h-12></a><div class="hidden md:flex items-center space-x-8"><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Features
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/features/developer-experience/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Developer Experience</a>
+<a href=/features/performance/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Performance</a>
+<a href=/features/consistency/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Consistency</a>
+<a href=/features/flexible-stack/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Data Isolation</a></div></div></div><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Docs
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/docs/overview/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Overview</a>
+<a href=/docs/installation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Installation</a>
+<a href=/docs/custom-resource/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Custom Resource</a>
+<a href=/docs/automation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Automation</a>
+<a href=/docs/monitoring/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Monitoring</a>
+<a href=/docs/future-plans/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Future Plans</a></div></div></div><a href=/blog/ class="text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">Blog</a></div><div class="hidden md:flex items-center space-x-4"><a href=/editions/ class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div><div class=md:hidden><label for=nav-toggle class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></label></div></nav></div><div class="nav-content md:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto"><div class="w-full px-6 py-4"><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Features</div><div class=pl-4><a href=/features/developer-experience/ class="block text-gray-700 hover:text-primary-600 py-2">Developer Experience</a>
+<a href=/features/performance/ class="block text-gray-700 hover:text-primary-600 py-2">Performance</a>
+<a href=/features/consistency/ class="block text-gray-700 hover:text-primary-600 py-2">Consistency</a>
+<a href=/features/flexible-stack/ class="block text-gray-700 hover:text-primary-600 py-2">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block text-gray-700 hover:text-primary-600 py-2">Data Isolation</a></div></div><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Docs</div><div class=pl-4><a href=/docs/overview/ class="block text-gray-700 hover:text-primary-600 py-2">Overview</a>
+<a href=/docs/installation/ class="block text-gray-700 hover:text-primary-600 py-2">Installation</a>
+<a href=/docs/custom-resource/ class="block text-gray-700 hover:text-primary-600 py-2">Custom Resource</a>
+<a href=/docs/automation/ class="block text-gray-700 hover:text-primary-600 py-2">Automation</a>
+<a href=/docs/monitoring/ class="block text-gray-700 hover:text-primary-600 py-2">Monitoring</a>
+<a href=/docs/future-plans/ class="block text-gray-700 hover:text-primary-600 py-2">Future Plans</a></div></div><a href=/blog/ class="block text-xl text-gray-900 hover:text-primary-600 font-bold transition duration-200 py-2">Blog</a><div class="pt-4 space-y-4"><a href=/editions/ class="block text-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div></div></div></header><style>.mobile-menu-wrapper{position:relative}.nav-toggle{display:none}.nav-content{display:none}.nav-toggle:checked~header .nav-content{display:block}</style></div></div><div class=pt-20><div class="container mx-auto px-4 py-12"><div class="flex flex-col lg:flex-row gap-8 mb-12"><article class=flex-1><header class=mb-8><div class=mb-4><a href=/categories/infrastructure/ class="inline-block px-3 py-1 text-sm font-medium text-primary-600 bg-primary-50 rounded-full hover:bg-primary-100 mr-2">Infrastructure
+</a><a href=/categories/microservice/ class="inline-block px-3 py-1 text-sm font-medium text-primary-600 bg-primary-50 rounded-full hover:bg-primary-100 mr-2">Microservice</a></div><h1 class="text-4xl font-bold mb-4">Unlock your Kubernetes to run custom resource based microservices in any scale</h1><div class="flex flex-col space-y-4"><div class="flex items-center justify-between text-sm text-gray-500"><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7A4 4 0 118 7a4 4 0 018 0zm-4 7a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+<span>Richard Kovacs</span></div><div class="flex items-center space-x-6"><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747.0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746.0-3.332.477-4.5 1.253"/></svg>
+<span>8 min read</span></div><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2025-05-24>May 24, 2025</time></div></div></div><div class="flex items-center flex-wrap gap-2"><a href=/tags/kubernetes/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#kubernetes
+</a><a href=/tags/custom-resource/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#custom resource
+</a><a href=/tags/scalability/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#scalability
+</a><a href=/tags/infrastructure/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#infrastructure
+</a><a href=/tags/microservice/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#microservice</a></div></div></header><div class=mb-8><img src=/images/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale.png alt="Unlock your Kubernetes to run custom resource based microservices in any scale" class="w-full h-auto rounded-lg" style=max-width:800px loading=lazy></div><div class="prose prose-lg max-w-none"><style>html{scroll-padding-top:100px}</style><div class="bg-gray-50 p-6 rounded-lg mb-8"><h2 class="text-xl font-semibold mb-4">Table of Contents</h2><nav id=TableOfContents><ul><li><a href=#-the-rise-of-custom-resources-and-their-challenges>🌅 The Rise of Custom Resources and Their Challenges</a></li><li><a href=#-the-future-of-data-management-on-kubernetes>✨ The Future of Data Management on Kubernetes</a></li><li><a href=#-getting-started>👷 Getting Started</a></li></ul></nav></div><h2 id=-the-rise-of-custom-resources-and-their-challenges>🌅 The Rise of Custom Resources and Their Challenges</h2><p>I don&rsquo;t need to introduce Kubernetes in this post, as it is the de facto standard for running microservices at scale. Kubernetes provides a robust infrastructure not only for running workloads, but also for exposing services, securing applications, configuring authorization, and much more. The introduction of <a href=https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/>custom defined resources</a> extended Kubernetes’ capabilities, enabling developers to implement custom services and controllers without worrying about the underlying infrastructure. This innovation promised faster development and portability. Over the past few years, custom resources and operators/controllers have become increasingly popular. <a href=https://www.crossplane.io/>Crossplane</a> marked another significant shift, allowing management of resources outside the cluster.</p><p>However, custom controllers face significant challenges when handling large volumes of data. Kubernetes relies on <a href=https://etcd.io/>ETCD</a> for all data storage, which limits scalability, flexibility, and performance for complex or high-volume workloads. What are the main issues?</p><ul><li>ETCD is designed for configuration data, and cluster size is limited.</li><li>ETCD’s consistency model means all members are full replicas, and Kubernetes only connects to the leader.</li><li>ETCD cannot filter data at the storage level; the Kubernetes API server must fetch all records and filter them client-side.</li><li>With a single ETCD instance, both cluster configuration and custom data are mixed. High-load custom services can block or delay normal cluster operations, risking overall cluster health.</li><li>Kubernetes is multi-tenant with isolation methods, but ultimately all data is stored in a single database. A database outage affects the entire cluster, and a malicious attacker could potentially access everything.</li></ul><p>These are some of the reasons why custom resources and controllers are used to solve infrastructure problems, and why high-volume data applications are often avoided.</p><p>We are not without hope&mldr;</p><h2 id=-the-future-of-data-management-on-kubernetes>✨ The Future of Data Management on Kubernetes</h2><p>Before discussing the solution, let’s highlight the limitations of custom resource controllers in Kubernetes.</p><table><thead><tr><th>Limitation</th><th>Description</th></tr></thead><tbody><tr><td>Eventual Consistency</td><td>Updates may not be immediately visible across the system</td></tr><tr><td>Non-Transactional</td><td>No support for ACID transactions</td></tr><tr><td>Relational Logic</td><td>Complex joins or relations between data entities are not supported</td></tr><tr><td>Limited Data Filtering</td><td>No advanced query engine included within Kubernetes</td></tr><tr><td>Limited number of CRDs</td><td>Kubernetes Discovery API reaches it&rsquo;s limit proximately around at 500</td></tr></tbody></table><blockquote><p>💡 Don&rsquo;t worry, the Kubernetes API aggregation layer can help overcome the limitations of the core API server by allowing you to extend the API with custom APIs that are served by a separate backend, or extension API server. This setup enables you to implement specific logic and capabilities that aren&rsquo;t available in the core API. We started to maintain a project to deal with the limitations: <a href=https://github.com/HariKube/api-extension>api-extension</a>.</p></blockquote><p>It’s time to meet <a href=https://harikube.info>HariKube</a>. HariKube is a middleware that transparently distributes database load across multiple vendor-agnostic databases, delivering low latency, high throughput, and a true cloud-native development experience. It achieves exceptional performance through data distribution and optimized database routing. By offloading resource-intensive workloads from ETCD, HariKube ensures consistent responsiveness and operational efficiency at scale. It enables strict data separation across namespaces, resource types, or services-helping organizations meet security and compliance requirements without sacrificing scalability or performance. Additionally, HariKube simplifies developer workflows by abstracting infrastructure complexity. Developers can focus on data structures and business logic while the platform handles data routing and storage. HariKube is fully transparent; Kubernetes does not notice it is not communicating with an ETCD instance. You can use vanilla Kubernetes for development with limited data, and deploy HariKube in production to handle large datasets and distribute data across multiple backends.</p><p>HariKube supports multiple backends, each with different capabilities for data access and filtering. The table below outlines which storage engines are compatible and whether they support storage-side filtering for efficient querying. Find full list of databases <a href=/docs/overview/#-supported-databases>here</a>.</p><h2 id=-getting-started>👷 Getting Started</h2><p>First, configure your databases in <code>docker-compose.yaml</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">docker-compose.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("1a6860ad8107c86b0c5035d2ee785604")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-1a6860ad8107c86b0c5035d2ee785604 style=display:none>version: &#39;3.8&#39;
+services:
+  etcd2479:
+    image: bitnamilegacy/etcd:3.6.4
+    container_name: etcd2379
+    network_mode: &#34;host&#34;
+    command: etcd
+
+  mysql3306:
+    image: linuxserver/mariadb:10.11.8
+    container_name: mysql3306
+    network_mode: &#34;host&#34;
+    environment:
+      - MYSQL_ROOT_PASSWORD=passwd
+
+  pgsql5432:
+    image: postgres:17-alpine3.20
+    container_name: pgsql5432
+    network_mode: &#34;host&#34;
+    environment:
+      - POSTGRES_PASSWORD=passwd
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;3.8&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>services</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>etcd2479</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>bitnamilegacy/etcd:3.6.4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>etcd2379</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>network_mode</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;host&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>etcd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>mysql3306</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>linuxserver/mariadb:10.11.8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>mysql3306</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>network_mode</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;host&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>MYSQL_ROOT_PASSWORD=passwd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pgsql5432</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>postgres:17-alpine3.20</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>container_name</span><span class=p>:</span><span class=w> </span><span class=l>pgsql5432</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>network_mode</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;host&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>environment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>POSTGRES_PASSWORD=passwd</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Run the following command to start the databases.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">docker-compose.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("1983ded431860d1054b987608e212f81")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-1983ded431860d1054b987608e212f81 style=display:none>docker compose up -d
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>docker compose up -d</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Next, create a data routing configuration file called <code>topology.yaml</code>.</p><blockquote><p>Update your endpoints, because the example uses Docker bridge IP!</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">topology.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("92c4dbf7bde9149cec4dbb3d56c47a08")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-92c4dbf7bde9149cec4dbb3d56c47a08 style=display:none>backends:
+- name: rbac
+  endpoint: http://172.17.0.1:2379
+  regexp:
+    prefix: events/
+    key: events/
+- name: kube-system
+  endpoint: mysql://root:passwd@tcp(172.17.0.1:3306)/kube_system
+  namespace:
+    namespace: kube-system
+- name: pods
+  endpoint: postgres://postgres:passwd@172.17.0.1:5432/pods
+  prefix:
+    prefix: pods
+- name: shirts
+  endpoint: sqlite:///db/shirts.db?_journal=WAL&amp;cache=shared
+  customresource:
+    group: stable.example.com
+    kind: shirts
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>backends</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>rbac</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>http://172.17.0.1:2379</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>regexp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>prefix</span><span class=p>:</span><span class=w> </span><span class=l>events/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>events/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kube-system</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>mysql://root:passwd@tcp(172.17.0.1:3306)/kube_system</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class=l>kube-system</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>pods</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>postgres://postgres:passwd@172.17.0.1:5432/pods</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prefix</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>prefix</span><span class=p>:</span><span class=w> </span><span class=l>pods</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>shirts</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>sqlite:///db/shirts.db?_journal=WAL&amp;cache=shared</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>customresource</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>group</span><span class=p>:</span><span class=w> </span><span class=l>stable.example.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>shirts</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p><strong>Routing Configuration Explained:</strong></p><ul><li><strong>ETCD with regular expression routing</strong>: Routes events to an ETCD store.</li><li><strong>MySQL endpoint with namespace matching</strong>: All objects in the <code>kube-system</code> namespace are routed to a MySQL backend.</li><li><strong>PostgreSQL endpoint with prefix matching</strong>: All pod resources-except pods in the <code>kube-system</code> namespace-are routed to a PostgreSQL backend.</li><li><strong>SQLite endpoint for specific custom resources</strong>: Routes all resources of type <code>shirts</code> in the group <code>stable.example.com</code> to a lightweight embedded SQLite database.</li><li><strong>All other objects</strong> are stored in the default SQLite database.</li></ul><p>After preparing the environment, start the middleware.</p><blockquote><p>⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our <a href=/editions/>Editions</a> page.</p></blockquote><p>Start by authenticating your local Docker client with the private registry at <code>registry.harikube.info</code>. This step is essential for pulling images from the registry.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("0aecc6b9d0fe39dd82c86e9f53be61d9")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-0aecc6b9d0fe39dd82c86e9f53be61d9 style=display:none>docker login registry.harikube.info
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker login registry.harikube.info
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("4d17ed6db99482d9eeb7ef55ef6b002b")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-4d17ed6db99482d9eeb7ef55ef6b002b style=display:none>docker run -d \
+  --name harikube_middleware \
+  --net=host \
+  -e LICENSE_KEY_FILE=/license \
+  -e TOPOLOGY_CONFIG=/topology.yaml \
+  -e ENABLE_TELEMETRY_PUSH=true \
+  -v ${PWD}/license:/license:ro \
+  -v $(pwd)/topology.yaml:/topology.yaml \
+  -v harikube_db:/db \
+  registry.harikube.info/harikube/middleware:release-v0.14.5 \
+  --listen-address=0.0.0.0:2369 --endpoint=&#39;multi://sqlite:///db/main.db?_journal=WAL&amp;cache=shared&#39;
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker run -d <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --name harikube_middleware <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --net<span class=o>=</span>host <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -e <span class=nv>LICENSE_KEY_FILE</span><span class=o>=</span>/license <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -e <span class=nv>TOPOLOGY_CONFIG</span><span class=o>=</span>/topology.yaml <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -e <span class=nv>ENABLE_TELEMETRY_PUSH</span><span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -v <span class=si>${</span><span class=nv>PWD</span><span class=si>}</span>/license:/license:ro <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -v <span class=k>$(</span><span class=nb>pwd</span><span class=k>)</span>/topology.yaml:/topology.yaml <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -v harikube_db:/db <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  registry.harikube.info/harikube/middleware:release-v0.14.5 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --listen-address<span class=o>=</span>0.0.0.0:2369 --endpoint<span class=o>=</span><span class=s1>&#39;multi://sqlite:///db/main.db?_journal=WAL&amp;cache=shared&#39;</span>
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>The final step is to start the Kubernetes cluster. As mentioned, HariKube is transparent to Kubernetes and works out of the box. However, supporting large datasets requires recompiling the Kubernetes API Server and Controller Manager. You can follow the guide <a href=/docs/installation/#-setup-and-start-kubernetes>here</a>, but for simplicity, this tutorial uses <a href=https://kind.sigs.k8s.io>Kind</a> with vanilla Kubernetes.</p><p>Create a Kind config in <code>kind-config.yaml</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kind-config.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("66239f563f2a5d8a28b1ac9f7bf3a62e")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-66239f563f2a5d8a28b1ac9f7bf3a62e style=display:none>kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+featureGates:
+  &#34;CustomResourceFieldSelectors&#34;: true
+  &#34;WatchList&#34;: true
+  &#34;WatchListClient&#34;: true
+  &#34;MutatingAdmissionPolicy&#34;: true
+  &#34;VolumeAttributesClass&#34;: true
+nodes:
+- role: control-plane
+  image: kindest/node:v1.35.0
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+        extraArgs:
+          etcd-servers: &#34;http://172.17.0.1:2369&#34;
+          watch-cache: &#34;false&#34;
+          runtime-config: &#34;admissionregistration.k8s.io/v1alpha1=true,admissionregistration.k8s.io/v1beta1=true&#34;
+          storage-media-type: &#34;application/json&#34;
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Cluster</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>kind.x-k8s.io/v1alpha4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>featureGates</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>&#34;CustomResourceFieldSelectors&#34;: </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>&#34;WatchList&#34;: </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>&#34;WatchListClient&#34;: </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>&#34;MutatingAdmissionPolicy&#34;: </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>&#34;VolumeAttributesClass&#34;: </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>nodes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>role</span><span class=p>:</span><span class=w> </span><span class=l>control-plane</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>kindest/node:v1.35.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>kubeadmConfigPatches</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>    kind: ClusterConfiguration
+</span></span></span><span class=line><span class=cl><span class=sd>    apiServer:
+</span></span></span><span class=line><span class=cl><span class=sd>        extraArgs:
+</span></span></span><span class=line><span class=cl><span class=sd>          etcd-servers: &#34;http://172.17.0.1:2369&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          watch-cache: &#34;false&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          runtime-config: &#34;admissionregistration.k8s.io/v1alpha1=true,admissionregistration.k8s.io/v1beta1=true&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          storage-media-type: &#34;application/json&#34;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Start the cluster with:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("950039042a36c113c4752e1d9c783363")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-950039042a36c113c4752e1d9c783363 style=display:none>kind create cluster --name harikube-cluster --config kind-config.yaml
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kind create cluster --name harikube-cluster --config kind-config.yaml
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("b5f6aee8bc6e6282b13d1a920495bb4c")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-b5f6aee8bc6e6282b13d1a920495bb4c style=display:none>kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f https://harikube.info/manifests/skip-controller-manager-metadata-caching.yaml
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>You can validate that HariKube has distributed your data according to the topology configuration:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("29d1c33e0c14b992961dae1746c0ac5a")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-29d1c33e0c14b992961dae1746c0ac5a style=display:none># Default database for other objects
+docker run -it --rm -v harikube_db:/data alpine/sqlite /data/main.db &#34;select name from kine&#34;
+# Kubernetes events only
+etcdctl --endpoints=http://172.17.0.1:2379 get / --prefix --keys-only
+# Objects in the `kube-system` namespace
+docker exec -t mysql3306 mysql -uroot -ppasswd -Dkube_system -e &#34;select name from kine&#34;
+# All pods except those in `kube-system`
+docker exec -it pgsql5432 su postgres -c &#34;psql -d pods -c &#39;select name from kine&#39;&#34;
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Default database for other objects</span>
+</span></span><span class=line><span class=cl>docker run -it --rm -v harikube_db:/data alpine/sqlite /data/main.db <span class=s2>&#34;select name from kine&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># Kubernetes events only</span>
+</span></span><span class=line><span class=cl>etcdctl --endpoints<span class=o>=</span>http://172.17.0.1:2379 get / --prefix --keys-only
+</span></span><span class=line><span class=cl><span class=c1># Objects in the `kube-system` namespace</span>
+</span></span><span class=line><span class=cl>docker <span class=nb>exec</span> -t mysql3306 mysql -uroot -ppasswd -Dkube_system -e <span class=s2>&#34;select name from kine&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># All pods except those in `kube-system`</span>
+</span></span><span class=line><span class=cl>docker <span class=nb>exec</span> -it pgsql5432 su postgres -c <span class=s2>&#34;psql -d pods -c &#39;select name from kine&#39;&#34;</span>
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Now, create your first custom resource. Apply the definition file:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("c49195a1884c54b41535a9293c31c3d4")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-c49195a1884c54b41535a9293c31c3d4 style=display:none>kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/customresourcedefinition/shirt-resource-definition.yaml
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/customresourcedefinition/shirt-resource-definition.yaml
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Then add a few resources:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("73cec6a73999cefb473e3a0214cd6654")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-73cec6a73999cefb473e3a0214cd6654 style=display:none>cat | kubectl apply -f - &lt;&lt;EOF
+apiVersion: stable.example.com/v1
+kind: Shirt
+metadata:
+  name: example1
+spec:
+  color: blue
+  size: S
+---
+apiVersion: stable.example.com/v1
+kind: Shirt
+metadata:
+  name: example2
+spec:
+  color: blue
+  size: M
+---
+apiVersion: stable.example.com/v1
+kind: Shirt
+metadata:
+  name: example3
+spec:
+  color: green
+  size: M
+EOF
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat <span class=p>|</span> kubectl apply -f - <span class=s>&lt;&lt;EOF
+</span></span></span><span class=line><span class=cl><span class=s>apiVersion: stable.example.com/v1
+</span></span></span><span class=line><span class=cl><span class=s>kind: Shirt
+</span></span></span><span class=line><span class=cl><span class=s>metadata:
+</span></span></span><span class=line><span class=cl><span class=s>  name: example1
+</span></span></span><span class=line><span class=cl><span class=s>spec:
+</span></span></span><span class=line><span class=cl><span class=s>  color: blue
+</span></span></span><span class=line><span class=cl><span class=s>  size: S
+</span></span></span><span class=line><span class=cl><span class=s>---
+</span></span></span><span class=line><span class=cl><span class=s>apiVersion: stable.example.com/v1
+</span></span></span><span class=line><span class=cl><span class=s>kind: Shirt
+</span></span></span><span class=line><span class=cl><span class=s>metadata:
+</span></span></span><span class=line><span class=cl><span class=s>  name: example2
+</span></span></span><span class=line><span class=cl><span class=s>spec:
+</span></span></span><span class=line><span class=cl><span class=s>  color: blue
+</span></span></span><span class=line><span class=cl><span class=s>  size: M
+</span></span></span><span class=line><span class=cl><span class=s>---
+</span></span></span><span class=line><span class=cl><span class=s>apiVersion: stable.example.com/v1
+</span></span></span><span class=line><span class=cl><span class=s>kind: Shirt
+</span></span></span><span class=line><span class=cl><span class=s>metadata:
+</span></span></span><span class=line><span class=cl><span class=s>  name: example3
+</span></span></span><span class=line><span class=cl><span class=s>spec:
+</span></span></span><span class=line><span class=cl><span class=s>  color: green
+</span></span></span><span class=line><span class=cl><span class=s>  size: M
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Verify the resources are exists.</p><p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("851f8426385ab27ffbc6d31e6fc797a6")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-851f8426385ab27ffbc6d31e6fc797a6 style=display:none>kubectl get shirts
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get shirts
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem;margin-top:-30px><div class="p-4 overflow-x-auto"><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>NAME       COLOR   SIZE
+</span></span><span class=line><span class=cl>example1   blue    S
+</span></span><span class=line><span class=cl>example2   blue    M
+</span></span><span class=line><span class=cl>example3   green   M
+</span></span></code></pre></div></div></div></p><p>You can verify that HariKube has stored all <code>shirts</code> in the selected SQLite database:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("c174dbd74d60c75b3616e175905b396b")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-c174dbd74d60c75b3616e175905b396b style=display:none># All three `shirts` you created
+docker run -it --rm -v harikube_db:/data alpine/sqlite /data/shirts.db &#34;select name from kine&#34;
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># All three `shirts` you created</span>
+</span></span><span class=line><span class=cl>docker run -it --rm -v harikube_db:/data alpine/sqlite /data/shirts.db <span class=s2>&#34;select name from kine&#34;</span>
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><hr><p>That’s it! Imagine your own data topology and enhance your Kubernetes experience. <strong>Enjoy lower latency, higher throughput, data isolation, virtually unlimited storage, and simplified development.</strong> HariKube supports both flat and hierarchical topologies, allowing you to organize your databases like leaves on a tree.</p><p>Thank you for reading, and feel free to <a href=https://github.com/HariKube/harikube/discussions>share your thoughts</a>.</p></div></article><aside class="lg:w-80 xl:w-96"><div class=space-y-8><div class="bg-white rounded-lg shadow-md p-6"><h3 class="text-lg font-bold mb-4">Recent Articles</h3><div class=space-y-4><div class=group><a href=/blog/the_hidden_infrastructure_challenge_behind_ai_agents/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/the_hidden_infrastructure_challenge_behind_ai_agents_harikube.png alt="Unlock your Kubernetes to run custom resource based microservices in any scale" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">The Hidden Infrastructure Challenge Behind AI Agents</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-06-03>Jun 3, 2026</time></div></a></div><div class=group><a href=/blog/kubernetes-etcd-bottleneck-ai-training/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/kubernetes-etcd-bottleneck-ai-training.png alt="Unlock your Kubernetes to run custom resource based microservices in any scale" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-05-19>May 19, 2026</time></div></a></div><div class=group><a href=/blog/ai-agenting-on-kubernetes-with-harikube/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/ai-agenting-on-kubernetes-with-harikube.png alt="Unlock your Kubernetes to run custom resource based microservices in any scale" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">AI Agenting on Kubernetes with HariKube</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-05-15>May 15, 2026</time></div></a></div><div class=group><a href=/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program.png alt="Unlock your Kubernetes to run custom resource based microservices in any scale" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">Enterprise Kubernetes Scaling: HariKube Joins the SUSE Sapphire Innovate Partner Program</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-04-23>Apr 23, 2026</time></div></a></div><div class=group><a href=/blog/harikube-vs-vanilla-kubernetes/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/harikube-vs-vanilla-kubernetes.png alt="Unlock your Kubernetes to run custom resource based microservices in any scale" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-04-01>Apr 1, 2026</time></div></a></div></div></div><div class="bg-white rounded-lg shadow-md p-6"><h3 class="text-lg font-bold mb-4">Popular Tags</h3><div class="flex flex-wrap gap-2"><a href=/tags/kubernetes/ class="text-sm text-gray-600 hover:text-primary-600">#kubernetes
+<span class=text-gray-500>(18)</span>
+</a><a href=/tags/microservice/ class="text-sm text-gray-600 hover:text-primary-600">#microservice
+<span class=text-gray-500>(9)</span>
+</a><a href=/tags/infrastructure/ class="text-sm text-gray-600 hover:text-primary-600">#infrastructure
+<span class=text-gray-500>(8)</span>
+</a><a href=/tags/scalability/ class="text-sm text-gray-600 hover:text-primary-600">#scalability
+<span class=text-gray-500>(7)</span>
+</a><a href=/tags/custom-resource/ class="text-sm text-gray-600 hover:text-primary-600">#custom resource
+<span class=text-gray-500>(6)</span>
+</a><a href=/tags/development/ class="text-sm text-gray-600 hover:text-primary-600">#development
+<span class=text-gray-500>(6)</span>
+</a><a href=/tags/agentic-ai/ class="text-sm text-gray-600 hover:text-primary-600">#agentic ai
+<span class=text-gray-500>(4)</span>
+</a><a href=/tags/serverless/ class="text-sm text-gray-600 hover:text-primary-600">#serverless
+<span class=text-gray-500>(3)</span>
+</a><a href=/tags/ai/ class="text-sm text-gray-600 hover:text-primary-600">#ai
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/ai-training/ class="text-sm text-gray-600 hover:text-primary-600">#ai training
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/control-plane/ class="text-sm text-gray-600 hover:text-primary-600">#control plane
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/devops/ class="text-sm text-gray-600 hover:text-primary-600">#devops
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/eks/ class="text-sm text-gray-600 hover:text-primary-600">#eks
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/etcd/ class="text-sm text-gray-600 hover:text-primary-600">#etcd
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/etcd-replacement/ class="text-sm text-gray-600 hover:text-primary-600">#etcd replacement
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/partners/ class="text-sm text-gray-600 hover:text-primary-600">#partners
+<span class=text-gray-500>(1)</span></a></div></div></div></aside></div><nav class="border-t border-gray-200 mt-12 pt-8"><div class="flex justify-between items-center"><div></div><a href=/blog/create-microservice-with-operator/ class="group flex items-center text-right"><div><div class="text-sm text-gray-600">Next Post</div><div class="font-medium group-hover:text-primary-600">A Quick Dive into Kubernetes Operators - APIs</div></div><svg class="w-5 h-5 ml-2 text-gray-600 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0-7 7m7-7H3"/></svg></a></div></nav><div class=mt-16><section class=cta-section><div class=container><div class="relative rounded-lg overflow-hidden bg-primary-600 cta-gradient" style="--gradient-angle:45;--gradient-from: ;--gradient-to:"><div class="relative text-center max-w-3xl mx-auto px-6 py-10"><h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Read the Technical Whitepaper!</h2><p class="text-xl text-primary-100 mb-8">Beyond the Benchmarks: If 50% of your engineering effort is currently spent on platform integration rather than business logic, your infrastructure is a bottleneck. In our technical whitepaper, we share the research behind the Unified Service Model and demonstrate how HariKube eliminates the integration overhead that stalls enterprise growth.</p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href=/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/ class="btn bg-white text-primary-600 hover:bg-gray-100">Download</a></div></div></div></div></section></div></div></div><footer class="bg-gray-50 py-12 border-t border-gray-200"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><div class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0"><div class=flex-1><div class="flex items-center space-x-3 mb-4"><a href=/ class=inline-block><img src=/images/harikube-logo.png alt="HariKube - Zero-Overhead PaaS for Kubernetes" class=h-6></a></div><div class="flex space-x-3 p-2"><a href=https://linkedin.com/company/harikube/ class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>LinkedIn</span>
+<img src=/images/social/linkedin.svg alt=LinkedIn class="h-5 w-5">
+</a><a href=https://github.com/HariKube class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>GitHub</span>
+<img src=/images/social/github.svg alt=GitHub class="h-5 w-5"></a></div></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/faq/ class="text-gray-600 hover:text-primary-600">FAQ</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/company/ class="text-gray-600 hover:text-primary-600">About Us</a></li><li><a href=/legal/ class="text-gray-600 hover:text-primary-600">Legal</a></li><li><a href=/careers/ class="text-gray-600 hover:text-primary-600">Careers</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/terms-conditions/ class="text-gray-600 hover:text-primary-600">Terms and Conditions</a></li><li><a href=/privacy-policy/ class="text-gray-600 hover:text-primary-600">Privacy Policy</a></li><li><a href=/eula/ class="text-gray-600 hover:text-primary-600">End User License Agreement</a></li><li><a href=/sla/ class="text-gray-600 hover:text-primary-600">Service Level Agreement</a></li></ul></div></div><div class="mt-12 pt-8 border-t border-gray-200"><div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"><p class="text-gray-600 text-sm">© 2026 HariKube - Zero-Overhead PaaS for Kubernetes. All rights reserved. HariKube is a product of Inspirnation LP, registered in Hungary.</p></div></div></div></footer><style type=text/css>blockquote{quotes:none!important}</style><div id=cookie-banner style=display:none;position:fixed;bottom:0;width:100%;background-color:#131a40;color:#fff;padding:16px;text-align:center;font-size:14px;z-index:1000><span>We use cookies to enhance your experience. By continuing, you agree to our use of cookies.
+<a href=/terms-conditions/ style=color:#425ad6;text-decoration:underline>Learn more</a>
+</span><button onclick=acceptCookies() style="margin-left:12px;background-color:#425ad6;border:none;padding:8px 16px;color:#fff;font-weight:700;cursor:pointer;border-radius:4px">Accept</button></div><script type=text/javascript src=/js/cookiebar.js></script><script>const mobileMenuButton=document.getElementById("mobile-menu-button");mobileMenuButton&&mobileMenuButton.addEventListener("click",function(){const e=document.getElementById("mobile-menu");e&&e.classList.toggle("hidden")})</script></body></html>

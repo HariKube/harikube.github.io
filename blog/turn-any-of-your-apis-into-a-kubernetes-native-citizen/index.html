@@ -1,0 +1,794 @@
+<!doctype html><html lang=en-us class=h-full><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Turn any of your APIs into a Kubernetes-native citizen | HariKube - Zero-Overhead PaaS for Kubernetes</title><meta name=description content="This Open-source tool helps you implementing Kubernetes Aggregation APIs."><meta name=author content="Richárd Kovács"><meta name=robots content="index, follow"><meta property="og:title" content="Turn any of your APIs into a Kubernetes-native citizen | HariKube - Zero-Overhead PaaS for Kubernetes"><meta property="og:description" content="This Open-source tool helps you implementing Kubernetes Aggregation APIs."><meta property="og:type" content="article"><meta property="og:url" content="/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen/"><meta property="og:site_name" content="HariKube - Zero-Overhead PaaS for Kubernetes"><meta property="og:image" content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Turn any of your APIs into a Kubernetes-native citizen | HariKube - Zero-Overhead PaaS for Kubernetes"><meta name=twitter:description content="This Open-source tool helps you implementing Kubernetes Aggregation APIs."><meta name=twitter:image content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><link rel=icon type=image/x-icon href=/images/favicon.ico><link rel=canonical href=/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel=stylesheet><link rel=stylesheet href=/css/main.css></head><body class="min-h-screen flex flex-col"><div class="fixed top-0 left-0 right-0 z-50"><div class=mobile-menu-wrapper><input type=checkbox id=nav-toggle class=nav-toggle><header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><nav class="flex items-center justify-between h-20"><a href=/ class="flex items-center space-x-4"><img src=/images/harikube-logo.png alt="HariKube - Zero-Overhead PaaS for Kubernetes" class=h-12></a><div class="hidden md:flex items-center space-x-8"><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Features
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/features/developer-experience/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Developer Experience</a>
+<a href=/features/performance/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Performance</a>
+<a href=/features/consistency/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Consistency</a>
+<a href=/features/flexible-stack/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Data Isolation</a></div></div></div><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Docs
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/docs/overview/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Overview</a>
+<a href=/docs/installation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Installation</a>
+<a href=/docs/custom-resource/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Custom Resource</a>
+<a href=/docs/automation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Automation</a>
+<a href=/docs/monitoring/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Monitoring</a>
+<a href=/docs/future-plans/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Future Plans</a></div></div></div><a href=/blog/ class="text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">Blog</a></div><div class="hidden md:flex items-center space-x-4"><a href=/editions/ class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div><div class=md:hidden><label for=nav-toggle class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></label></div></nav></div><div class="nav-content md:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto"><div class="w-full px-6 py-4"><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Features</div><div class=pl-4><a href=/features/developer-experience/ class="block text-gray-700 hover:text-primary-600 py-2">Developer Experience</a>
+<a href=/features/performance/ class="block text-gray-700 hover:text-primary-600 py-2">Performance</a>
+<a href=/features/consistency/ class="block text-gray-700 hover:text-primary-600 py-2">Consistency</a>
+<a href=/features/flexible-stack/ class="block text-gray-700 hover:text-primary-600 py-2">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block text-gray-700 hover:text-primary-600 py-2">Data Isolation</a></div></div><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Docs</div><div class=pl-4><a href=/docs/overview/ class="block text-gray-700 hover:text-primary-600 py-2">Overview</a>
+<a href=/docs/installation/ class="block text-gray-700 hover:text-primary-600 py-2">Installation</a>
+<a href=/docs/custom-resource/ class="block text-gray-700 hover:text-primary-600 py-2">Custom Resource</a>
+<a href=/docs/automation/ class="block text-gray-700 hover:text-primary-600 py-2">Automation</a>
+<a href=/docs/monitoring/ class="block text-gray-700 hover:text-primary-600 py-2">Monitoring</a>
+<a href=/docs/future-plans/ class="block text-gray-700 hover:text-primary-600 py-2">Future Plans</a></div></div><a href=/blog/ class="block text-xl text-gray-900 hover:text-primary-600 font-bold transition duration-200 py-2">Blog</a><div class="pt-4 space-y-4"><a href=/editions/ class="block text-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div></div></div></header><style>.mobile-menu-wrapper{position:relative}.nav-toggle{display:none}.nav-content{display:none}.nav-toggle:checked~header .nav-content{display:block}</style></div></div><div class=pt-20><div class="container mx-auto px-4 py-12"><div class="flex flex-col lg:flex-row gap-8 mb-12"><article class=flex-1><header class=mb-8><div class=mb-4><a href=/categories/open-source/ class="inline-block px-3 py-1 text-sm font-medium text-primary-600 bg-primary-50 rounded-full hover:bg-primary-100 mr-2">Open-Source
+</a><a href=/categories/microservice/ class="inline-block px-3 py-1 text-sm font-medium text-primary-600 bg-primary-50 rounded-full hover:bg-primary-100 mr-2">Microservice</a></div><h1 class="text-4xl font-bold mb-4">Turn any of your APIs into a Kubernetes-native citizen</h1><div class="flex flex-col space-y-4"><div class="flex items-center justify-between text-sm text-gray-500"><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7A4 4 0 118 7a4 4 0 018 0zm-4 7a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+<span>Richard Kovacs</span></div><div class="flex items-center space-x-6"><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747.0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746.0-3.332.477-4.5 1.253"/></svg>
+<span>12 min read</span></div><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2025-11-06>November 6, 2025</time></div></div></div><div class="flex items-center flex-wrap gap-2"><a href=/tags/kubernetes/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#kubernetes
+</a><a href=/tags/microservice/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#microservice
+</a><a href=/tags/development/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#development</a></div></div></header><div class=mb-8><img src=/images/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen.png alt="Turn any of your APIs into a Kubernetes-native citizen" class="w-full h-auto rounded-lg" style=max-width:800px loading=lazy></div><div class="prose prose-lg max-w-none"><style>html{scroll-padding-top:100px}</style><div class="bg-gray-50 p-6 rounded-lg mb-8"><h2 class="text-xl font-semibold mb-4">Table of Contents</h2><nav id=TableOfContents><ul><li><a href=#-transforming-apis-into-kubernetes-native-citizens>⚡ Transforming APIs into Kubernetes-Native Citizens</a></li><li><a href=#-what-the-kubernetes-aggregation-layer-gives-you>❓ What the Kubernetes Aggregation Layer Gives You</a></li><li><a href=#-the-difficulty-of-developing-an-api-server-without-frameworks>🤹 The Difficulty of Developing an API Server Without Frameworks</a></li><li><a href=#-how-this-framework-simplifies-the-process>💡 How This Framework Simplifies the Process</a></li><li><a href=#-how-to-use-it>🔌 How to Use It</a></li><li><a href=#-final-thoughts>🧠 Final Thoughts</a></li><li><a href=#-share-feedback-and-report-issues>🙏 Share Feedback and Report Issues</a></li></ul></nav></div><h2 id=-transforming-apis-into-kubernetes-native-citizens>⚡ Transforming APIs into Kubernetes-Native Citizens</h2><p>The power of Kubernetes lies in its unified control plane and its resource model. But what if you could make any of your existing APIs or services behave like a native Kubernetes resource-complete with <code>kubectl</code> compatibility, cluster-level governance, and seamless integration?</p><p>Developing extensions via the <strong>Kubernetes Aggregation Layer</strong> has traditionally been a highly complex task, demanding deep knowledge of internal API structures, serialization, and resource handling. This steep learning curve often prevents developers from extending Kubernetes as much as they&rsquo;d like.</p><p>This post introduces the <a href=https://github.com/HariKube/kubernetes-aggregator-framework>kubernetes-aggregator-framework</a>, an open-source tool designed to drastically simplify this process. We&rsquo;ll show you how this framework hides the complexity of the Kubernetes API server internals, allowing you to rapidly turn existing microservices or custom data sources into Kubernetes-native citizens.</p><h2 id=-what-the-kubernetes-aggregation-layer-gives-you>❓ What the Kubernetes Aggregation Layer Gives You</h2><p>The <a href=https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/>Kubernetes Aggregation Layer</a> allows you to extend the core Kubernetes API with your own custom APIs. Think of it as a gateway that lets you add new types of resources to your cluster that behave just like native Kubernetes objects (like pods or services).</p><h2 id=-the-difficulty-of-developing-an-api-server-without-frameworks>🤹 The Difficulty of Developing an API Server Without Frameworks</h2><p>Building a custom API server for Kubernetes from scratch is a complex and challenging task. It requires a deep understanding of the Kubernetes API&rsquo;s internals, including:</p><p>This level of detail makes it very difficult to develop an API server without extensive, in-depth knowledge of Kubernetes&rsquo; inner workings.</p><h2 id=-how-this-framework-simplifies-the-process>💡 How This Framework Simplifies the Process</h2><p>Recognizing these challenges, our framework provides a straightforward solution to make building custom Kubernetes API servers easy and accessible. It hides away much of the complex, low-level work, allowing you to focus on your core logic.</p><h2 id=-how-to-use-it>🔌 How to Use It</h2><blockquote><p>Kubernetes uses <code>HTTPS</code> by default, so you need a certificate for the service. The most common way to automate this step is installing <a href=https://cert-manager.io>Cert-Manager</a> to the cluster.</p></blockquote><p>In the first step create an <code>APIService</code> and the related service manifests. Edit your Deployment to mount certificate.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">apis-service.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("ff6c7be55c33e05f3781b61517249f4c")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-ff6c7be55c33e05f3781b61517249f4c style=display:none>apiVersion: apiregistration.k8s.io/v1
+kind: APIService
+metadata:
+  name: v1.custom-api.example.com # This has a stict format
+  annotations:
+    cert-manager.io/inject-ca-from: v1-custom-api-service/default # your service
+spec:
+  group: custom-api.example.com
+  version: v1
+  groupPriorityMinimum: 1000
+  versionPriority: 10
+  service:
+    name: v1-custom-api-service
+    namespace: default
+    port: 443
+  caBundle: &#34;&#34;
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: v1-custom-api-service-cert
+  namespace: system
+spec:
+  secretName: v1-custom-api-service-tls
+  issuerRef:
+    name: v1-custom-api-service-ca
+  commonName: v1-custom-api-service.default.svc
+  dnsNames:
+  - v1-custom-api-service.default.svc
+  - v1-custom-api-service.default.svc.cluster.local
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: v1-custom-api-service
+spec:
+  ports:
+    - port: 443
+      protocol: TCP
+      targetPort: 7443
+  selector:
+    app: custom-api.example.com
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apiregistration.k8s.io/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>APIService</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>v1.custom-api.example.com</span><span class=w> </span><span class=c># This has a stict format</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>annotations</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>cert-manager.io/inject-ca-from</span><span class=p>:</span><span class=w> </span><span class=l>v1-custom-api-service/default</span><span class=w> </span><span class=c># your service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>group</span><span class=p>:</span><span class=w> </span><span class=l>custom-api.example.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>groupPriorityMinimum</span><span class=p>:</span><span class=w> </span><span class=m>1000</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>versionPriority</span><span class=p>:</span><span class=w> </span><span class=m>10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>v1-custom-api-service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class=l>default</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>443</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>caBundle</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>cert-manager.io/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Certificate</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>v1-custom-api-service-cert</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class=l>system</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>secretName</span><span class=p>:</span><span class=w> </span><span class=l>v1-custom-api-service-tls</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>issuerRef</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>v1-custom-api-service-ca</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>commonName</span><span class=p>:</span><span class=w> </span><span class=l>v1-custom-api-service.default.svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>dnsNames</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>v1-custom-api-service.default.svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>v1-custom-api-service.default.svc.cluster.local</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>v1-custom-api-service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>443</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>protocol</span><span class=p>:</span><span class=w> </span><span class=l>TCP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>targetPort</span><span class=p>:</span><span class=w> </span><span class=m>7443</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>custom-api.example.com</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h3 id=creating-raw-endpoints-without-any-kubernetes-behaviour-dependency>Creating raw endpoints, without any Kubernetes behaviour dependency</h3><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">api-service.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("e70e71fa20b37b1a1e4550efc784ff69")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-e70e71fa20b37b1a1e4550efc784ff69 style=display:none>server := *kaf.NewServer(kaf.ServerConfig{
+    Port:     port,
+    CertFile: certFile,
+    KeyFile:  keyFile,
+    Group:    &#34;custom-api.example.com&#34;,
+    Version:  &#34;v1&#34;,
+    APIKinds: []kaf.APIKind{
+        {
+            ApiResource: metav1.APIResource{
+                Name:  &#34;foo&#34;,
+                Verbs: []string{&#34;get&#34;},
+            },
+            RawEndpoints: map[string]http.HandlerFunc{
+                &#34;&#34;: func(w http.ResponseWriter, r *http.Request) {
+                    ...
+                },
+                &#34;/bar&#34;: func(w http.ResponseWriter, r *http.Request) {
+                    ...
+                },
+            },
+        },
+    },
+}),
+
+_ := server.Start(context.Background())
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>server</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=o>*</span><span class=nx>kaf</span><span class=p>.</span><span class=nf>NewServer</span><span class=p>(</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>ServerConfig</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Port</span><span class=p>:</span><span class=w>     </span><span class=nx>port</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>CertFile</span><span class=p>:</span><span class=w> </span><span class=nx>certFile</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>KeyFile</span><span class=p>:</span><span class=w>  </span><span class=nx>keyFile</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Group</span><span class=p>:</span><span class=w>    </span><span class=s>&#34;custom-api.example.com&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Version</span><span class=p>:</span><span class=w>  </span><span class=s>&#34;v1&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>APIKinds</span><span class=p>:</span><span class=w> </span><span class=p>[]</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>APIKind</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>ApiResource</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>APIResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>Name</span><span class=p>:</span><span class=w>  </span><span class=s>&#34;foo&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>Verbs</span><span class=p>:</span><span class=w> </span><span class=p>[]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;get&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>RawEndpoints</span><span class=p>:</span><span class=w> </span><span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=nx>http</span><span class=p>.</span><span class=nx>HandlerFunc</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=s>&#34;&#34;</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                    </span><span class=o>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=s>&#34;/bar&#34;</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                    </span><span class=o>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}),</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nx>_</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>server</span><span class=p>.</span><span class=nf>Start</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>Background</span><span class=p>())</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Call API via <code>kubectl</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("c9ec5565925ec22b623921697f2c0e3b")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-c9ec5565925ec22b623921697f2c0e3b style=display:none>kubectl get --raw /apis/custom-api.example.com/v1/foo
+kubectl get --raw /apis/custom-api.example.com/v1/foo/bar
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get --raw /apis/custom-api.example.com/v1/foo
+</span></span><span class=line><span class=cl>kubectl get --raw /apis/custom-api.example.com/v1/foo/bar
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><hr><h3 id=create-fully-customized-api-endpoints-for-cluster-and-namespace-scoped-custom-resource>Create fully customized API endpoints for cluster and namespace scoped custom resource</h3><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">api-service.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("6a673332214c0bffa132f7b0168f8bf2")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-6a673332214c0bffa132f7b0168f8bf2 style=display:none>kaf.APIKind {
+    ApiResource: metav1.APIResource{
+        Name:  &#34;clustertasks&#34;,
+        Kind:  &#34;ClusterPod&#34;,
+        Verbs: []string{&#34;get&#34;, &#34;list&#34;, &#34;watch&#34;, &#34;create&#34;, &#34;update&#34;, &#34;delete&#34;},
+    },
+    CustomResource: &amp;kaf.CustomResource{
+        CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+    },
+},
+kaf.APIKind {
+    ApiResource: metav1.APIResource{
+        Name:       &#34;customtasks&#34;,
+        Namespaced: true,
+        Kind:       &#34;CustomPod&#34;,
+        Verbs:      []string{&#34;get&#34;, &#34;list&#34;, &#34;watch&#34;, &#34;create&#34;, &#34;update&#34;, &#34;delete&#34;},
+    },
+    CustomResource: &amp;kaf.CustomResource{
+        CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+        WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+            w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+        },
+    },
+},
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>kaf</span><span class=p>.</span><span class=nx>APIKind</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ApiResource</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>APIResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Name</span><span class=p>:</span><span class=w>  </span><span class=s>&#34;clustertasks&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Kind</span><span class=p>:</span><span class=w>  </span><span class=s>&#34;ClusterPod&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Verbs</span><span class=p>:</span><span class=w> </span><span class=p>[]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;get&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;list&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;watch&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;create&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;update&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;delete&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>CustomResource</span><span class=p>:</span><span class=w> </span><span class=o>&amp;</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>CustomResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>CreateHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>GetHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ListHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ReplaceHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>DeleteHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>WatchHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nx>kaf</span><span class=p>.</span><span class=nx>APIKind</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ApiResource</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>APIResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Name</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;customtasks&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Namespaced</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CustomPod&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Verbs</span><span class=p>:</span><span class=w>      </span><span class=p>[]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;get&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;list&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;watch&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;create&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;update&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;delete&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>CustomResource</span><span class=p>:</span><span class=w> </span><span class=o>&amp;</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>CustomResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>CreateHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>GetHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ListHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ReplaceHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>DeleteHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>WatchHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>},</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Call API via <code>kubectl</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("b514cff7e7083186d2adc06f27ee50ce")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-b514cff7e7083186d2adc06f27ee50ce style=display:none>kubectl create --raw /apis/custom-api.example.com/v1/clustertasks/foo -f clustertask.yaml
+kubectl replace --raw /apis/custom-api.example.com/v1/clustertasks/foo -f clustertask.yaml
+kubectl get clustertasks
+kubectl get clustertasks foo
+kubectl get clustertasks -w
+kubectl get clustertasks foo -w
+kubectl delete clustertasks foo
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl create --raw /apis/custom-api.example.com/v1/clustertasks/foo -f clustertask.yaml
+</span></span><span class=line><span class=cl>kubectl replace --raw /apis/custom-api.example.com/v1/clustertasks/foo -f clustertask.yaml
+</span></span><span class=line><span class=cl>kubectl get clustertasks
+</span></span><span class=line><span class=cl>kubectl get clustertasks foo
+</span></span><span class=line><span class=cl>kubectl get clustertasks -w
+</span></span><span class=line><span class=cl>kubectl get clustertasks foo -w
+</span></span><span class=line><span class=cl>kubectl delete clustertasks foo
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("9ea4f4b4f050cd420f5b641484999546")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-9ea4f4b4f050cd420f5b641484999546 style=display:none>kubectl create --raw /apis/custom-api.example.com/v1/namespaces/default/customtasks/foo -f customtask.yaml
+kubectl replace --raw /apis/custom-api.example.com/v1/namespaces/default/customtasks/foo -f clustertask.yaml
+kubectl get customtasks
+kubectl get customtasks foo
+kubectl get customtasks -w
+kubectl get customtasks foo -w
+kubectl delete customtasks foo
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl create --raw /apis/custom-api.example.com/v1/namespaces/default/customtasks/foo -f customtask.yaml
+</span></span><span class=line><span class=cl>kubectl replace --raw /apis/custom-api.example.com/v1/namespaces/default/customtasks/foo -f clustertask.yaml
+</span></span><span class=line><span class=cl>kubectl get customtasks
+</span></span><span class=line><span class=cl>kubectl get customtasks foo
+</span></span><span class=line><span class=cl>kubectl get customtasks -w
+</span></span><span class=line><span class=cl>kubectl get customtasks foo -w
+</span></span><span class=line><span class=cl>kubectl delete customtasks foo
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><hr><h3 id=create-and-api-extending-kubernetes-api-capabilities-for-example-collecting-events-of-pods>Create and API extending Kubernetes API capabilities, for example collecting events of Pods</h3><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">api-service.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("923335ef6f09bd407b120feda46647e1")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-923335ef6f09bd407b120feda46647e1 style=display:none>type CombinedPod struct {
+	metav1.TypeMeta   `json:&#34;,inline&#34;`
+	metav1.ObjectMeta `json:&#34;metadata,omitempty&#34;`
+
+	Spec   corev1.PodSpec    `json:&#34;spec,omitempty&#34;`
+	Status corev1.PodStatus  `json:&#34;status,omitempty&#34;`
+}
+
+type CombinedPodList struct {
+	metav1.TypeMeta `json:&#34;,inline&#34;`
+	metav1.ListMeta `json:&#34;metadata,omitempty&#34;`
+	Items           []CombinedPod `json:&#34;items&#34;`
+}
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=kd>type</span><span class=w> </span><span class=nx>CombinedPod</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=w>   </span><span class=s>`json:&#34;,inline&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>ObjectMeta</span><span class=w> </span><span class=s>`json:&#34;metadata,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>Spec</span><span class=w>   </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>PodSpec</span><span class=w>    </span><span class=s>`json:&#34;spec,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>Status</span><span class=w> </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>PodStatus</span><span class=w>  </span><span class=s>`json:&#34;status,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>type</span><span class=w> </span><span class=nx>CombinedPodList</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=w> </span><span class=s>`json:&#34;,inline&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>ListMeta</span><span class=w> </span><span class=s>`json:&#34;metadata,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>Items</span><span class=w>           </span><span class=p>[]</span><span class=nx>CombinedPod</span><span class=w> </span><span class=s>`json:&#34;items&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">api-service.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("71803861201268e4a3e26a86732a569d")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-71803861201268e4a3e26a86732a569d style=display:none>kubeClient, _ := client.New(ctrl.GetConfigOrDie(), client.Options{
+  Scheme: scheme,
+})
+
+dynamicKubeClient, _ := dynamic.NewForConfig(ctrl.GetConfigOrDie())
+
+Server: *kaf.NewServer(kaf.ServerConfig{
+    KubeClient: kubeClient,
+    DynamicKubeClient: dynamicKubeClient,
+    ...
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>kubeClient</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>ctrl</span><span class=p>.</span><span class=nf>GetConfigOrDie</span><span class=p>(),</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>Options</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Scheme</span><span class=p>:</span><span class=w> </span><span class=nx>scheme</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>})</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nx>dynamicKubeClient</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>dynamic</span><span class=p>.</span><span class=nf>NewForConfig</span><span class=p>(</span><span class=nx>ctrl</span><span class=p>.</span><span class=nf>GetConfigOrDie</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nx>Server</span><span class=p>:</span><span class=w> </span><span class=o>*</span><span class=nx>kaf</span><span class=p>.</span><span class=nf>NewServer</span><span class=p>(</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>ServerConfig</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>KubeClient</span><span class=p>:</span><span class=w> </span><span class=nx>kubeClient</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>DynamicKubeClient</span><span class=p>:</span><span class=w> </span><span class=nx>dynamicKubeClient</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=o>...</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">api-service.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("3941a3459e1c9a0f19dae0d6dc8e1492")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-3941a3459e1c9a0f19dae0d6dc8e1492 style=display:none>kaf.APIKind {
+    ApiResource: metav1.APIResource{
+        Name:       &#34;combinedpods&#34;,
+        Namespaced: true,
+        Kind:       &#34;CombinedPod&#34;,
+        Verbs:      []string{&#34;get&#34;, &#34;list&#34;, &#34;watch&#34;},
+    },
+    Resource: &amp;kaf.Resource{
+        CreateNew: func() (schema.GroupVersionResource, client.Object) {
+            return corev1.GroupVersion.WithResource(&#34;pods&#34;), &amp;corev1.Pod{}
+        },
+        CreateNewList: func() (schema.GroupVersionResource, client.ObjectList) {
+            return corev1.GroupVersion.WithResource(&#34;podlist&#34;), &amp;corev1.PodList{}
+        },
+        ListCallback: func(ctx context.Context, namespace, _ string, objList client.ObjectList) (any, error) {
+            podList, ok := objList.(*corev1.PodList)
+            if !ok {
+              return nil, fmt.Errorf(&#34;failed to convert podlist for: %s&#34;, objList.GetObjectKind().GroupVersionKind().String())
+            }
+
+            // Do what you want
+
+            combinedPods := CombinedPodList{
+              TypeMeta: metav1.TypeMeta{
+                Kind:       &#34;CombinedPodList&#34;,
+                APIVersion: Group &#43; &#34;/&#34; &#43; Version,
+              },
+              ListMeta: metav1.ListMeta{
+                ResourceVersion:    podList.ResourceVersion,
+                Continue:           podList.Continue,
+                RemainingItemCount: podList.RemainingItemCount,
+              },
+              Items: []CombinedPod{},
+            }
+
+            for _, t := range items {
+              pod := t.(*corev1.Pod)
+
+              ct := CombinedPod{
+                TypeMeta: metav1.TypeMeta{
+                  Kind:       &#34;CombinedPod&#34;,
+                  APIVersion: Group &#43; &#34;/&#34; &#43; Version,
+                },
+                ObjectMeta: pod.ObjectMeta,
+                Spec:       pod.Spec,
+              }
+
+              combinedPods.Items = append(combinedPods.Items, ct)
+            }
+
+            return combinedPods, nil
+          },
+          WatchCallback: func(ctx context.Context, _, _ string, unstructuredObj *unstructured.Unstructured) (any, error) {
+            pod := corev1.Pod{}
+            if err := runtime.DefaultUnstructuredConverter.FromUnstructured(unstructuredObj.Object, &amp;pod); err != nil {
+              return nil, fmt.Errorf(&#34;failed to convert unstructured: %v&#34;, err)
+            }
+
+            // Do what you want
+
+            cp := CombinedPod{
+              TypeMeta: metav1.TypeMeta{
+                Kind:       &#34;CombinedPod&#34;,
+                APIVersion: Group &#43; &#34;/&#34; &#43; Version,
+              },
+              ObjectMeta: pod.ObjectMeta,
+              Spec:       pod.Spec,
+            }
+
+            return cp, nil
+          },
+      },
+},
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>kaf</span><span class=p>.</span><span class=nx>APIKind</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ApiResource</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>APIResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Name</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;combinedpods&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Namespaced</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedPod&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Verbs</span><span class=p>:</span><span class=w>      </span><span class=p>[]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;get&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;list&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;watch&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Resource</span><span class=p>:</span><span class=w> </span><span class=o>&amp;</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>Resource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>CreateNew</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>()</span><span class=w> </span><span class=p>(</span><span class=nx>schema</span><span class=p>.</span><span class=nx>GroupVersionResource</span><span class=p>,</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>Object</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>return</span><span class=w> </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>GroupVersion</span><span class=p>.</span><span class=nf>WithResource</span><span class=p>(</span><span class=s>&#34;pods&#34;</span><span class=p>),</span><span class=w> </span><span class=o>&amp;</span><span class=nx>corev1</span><span class=p>.</span><span class=nx>Pod</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>CreateNewList</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>()</span><span class=w> </span><span class=p>(</span><span class=nx>schema</span><span class=p>.</span><span class=nx>GroupVersionResource</span><span class=p>,</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>ObjectList</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>return</span><span class=w> </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>GroupVersion</span><span class=p>.</span><span class=nf>WithResource</span><span class=p>(</span><span class=s>&#34;podlist&#34;</span><span class=p>),</span><span class=w> </span><span class=o>&amp;</span><span class=nx>corev1</span><span class=p>.</span><span class=nx>PodList</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ListCallback</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>ctx</span><span class=w> </span><span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span><span class=w> </span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>objList</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>ObjectList</span><span class=p>)</span><span class=w> </span><span class=p>(</span><span class=kt>any</span><span class=p>,</span><span class=w> </span><span class=kt>error</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>podList</span><span class=p>,</span><span class=w> </span><span class=nx>ok</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>objList</span><span class=p>.(</span><span class=o>*</span><span class=nx>corev1</span><span class=p>.</span><span class=nx>PodList</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>if</span><span class=w> </span><span class=p>!</span><span class=nx>ok</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=k>return</span><span class=w> </span><span class=kc>nil</span><span class=p>,</span><span class=w> </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;failed to convert podlist for: %s&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>objList</span><span class=p>.</span><span class=nf>GetObjectKind</span><span class=p>().</span><span class=nf>GroupVersionKind</span><span class=p>().</span><span class=nf>String</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=c1>// Do what you want</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>combinedPods</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>CombinedPodList</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>TypeMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedPodList&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>APIVersion</span><span class=p>:</span><span class=w> </span><span class=nx>Group</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=s>&#34;/&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nx>Version</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>ListMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>ListMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>ResourceVersion</span><span class=p>:</span><span class=w>    </span><span class=nx>podList</span><span class=p>.</span><span class=nx>ResourceVersion</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>Continue</span><span class=p>:</span><span class=w>           </span><span class=nx>podList</span><span class=p>.</span><span class=nx>Continue</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>RemainingItemCount</span><span class=p>:</span><span class=w> </span><span class=nx>podList</span><span class=p>.</span><span class=nx>RemainingItemCount</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>Items</span><span class=p>:</span><span class=w> </span><span class=p>[]</span><span class=nx>CombinedPod</span><span class=p>{},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>for</span><span class=w> </span><span class=nx>_</span><span class=p>,</span><span class=w> </span><span class=nx>t</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=k>range</span><span class=w> </span><span class=nx>items</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>pod</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>t</span><span class=p>.(</span><span class=o>*</span><span class=nx>corev1</span><span class=p>.</span><span class=nx>Pod</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>ct</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>CombinedPod</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>TypeMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                  </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedPod&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                  </span><span class=nx>APIVersion</span><span class=p>:</span><span class=w> </span><span class=nx>Group</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=s>&#34;/&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nx>Version</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>ObjectMeta</span><span class=p>:</span><span class=w> </span><span class=nx>pod</span><span class=p>.</span><span class=nx>ObjectMeta</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>Spec</span><span class=p>:</span><span class=w>       </span><span class=nx>pod</span><span class=p>.</span><span class=nx>Spec</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>combinedPods</span><span class=p>.</span><span class=nx>Items</span><span class=w> </span><span class=p>=</span><span class=w> </span><span class=nb>append</span><span class=p>(</span><span class=nx>combinedPods</span><span class=p>.</span><span class=nx>Items</span><span class=p>,</span><span class=w> </span><span class=nx>ct</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>return</span><span class=w> </span><span class=nx>combinedPods</span><span class=p>,</span><span class=w> </span><span class=kc>nil</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>WatchCallback</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>ctx</span><span class=w> </span><span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>unstructuredObj</span><span class=w> </span><span class=o>*</span><span class=nx>unstructured</span><span class=p>.</span><span class=nx>Unstructured</span><span class=p>)</span><span class=w> </span><span class=p>(</span><span class=kt>any</span><span class=p>,</span><span class=w> </span><span class=kt>error</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>pod</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>Pod</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>runtime</span><span class=p>.</span><span class=nx>DefaultUnstructuredConverter</span><span class=p>.</span><span class=nf>FromUnstructured</span><span class=p>(</span><span class=nx>unstructuredObj</span><span class=p>.</span><span class=nx>Object</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=nx>pod</span><span class=p>);</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=k>return</span><span class=w> </span><span class=kc>nil</span><span class=p>,</span><span class=w> </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;failed to convert unstructured: %v&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=c1>// Do what you want</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>cp</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>CombinedPod</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>TypeMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedPod&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nx>APIVersion</span><span class=p>:</span><span class=w> </span><span class=nx>Group</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=s>&#34;/&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nx>Version</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>ObjectMeta</span><span class=p>:</span><span class=w> </span><span class=nx>pod</span><span class=p>.</span><span class=nx>ObjectMeta</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nx>Spec</span><span class=p>:</span><span class=w>       </span><span class=nx>pod</span><span class=p>.</span><span class=nx>Spec</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=k>return</span><span class=w> </span><span class=nx>cp</span><span class=p>,</span><span class=w> </span><span class=kc>nil</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>},</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Call API via <code>kubectl</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("adf3e2133de5a0094a2d7cc609f033fe")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-adf3e2133de5a0094a2d7cc609f033fe style=display:none>kubectl get combinedtasks -A
+kubectl get combinedtasks -n default
+kubectl get combinedtasks -n default foo
+kubectl get combinedtasks -n default foo -o yaml
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get combinedtasks -A
+</span></span><span class=line><span class=cl>kubectl get combinedtasks -n default
+</span></span><span class=line><span class=cl>kubectl get combinedtasks -n default foo
+</span></span><span class=line><span class=cl>kubectl get combinedtasks -n default foo -o yaml
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h2 id=-final-thoughts>🧠 Final Thoughts</h2><p>We&rsquo;ve explored how the kubernetes-aggregator-framework dramatically simplifies the complex world of the Kubernetes Aggregation Layer. The ability to expose any of your existing APIs as native Kubernetes Custom Resources is a game-changer.</p><p>By abstracting away the heavy lifting-like handling API registration, request routing, serialization, and proper Kubernetes API conventions-the framework allows you to focus purely on your core business logic. You gain the best of both worlds: the <strong>simplicity of standard API development</strong> coupled with the <strong>powerful, unified control plane</strong> that Kubernetes offers.</p><p>This framework is not just about making development easier; it’s about enhancing your cluster’s capabilities. You can now enforce consistent security policies, leverage standard tooling like kubectl, and achieve genuine <strong>Kubernetes-native integration</strong> for every microservice you build.</p><p>We hope this tool empowers you to unlock new levels of performance and simplicity within your data topology. Don&rsquo;t let the complexity of Kubernetes API extensions hold you back any longer.</p><h2 id=-share-feedback-and-report-issues>🙏 Share Feedback and Report Issues</h2><p>Your feedback is invaluable in helping us improve this framework. If you encounter any issues, have a suggestion for a new feature, or simply want to share your experience, we want to hear from you!</p><ul><li>Report Bugs: If you find a bug, please open a <a href=https://github.com/HariKube/kubernetes-aggregator-framework/issues>GitHub Issue</a>. Include as much detail as possible, such as steps to reproduce the bug, expected behavior, and your environment (e.g., Kubernetes version, Go version).</li><li>Request a Feature: If you have an idea for a new feature, open a <a href=https://github.com/HariKube/kubernetes-aggregator-framework/issues>GitHub Issue</a> and use the feature request label. Describe the use case and how the new feature would benefit the community.</li><li>Ask a Question: For general questions or discussions, please use the <a href=https://github.com/HariKube/kubernetes-aggregator-framework/discussions>GitHub Discussions</a>.</li></ul><hr><p><strong>This project is part of our journey to transform Kubernetes into a true Platform-as-a-Service. We not just dream about this but built for you. Read details here:</strong> <a href=/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/>[→]</a>.</p><hr><p>That’s it! You&rsquo;ve seen how the kubernetes-aggregator-framework <strong>completely removes the friction</strong> from extending your Kubernetes control plane. It&rsquo;s time to stop treating your APIs as external services and start integrating them as <strong>first-class Kubernetes resources</strong>.</p><p>Thank you for reading, and feel free to <a href=https://github.com/HariKube/harikube/discussions>share your thoughts</a>.</p></div></article><aside class="lg:w-80 xl:w-96"><div class=space-y-8><div class="bg-white rounded-lg shadow-md p-6"><h3 class="text-lg font-bold mb-4">Recent Articles</h3><div class=space-y-4><div class=group><a href=/blog/the_hidden_infrastructure_challenge_behind_ai_agents/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/the_hidden_infrastructure_challenge_behind_ai_agents_harikube.png alt="Turn any of your APIs into a Kubernetes-native citizen" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">The Hidden Infrastructure Challenge Behind AI Agents</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-06-03>Jun 3, 2026</time></div></a></div><div class=group><a href=/blog/kubernetes-etcd-bottleneck-ai-training/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/kubernetes-etcd-bottleneck-ai-training.png alt="Turn any of your APIs into a Kubernetes-native citizen" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-05-19>May 19, 2026</time></div></a></div><div class=group><a href=/blog/ai-agenting-on-kubernetes-with-harikube/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/ai-agenting-on-kubernetes-with-harikube.png alt="Turn any of your APIs into a Kubernetes-native citizen" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">AI Agenting on Kubernetes with HariKube</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-05-15>May 15, 2026</time></div></a></div><div class=group><a href=/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program.png alt="Turn any of your APIs into a Kubernetes-native citizen" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">Enterprise Kubernetes Scaling: HariKube Joins the SUSE Sapphire Innovate Partner Program</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-04-23>Apr 23, 2026</time></div></a></div><div class=group><a href=/blog/harikube-vs-vanilla-kubernetes/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/harikube-vs-vanilla-kubernetes.png alt="Turn any of your APIs into a Kubernetes-native citizen" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-04-01>Apr 1, 2026</time></div></a></div></div></div><div class="bg-white rounded-lg shadow-md p-6"><h3 class="text-lg font-bold mb-4">Popular Tags</h3><div class="flex flex-wrap gap-2"><a href=/tags/kubernetes/ class="text-sm text-gray-600 hover:text-primary-600">#kubernetes
+<span class=text-gray-500>(18)</span>
+</a><a href=/tags/microservice/ class="text-sm text-gray-600 hover:text-primary-600">#microservice
+<span class=text-gray-500>(9)</span>
+</a><a href=/tags/infrastructure/ class="text-sm text-gray-600 hover:text-primary-600">#infrastructure
+<span class=text-gray-500>(8)</span>
+</a><a href=/tags/scalability/ class="text-sm text-gray-600 hover:text-primary-600">#scalability
+<span class=text-gray-500>(7)</span>
+</a><a href=/tags/custom-resource/ class="text-sm text-gray-600 hover:text-primary-600">#custom resource
+<span class=text-gray-500>(6)</span>
+</a><a href=/tags/development/ class="text-sm text-gray-600 hover:text-primary-600">#development
+<span class=text-gray-500>(6)</span>
+</a><a href=/tags/agentic-ai/ class="text-sm text-gray-600 hover:text-primary-600">#agentic ai
+<span class=text-gray-500>(4)</span>
+</a><a href=/tags/serverless/ class="text-sm text-gray-600 hover:text-primary-600">#serverless
+<span class=text-gray-500>(3)</span>
+</a><a href=/tags/ai/ class="text-sm text-gray-600 hover:text-primary-600">#ai
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/ai-training/ class="text-sm text-gray-600 hover:text-primary-600">#ai training
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/control-plane/ class="text-sm text-gray-600 hover:text-primary-600">#control plane
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/devops/ class="text-sm text-gray-600 hover:text-primary-600">#devops
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/eks/ class="text-sm text-gray-600 hover:text-primary-600">#eks
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/etcd/ class="text-sm text-gray-600 hover:text-primary-600">#etcd
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/etcd-replacement/ class="text-sm text-gray-600 hover:text-primary-600">#etcd replacement
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/partners/ class="text-sm text-gray-600 hover:text-primary-600">#partners
+<span class=text-gray-500>(1)</span></a></div></div></div></aside></div><nav class="border-t border-gray-200 mt-12 pt-8"><div class="flex justify-between items-center"><a href=/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/ class="group flex items-center"><svg class="w-5 h-5 mr-2 text-gray-600 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0 7-7m-7 7h18"/></svg><div><div class="text-sm text-gray-600">Previous Post</div><div class="font-medium group-hover:text-primary-600">The Future of Kubernetes PaaS and Kubernetes-native Service Development is Here</div></div></a><a href=/blog/build-your-kubernetes-platform-as-a-service-today/ class="group flex items-center text-right"><div><div class="text-sm text-gray-600">Next Post</div><div class="font-medium group-hover:text-primary-600">Build Your Kubernetes Platform-as-a-Service Today</div></div><svg class="w-5 h-5 ml-2 text-gray-600 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0-7 7m7-7H3"/></svg></a></div></nav><div class=mt-16><section class=cta-section><div class=container><div class="relative rounded-lg overflow-hidden bg-primary-600 cta-gradient" style="--gradient-angle:45;--gradient-from: ;--gradient-to:"><div class="relative text-center max-w-3xl mx-auto px-6 py-10"><h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Read the Technical Whitepaper!</h2><p class="text-xl text-primary-100 mb-8">Beyond the Benchmarks: If 50% of your engineering effort is currently spent on platform integration rather than business logic, your infrastructure is a bottleneck. In our technical whitepaper, we share the research behind the Unified Service Model and demonstrate how HariKube eliminates the integration overhead that stalls enterprise growth.</p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href=/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/ class="btn bg-white text-primary-600 hover:bg-gray-100">Download</a></div></div></div></div></section></div></div></div><footer class="bg-gray-50 py-12 border-t border-gray-200"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><div class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0"><div class=flex-1><div class="flex items-center space-x-3 mb-4"><a href=/ class=inline-block><img src=/images/harikube-logo.png alt="HariKube - Zero-Overhead PaaS for Kubernetes" class=h-6></a></div><div class="flex space-x-3 p-2"><a href=https://linkedin.com/company/harikube/ class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>LinkedIn</span>
+<img src=/images/social/linkedin.svg alt=LinkedIn class="h-5 w-5">
+</a><a href=https://github.com/HariKube class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>GitHub</span>
+<img src=/images/social/github.svg alt=GitHub class="h-5 w-5"></a></div></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/faq/ class="text-gray-600 hover:text-primary-600">FAQ</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/company/ class="text-gray-600 hover:text-primary-600">About Us</a></li><li><a href=/legal/ class="text-gray-600 hover:text-primary-600">Legal</a></li><li><a href=/careers/ class="text-gray-600 hover:text-primary-600">Careers</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/terms-conditions/ class="text-gray-600 hover:text-primary-600">Terms and Conditions</a></li><li><a href=/privacy-policy/ class="text-gray-600 hover:text-primary-600">Privacy Policy</a></li><li><a href=/eula/ class="text-gray-600 hover:text-primary-600">End User License Agreement</a></li><li><a href=/sla/ class="text-gray-600 hover:text-primary-600">Service Level Agreement</a></li></ul></div></div><div class="mt-12 pt-8 border-t border-gray-200"><div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"><p class="text-gray-600 text-sm">© 2026 HariKube - Zero-Overhead PaaS for Kubernetes. All rights reserved. HariKube is a product of Inspirnation LP, registered in Hungary.</p></div></div></div></footer><style type=text/css>blockquote{quotes:none!important}</style><div id=cookie-banner style=display:none;position:fixed;bottom:0;width:100%;background-color:#131a40;color:#fff;padding:16px;text-align:center;font-size:14px;z-index:1000><span>We use cookies to enhance your experience. By continuing, you agree to our use of cookies.
+<a href=/terms-conditions/ style=color:#425ad6;text-decoration:underline>Learn more</a>
+</span><button onclick=acceptCookies() style="margin-left:12px;background-color:#425ad6;border:none;padding:8px 16px;color:#fff;font-weight:700;cursor:pointer;border-radius:4px">Accept</button></div><script type=text/javascript src=/js/cookiebar.js></script><script>const mobileMenuButton=document.getElementById("mobile-menu-button");mobileMenuButton&&mobileMenuButton.addEventListener("click",function(){const e=document.getElementById("mobile-menu");e&&e.classList.toggle("hidden")})</script></body></html>

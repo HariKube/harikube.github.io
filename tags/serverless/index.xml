@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Serverless on HariKube - Zero-Overhead PaaS for Kubernetes</title><link>/tags/serverless/</link><description>Recent content in Serverless on HariKube - Zero-Overhead PaaS for Kubernetes</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 01 Jul 2026 16:38:53 +0200</lastBuildDate><atom:link href="/tags/serverless/index.xml" rel="self" type="application/rss+xml"/><item><title>The Future of Kubernetes PaaS and Kubernetes-native Service Development is Here</title><link>/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/</link><pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-future-of-kubernetes-and-service-development"&gt;✨ The Future of Kubernetes and Service Development&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-single-source-of-truth-unified-service-design"&gt;🦄 The Single Source of Truth: Unified Service Design&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-stop-waiting-welcome-to-the-cloud-native-platform-as-a-service-reality"&gt;🛑 Stop Waiting: Welcome to the Cloud-Native-Platform-as-a-Service Reality&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-demo-time-lets-see-it-in-action"&gt;🚀 The Demo Time: Let&amp;rsquo;s See It in Action&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-future-is-yours-to-build"&gt;🏗️ The Future is Yours to Build&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;We at &lt;strong&gt;HariKube&lt;/strong&gt; strongly believe in the transformative power of cutting-edge technology to shape the future of service development. As the digital landscape continues to evolve at an unprecedented pace, the need for robust, scalable, and efficient Cloud-Native infrastructure becomes paramount. We are committed to &lt;strong&gt;turning Kubernetes into a real Platform-as-a-Service (PaaS), where it not just orchestrates individual services, but becomes the source of truth for the entire platform&lt;/strong&gt;. Join us as we delve into the exciting advancements and upcoming trends that define &amp;hellip;&lt;/p&gt;</description></item><item><title>Introducing Serverless Kube Watch Trigger: Declarative Event Triggers for Kubernetes</title><link>/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes/</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-why-we-built-it"&gt;❓ Why We Built It&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-it-does"&gt;🔌 What It Does&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-fits-into-harikube"&gt;⚡ How It Fits Into HariKube&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thoughts"&gt;🧠 Final Thoughts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-share-feedback-and-report-issues"&gt;🙏 Share Feedback and Report Issues&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;Today we’re releasing something small, simple, open-source, and surprisingly powerful: &lt;a href="https://github.com/HariKube/serverless-kube-watch-trigger"&gt;serverless-kube-watch-trigger&lt;/a&gt;, a Kubernetes Custom Resource Definition that turns cluster events into HTTP calls - directly and declaratively.&lt;/p&gt;
+&lt;p&gt;No glue scripts. No extra brokers. No complex controllers. Just YAML.&lt;/p&gt;</description></item><item><title>We make Kubernetes work at enterprise scale - no more ETCD limits</title><link>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-big-picture-kubernetes-as-a-full-paas-runtime"&gt;🌐 The Big Picture: Kubernetes as a Full PaaS Runtime&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikube---dynamic-database-agnostic-data-backend"&gt;🧱 HariKube - Dynamic, Database-Agnostic Data Backend&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-serverless---nanoservice-layer"&gt;⚡ Serverless - Nanoservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-agentic-ai---microservice-layer"&gt;🧠 Agentic AI - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-operators---microservice-layer"&gt;🔁 Operators - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-kubernetes-aggregation-api-layer---traditional-rest-api-layer"&gt;🌐 Kubernetes Aggregation API Layer - Traditional REST API Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-all-layers-combined-a-hybrid-architecture"&gt;🧠 All Layers Combined: A Hybrid Architecture&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-strategic-impact"&gt;🚀 Strategic Impact&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-a-new-platform-strategy"&gt;✨ A New Platform Strategy&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Imagine a world where Kubernetes itself becomes the platform&lt;/strong&gt; - not just for container orchestration, but for &lt;strong&gt;functions, microservices, and APIs&lt;/strong&gt;. With HariKube’s dynamic data layer, serverless function triggers, operator loops, and the Kubernetes Aggregation API layer, that world is not only possible - it’s here.&lt;/p&gt;</description></item></channel></rss>

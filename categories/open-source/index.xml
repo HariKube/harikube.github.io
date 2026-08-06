@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Open-Source on HariKube - Zero-Overhead PaaS for Kubernetes</title><link>/categories/open-source/</link><description>Recent content in Open-Source on HariKube - Zero-Overhead PaaS for Kubernetes</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 06 Aug 2026 11:26:48 +0200</lastBuildDate><atom:link href="/categories/open-source/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes Performance Challenge</title><link>/blog/kubernetes-performance-challenge/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-performance-challenge/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-challenge"&gt;🚀 The Challenge&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-grand-prize"&gt;🏆 The Grand Prize&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-first-ten-grant"&gt;🎖️ The &amp;ldquo;First Ten&amp;rdquo; Grant&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-second-chance-draw"&gt;🎲 The &amp;ldquo;Second Chance&amp;rdquo; Draw&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-rules-and-constraints"&gt;📜 Rules and Constraints&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-join-to-the-contest"&gt;🔀 Join to the Contest&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/h2&gt;
+&lt;p&gt;We were interested in how far we can go with Kubernetes. While it can scale up applications to the space (beyond the clouds 😜), Kubernetes itself fails to scale gracefully. Or maybe not?&lt;/p&gt;</description></item><item><title>Build Your Kubernetes Platform-as-a-Service Today</title><link>/blog/build-your-kubernetes-platform-as-a-service-today/</link><pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate><guid>/blog/build-your-kubernetes-platform-as-a-service-today/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-our-mission-at-harikube-unlocking-kubernetes-true-potential"&gt;💡 Our Mission at HariKube: Unlocking Kubernetes&amp;rsquo; True Potential&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-scalability-wall-etcd-limits-and-client-side-filtering"&gt;🛑 The Scalability Wall: ETCD Limits and Client-Side Filtering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikubes-dynamic-data-fabric-scaling-to-infinity"&gt;🚀 HariKube&amp;rsquo;s Dynamic Data Fabric: Scaling to Infinity&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-introducing-the-harikube-open-source-toolset"&gt;🛠️ Introducing the HariKube Open Source Toolset&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-step-1-bring-your-cluster"&gt;⚙️ Step 1: Bring Your Cluster&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-step-2-launch-the-scalable-control-plane"&gt;✨ Step 2: Launch the Scalable Control Plane&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-scaling-the-open-source-edition"&gt;📈 Scaling the Open Source Edition&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thoughts"&gt;🧠 Final Thoughts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-share-feedback-and-report-issues"&gt;🙏 Share Feedback and Report Issues&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-our-mission-at-harikube-unlocking-kubernetes-true-potential"&gt;💡 Our Mission at HariKube: Unlocking Kubernetes&amp;rsquo; True Potential&lt;/h2&gt;
+&lt;p&gt;The promise of &lt;strong&gt;Kubernetes&lt;/strong&gt; was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale-specifically, the limitations of &lt;strong&gt;ETCD&lt;/strong&gt; and a fragmented application development experience. The result? A fantastic container orchestrator, but a &lt;strong&gt;broken Platform-as-a-Service (PaaS)&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Turn any of your APIs into a Kubernetes-native citizen</title><link>/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen/</link><pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate><guid>/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-transforming-apis-into-kubernetes-native-citizens"&gt;⚡ Transforming APIs into Kubernetes-Native Citizens&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-the-kubernetes-aggregation-layer-gives-you"&gt;❓ What the Kubernetes Aggregation Layer Gives You&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-difficulty-of-developing-an-api-server-without-frameworks"&gt;🤹 The Difficulty of Developing an API Server Without Frameworks&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-this-framework-simplifies-the-process"&gt;💡 How This Framework Simplifies the Process&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-to-use-it"&gt;🔌 How to Use It&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thoughts"&gt;🧠 Final Thoughts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-share-feedback-and-report-issues"&gt;🙏 Share Feedback and Report Issues&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-transforming-apis-into-kubernetes-native-citizens"&gt;⚡ Transforming APIs into Kubernetes-Native Citizens&lt;/h2&gt;
+&lt;p&gt;The power of Kubernetes lies in its unified control plane and its resource model. But what if you could make any of your existing APIs or services behave like a native Kubernetes resource-complete with &lt;code&gt;kubectl&lt;/code&gt; compatibility, cluster-level governance, and seamless integration?&lt;/p&gt;</description></item><item><title>Introducing Serverless Kube Watch Trigger: Declarative Event Triggers for Kubernetes</title><link>/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes/</link><pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/introducing-serverless-kube-watch-trigger-declarative-event-triggers-for-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-why-we-built-it"&gt;❓ Why We Built It&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-it-does"&gt;🔌 What It Does&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-fits-into-harikube"&gt;⚡ How It Fits Into HariKube&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thoughts"&gt;🧠 Final Thoughts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-share-feedback-and-report-issues"&gt;🙏 Share Feedback and Report Issues&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;Today we’re releasing something small, simple, open-source, and surprisingly powerful: &lt;a href="https://github.com/HariKube/serverless-kube-watch-trigger"&gt;serverless-kube-watch-trigger&lt;/a&gt;, a Kubernetes Custom Resource Definition that turns cluster events into HTTP calls - directly and declaratively.&lt;/p&gt;
+&lt;p&gt;No glue scripts. No extra brokers. No complex controllers. Just YAML.&lt;/p&gt;</description></item></channel></rss>

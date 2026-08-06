@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Custom Resource on HariKube - Zero-Overhead PaaS for Kubernetes</title><link>/tags/custom-resource/</link><description>Recent content in Custom Resource on HariKube - Zero-Overhead PaaS for Kubernetes</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 01 Jul 2026 16:38:53 +0200</lastBuildDate><atom:link href="/tags/custom-resource/index.xml" rel="self" type="application/rss+xml"/><item><title>We make Kubernetes work at enterprise scale - no more ETCD limits</title><link>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-big-picture-kubernetes-as-a-full-paas-runtime"&gt;🌐 The Big Picture: Kubernetes as a Full PaaS Runtime&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikube---dynamic-database-agnostic-data-backend"&gt;🧱 HariKube - Dynamic, Database-Agnostic Data Backend&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-serverless---nanoservice-layer"&gt;⚡ Serverless - Nanoservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-agentic-ai---microservice-layer"&gt;🧠 Agentic AI - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-operators---microservice-layer"&gt;🔁 Operators - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-kubernetes-aggregation-api-layer---traditional-rest-api-layer"&gt;🌐 Kubernetes Aggregation API Layer - Traditional REST API Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-all-layers-combined-a-hybrid-architecture"&gt;🧠 All Layers Combined: A Hybrid Architecture&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-strategic-impact"&gt;🚀 Strategic Impact&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-a-new-platform-strategy"&gt;✨ A New Platform Strategy&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Imagine a world where Kubernetes itself becomes the platform&lt;/strong&gt; - not just for container orchestration, but for &lt;strong&gt;functions, microservices, and APIs&lt;/strong&gt;. With HariKube’s dynamic data layer, serverless function triggers, operator loops, and the Kubernetes Aggregation API layer, that world is not only possible - it’s here.&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - Custom APIs</title><link>/blog/create-microservice-with-operator-4/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-4/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 3 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator-3/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-3/"&gt;&amp;lt;-- Part 3&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-implement-a-fully-customized-api"&gt;🧑‍🏭 Implement a Fully Customized API&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-extending-built-in-resources-with-aggregated-endpoints"&gt;➕ Extending Built-in Resources with Aggregated Endpoints&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;In the previous parts of this series, we built the foundation for a Kubernetes operator, explored how to expose and manage custom resources and implememnted a custom search API. Now, let’s take the next step: &lt;strong&gt;implementing fully custom APIs inside Kubernetes&lt;/strong&gt;. This allows you to present complex, aggregated, or domain-specific custom logic directly through the Kubernetes API.&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - Services+</title><link>/blog/create-microservice-with-operator-3/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-3/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 2 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator-2/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-2/"&gt;&amp;lt;-- Part 2&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-finding-a-solution"&gt;💡 Finding a Solution&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-prepare-server-manifests"&gt;🪢 Prepare Server Manifests&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-implement-aggregation-server"&gt;🧑‍🏭 Implement Aggregation Server&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-4/"&gt;Part 4 --&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/h2&gt;
+&lt;p&gt;Kubernetes is an incredibly powerful container orchestration platform, but it has some limitations you should be aware of. One key challenge is its &lt;strong&gt;limited data filtering capabilities&lt;/strong&gt;. While it excels at managing and scaling workloads, the platform doesn&amp;rsquo;t include an advanced query engine out of the box. This means you can&amp;rsquo;t easily perform complex, fine-grained searches or data manipulation directly within Kubernetes, which can be a roadblock when you need to find records based on &lt;strong&gt;full text search&lt;/strong&gt; for example.&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - Services</title><link>/blog/create-microservice-with-operator-2/</link><pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-2/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 1 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator/"&gt;&amp;lt;-- Part 1&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-implement-your-business-logic-the-controller"&gt;🎛️ Implement Your Business Logic: The Controller&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-custom-validation-of-resources-via-webhook"&gt;🪝 Custom Validation of Resources via Webhook&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-mutating-resources-via-webhook"&gt;🎨 Mutating Resources via Webhook&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-deploying-webhooks"&gt;🚀 Deploying Webhooks&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-3/"&gt;Part 3 --&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-implement-your-business-logic-the-controller"&gt;🎛️ Implement Your Business Logic: The Controller&lt;/h2&gt;
+&lt;p&gt;Now that you&amp;rsquo;ve completed the first part of this series, you&amp;rsquo;re ready to implement your core business logic within the controller. Your &lt;code&gt;kubebuilder&lt;/code&gt; command has already generated a controller stub for you; all you need to do is edit the &lt;code&gt;internal/controller/task_controller.go&lt;/code&gt; file. In this section, you&amp;rsquo;ll learn how to react to different events within your cluster and create new events in Kubernetes to signal important state changes.&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - APIs</title><link>/blog/create-microservice-with-operator/</link><pubDate>Mon, 18 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-what-is-kubernetes-and-why-its-so-popular"&gt;❓ What is Kubernetes and Why It&amp;rsquo;s So Popular&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-desired-state-and-controller-design-pattern"&gt;🪢 The Desired State and Controller Design Pattern&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-custom-resources-and-operators"&gt;🍮 Custom Resources and Operators&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-features-kubernetes-gives-to-run-operators"&gt;✨ Features Kubernetes Gives to Run Operators&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-downside-of-kubernetes-operators"&gt;⁉️ The Downside of Kubernetes Operators&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-turn-kubernetes-into-a-real-platform-as-a-service"&gt;🃏 Turn Kubernetes into a Real Platform-as-a-Service&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-craft-your-first-operator-based-microservice"&gt;🧑‍🏭 Craft Your First Operator Based Microservice&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-2/"&gt;Part 2 --&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-what-is-kubernetes-and-why-its-so-popular"&gt;❓ What is Kubernetes and Why It&amp;rsquo;s So Popular&lt;/h2&gt;
+&lt;p&gt;Kubernetes is an open-source platform for &lt;strong&gt;automating the deployment, scaling, and management of containerized applications&lt;/strong&gt;. It groups containers that make up an application into logical units for easy management and discovery. The popularity of Kubernetes stems from its ability to solve many of the challenges associated with managing modern, distributed applications. It provides a standardized way to handle container orchestration, ensuring applications are resilient, scalable, and portable across different cloud and on-premise environments. By abstracting the underlying infrastructure, Kubernetes allows developers to focus on writing code rather than worrying about operational complexities.&lt;/p&gt;</description></item><item><title>Unlock your Kubernetes to run custom resource based microservices in any scale</title><link>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</link><pubDate>Sat, 24 May 2025 00:00:00 +0000</pubDate><guid>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-rise-of-custom-resources-and-their-challenges"&gt;🌅 The Rise of Custom Resources and Their Challenges&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-future-of-data-management-on-kubernetes"&gt;✨ The Future of Data Management on Kubernetes&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-getting-started"&gt;👷 Getting Started&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-the-rise-of-custom-resources-and-their-challenges"&gt;🌅 The Rise of Custom Resources and Their Challenges&lt;/h2&gt;
+&lt;p&gt;I don&amp;rsquo;t need to introduce Kubernetes in this post, as it is the de facto standard for running microservices at scale. Kubernetes provides a robust infrastructure not only for running workloads, but also for exposing services, securing applications, configuring authorization, and much more. The introduction of &lt;a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/"&gt;custom defined resources&lt;/a&gt; extended Kubernetes’ capabilities, enabling developers to implement custom services and controllers without worrying about the underlying infrastructure. This innovation promised faster development and portability. Over the past few years, custom resources and operators/controllers have become increasingly popular. &lt;a href="https://www.crossplane.io/"&gt;Crossplane&lt;/a&gt; marked another significant shift, allowing management of resources outside the cluster.&lt;/p&gt;</description></item></channel></rss>

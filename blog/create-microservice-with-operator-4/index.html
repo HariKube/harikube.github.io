@@ -1,0 +1,933 @@
+<!doctype html><html lang=en-us class=h-full><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>A Quick Dive into Kubernetes Operators - Custom APIs | HariKube - Zero-Overhead PaaS for Kubernetes</title><meta name=description content="This post provides a simple solution to implement fully custom APIs in Kubernetes. "><meta name=author content="Richárd Kovács"><meta name=robots content="index, follow"><meta property="og:title" content="A Quick Dive into Kubernetes Operators - Custom APIs | HariKube - Zero-Overhead PaaS for Kubernetes"><meta property="og:description" content="This post provides a simple solution to implement fully custom APIs in Kubernetes. "><meta property="og:type" content="article"><meta property="og:url" content="/blog/create-microservice-with-operator-4/"><meta property="og:site_name" content="HariKube - Zero-Overhead PaaS for Kubernetes"><meta property="og:image" content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="A Quick Dive into Kubernetes Operators - Custom APIs | HariKube - Zero-Overhead PaaS for Kubernetes"><meta name=twitter:description content="This post provides a simple solution to implement fully custom APIs in Kubernetes. "><meta name=twitter:image content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><link rel=icon type=image/x-icon href=/images/favicon.ico><link rel=canonical href=/blog/create-microservice-with-operator-4/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel=stylesheet><link rel=stylesheet href=/css/main.css></head><body class="min-h-screen flex flex-col"><div class="fixed top-0 left-0 right-0 z-50"><div class=mobile-menu-wrapper><input type=checkbox id=nav-toggle class=nav-toggle><header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><nav class="flex items-center justify-between h-20"><a href=/ class="flex items-center space-x-4"><img src=/images/harikube-logo.png alt="HariKube - Zero-Overhead PaaS for Kubernetes" class=h-12></a><div class="hidden md:flex items-center space-x-8"><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Features
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/features/developer-experience/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Developer Experience</a>
+<a href=/features/performance/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Performance</a>
+<a href=/features/consistency/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Consistency</a>
+<a href=/features/flexible-stack/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Data Isolation</a></div></div></div><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Docs
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/docs/overview/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Overview</a>
+<a href=/docs/installation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Installation</a>
+<a href=/docs/custom-resource/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Custom Resource</a>
+<a href=/docs/automation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Automation</a>
+<a href=/docs/monitoring/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Monitoring</a>
+<a href=/docs/future-plans/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Future Plans</a></div></div></div><a href=/blog/ class="text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">Blog</a></div><div class="hidden md:flex items-center space-x-4"><a href=/editions/ class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div><div class=md:hidden><label for=nav-toggle class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></label></div></nav></div><div class="nav-content md:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto"><div class="w-full px-6 py-4"><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Features</div><div class=pl-4><a href=/features/developer-experience/ class="block text-gray-700 hover:text-primary-600 py-2">Developer Experience</a>
+<a href=/features/performance/ class="block text-gray-700 hover:text-primary-600 py-2">Performance</a>
+<a href=/features/consistency/ class="block text-gray-700 hover:text-primary-600 py-2">Consistency</a>
+<a href=/features/flexible-stack/ class="block text-gray-700 hover:text-primary-600 py-2">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block text-gray-700 hover:text-primary-600 py-2">Data Isolation</a></div></div><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Docs</div><div class=pl-4><a href=/docs/overview/ class="block text-gray-700 hover:text-primary-600 py-2">Overview</a>
+<a href=/docs/installation/ class="block text-gray-700 hover:text-primary-600 py-2">Installation</a>
+<a href=/docs/custom-resource/ class="block text-gray-700 hover:text-primary-600 py-2">Custom Resource</a>
+<a href=/docs/automation/ class="block text-gray-700 hover:text-primary-600 py-2">Automation</a>
+<a href=/docs/monitoring/ class="block text-gray-700 hover:text-primary-600 py-2">Monitoring</a>
+<a href=/docs/future-plans/ class="block text-gray-700 hover:text-primary-600 py-2">Future Plans</a></div></div><a href=/blog/ class="block text-xl text-gray-900 hover:text-primary-600 font-bold transition duration-200 py-2">Blog</a><div class="pt-4 space-y-4"><a href=/editions/ class="block text-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div></div></div></header><style>.mobile-menu-wrapper{position:relative}.nav-toggle{display:none}.nav-content{display:none}.nav-toggle:checked~header .nav-content{display:block}</style></div></div><div class=pt-20><div class="container mx-auto px-4 py-12"><div class="flex flex-col lg:flex-row gap-8 mb-12"><article class=flex-1><header class=mb-8><div class=mb-4><a href=/categories/microservice/ class="inline-block px-3 py-1 text-sm font-medium text-primary-600 bg-primary-50 rounded-full hover:bg-primary-100 mr-2">Microservice</a></div><h1 class="text-4xl font-bold mb-4">A Quick Dive into Kubernetes Operators - Custom APIs</h1><div class="flex flex-col space-y-4"><div class="flex items-center justify-between text-sm text-gray-500"><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7A4 4 0 118 7a4 4 0 018 0zm-4 7a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+<span>Richard Kovacs</span></div><div class="flex items-center space-x-6"><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747.0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746.0-3.332.477-4.5 1.253"/></svg>
+<span>13 min read</span></div><div class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2025-09-05>September 5, 2025</time></div></div></div><div class="flex items-center flex-wrap gap-2"><a href=/tags/kubernetes/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#kubernetes
+</a><a href=/tags/custom-resource/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#custom resource
+</a><a href=/tags/development/ class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm text-gray-700 transition-colors duration-200">#development</a></div></div></header><div class=mb-8><img src=/images/blog/create-microservice-with-operator.png alt="A Quick Dive into Kubernetes Operators - Custom APIs" class="w-full h-auto rounded-lg" style=max-width:800px loading=lazy></div><div class="prose prose-lg max-w-none"><hr><p><strong>Before diving in, make sure you have finished part 3 of the series.</strong> <a href=/blog/create-microservice-with-operator-3/>[→]</a></p><hr><style>html{scroll-padding-top:100px}</style><div class="bg-gray-50 p-6 rounded-lg mb-8"><h2 class="text-xl font-semibold mb-4">Table of Contents</h2><ul><li><a href=/blog/create-microservice-with-operator-3/>&lt;-- Part 3</a></li></ul><nav id=TableOfContents><ul><li><a href=#-implement-a-fully-customized-api>🧑‍🏭 Implement a Fully Customized API</a></li><li><a href=#-extending-built-in-resources-with-aggregated-endpoints>➕ Extending Built-in Resources with Aggregated Endpoints</a></li></ul></nav></div><p>In the previous parts of this series, we built the foundation for a Kubernetes operator, explored how to expose and manage custom resources and implememnted a custom search API. Now, let’s take the next step: <strong>implementing fully custom APIs inside Kubernetes</strong>. This allows you to present complex, aggregated, or domain-specific custom logic directly through the Kubernetes API.</p><h2 id=-implement-a-fully-customized-api>🧑‍🏭 Implement a Fully Customized API</h2><p>Sometimes, the built-in API and operator capabilities aren&rsquo;t enough, especially when dealing with complex data relationships or when you need fine-grained control over the data retrieval process. In these cases, you can implement fully customized services using an <strong>aggregation API</strong>.</p><p>When Simple Solutions Fall Short</p><p>Traditional solutions like eager loading work well for one-to-one or one-to-many relationships, but they can become inefficient or unwieldy when you have:</p><ul><li>Many-to-many relationships</li><li>Complex data transformations</li><li>Deeply nested relationships</li></ul><p>By using an aggregation API, you decouple the frontend from the complex backend logic. This approach gives you full control over the data retrieval process, allowing you to optimize performance, reduce network chatter, and tailor the data precisely for each client&rsquo;s specific requirements.</p><p>In this example you&rsquo;ll create a cluster scope <code>ClusterTask</code> and a namespaced scope <code>CustomTask</code> service. Bring your own implementation.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">task_search.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("8b401366e648740274d06060c50ed36b")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-8b401366e648740274d06060c50ed36b style=display:none>{
+  ApiResource: metav1.APIResource{
+    Name:  &#34;clustertasks&#34;,
+    Kind:  &#34;ClusterTask&#34;,
+    Verbs: []string{&#34;get&#34;, &#34;list&#34;, &#34;watch&#34;, &#34;create&#34;, &#34;update&#34;, &#34;delete&#34;},
+  },
+  CustomResource: &amp;kaf.CustomResource{
+    CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+  },
+},
+{
+  ApiResource: metav1.APIResource{
+    Name:       &#34;customtasks&#34;,
+    Namespaced: true,
+    Kind:       &#34;CustomTask&#34;,
+    Verbs:      []string{&#34;get&#34;, &#34;list&#34;, &#34;watch&#34;, &#34;create&#34;, &#34;update&#34;, &#34;delete&#34;},
+  },
+  CustomResource: &amp;kaf.CustomResource{
+    CreateHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    GetHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    ListHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    ReplaceHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    DeleteHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+    WatchHandler: func(namespace, name string, w http.ResponseWriter, r *http.Request) {
+      w.Header().Set(&#34;Content-Type&#34;, &#34;application/json; charset=utf-8&#34;)
+    },
+  },
+},
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>ApiResource</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>APIResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Name</span><span class=p>:</span><span class=w>  </span><span class=s>&#34;clustertasks&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Kind</span><span class=p>:</span><span class=w>  </span><span class=s>&#34;ClusterTask&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Verbs</span><span class=p>:</span><span class=w> </span><span class=p>[]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;get&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;list&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;watch&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;create&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;update&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;delete&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>CustomResource</span><span class=p>:</span><span class=w> </span><span class=o>&amp;</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>CustomResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>CreateHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>GetHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ListHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ReplaceHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>DeleteHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>WatchHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>ApiResource</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>APIResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Name</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;customtasks&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Namespaced</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CustomTask&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Verbs</span><span class=p>:</span><span class=w>      </span><span class=p>[]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;get&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;list&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;watch&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;create&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;update&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;delete&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>CustomResource</span><span class=p>:</span><span class=w> </span><span class=o>&amp;</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>CustomResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>CreateHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>GetHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ListHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ReplaceHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>DeleteHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>WatchHandler</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>name</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>w</span><span class=w> </span><span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span><span class=w> </span><span class=nx>r</span><span class=w> </span><span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>w</span><span class=p>.</span><span class=nf>Header</span><span class=p>().</span><span class=nf>Set</span><span class=p>(</span><span class=s>&#34;Content-Type&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;application/json; charset=utf-8&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>},</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Re-deploy the application.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("7ab8698cf324c4c7a699b0fb9cbce211")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-7ab8698cf324c4c7a699b0fb9cbce211 style=display:none>export IMG=controller:dev
+make docker-build
+../bin/kind load docker-image $IMG
+make deploy
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>IMG</span><span class=o>=</span>controller:dev
+</span></span><span class=line><span class=cl>make docker-build
+</span></span><span class=line><span class=cl>../bin/kind load docker-image <span class=nv>$IMG</span>
+</span></span><span class=line><span class=cl>make deploy
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("7f5db8de5cff73dbe6a11d6f552c9d85")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-7f5db8de5cff73dbe6a11d6f552c9d85 style=display:none>kubectl create --raw /apis/search.task.example.example.com/v1/clustertasks/foo -f clustertask.yaml
+kubectl replace --raw /apis/search.task.example.example.com/v1/clustertasks/foo -f clustertask.yaml
+kubectl get clustertasks
+kubectl get clustertasks foo
+kubectl get clustertasks -w
+kubectl get clustertasks foo -w
+kubectl delete clustertasks foo
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl create --raw /apis/search.task.example.example.com/v1/clustertasks/foo -f clustertask.yaml
+</span></span><span class=line><span class=cl>kubectl replace --raw /apis/search.task.example.example.com/v1/clustertasks/foo -f clustertask.yaml
+</span></span><span class=line><span class=cl>kubectl get clustertasks
+</span></span><span class=line><span class=cl>kubectl get clustertasks foo
+</span></span><span class=line><span class=cl>kubectl get clustertasks -w
+</span></span><span class=line><span class=cl>kubectl get clustertasks foo -w
+</span></span><span class=line><span class=cl>kubectl delete clustertasks foo
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("a7151f0437a7285c90066dc7831de45b")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-a7151f0437a7285c90066dc7831de45b style=display:none>kubectl create --raw /apis/search.task.example.example.com/v1/namespaces/default/customtasks/foo -f customtask.yaml
+kubectl replace --raw /apis/search.task.example.example.com/v1/namespaces/default/customtasks/foo -f clustertask.yaml
+kubectl get customtasks
+kubectl get customtasks foo
+kubectl get customtasks -w
+kubectl get customtasks foo -w
+kubectl delete customtasks foo
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl create --raw /apis/search.task.example.example.com/v1/namespaces/default/customtasks/foo -f customtask.yaml
+</span></span><span class=line><span class=cl>kubectl replace --raw /apis/search.task.example.example.com/v1/namespaces/default/customtasks/foo -f clustertask.yaml
+</span></span><span class=line><span class=cl>kubectl get customtasks
+</span></span><span class=line><span class=cl>kubectl get customtasks foo
+</span></span><span class=line><span class=cl>kubectl get customtasks -w
+</span></span><span class=line><span class=cl>kubectl get customtasks foo -w
+</span></span><span class=line><span class=cl>kubectl delete customtasks foo
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h2 id=-extending-built-in-resources-with-aggregated-endpoints>➕ Extending Built-in Resources with Aggregated Endpoints</h2><p>The next service extends the Kubernetes API by creating a new combinedtasks endpoint. This endpoint behaves like any other Kubernetes resource (get, list, and watch), but instead of returning a plain Task, it provides a richer view that includes:</p><ul><li>The Task itself - with its metadata and spec fields (priority, deadline, details, etc.).</li><li>All related Events - collected by label selector and attached under the status.events field.</li></ul><p>In other words, a CombinedTask is a merged resource that combines the task object and its lifecycle history.</p><p>This design is useful because developers don’t need to manually query both tasks and events to understand what’s happening. By fetching combinedtasks, you immediately see the business object (Task) together with the operational signals (Events) in one unified response.</p><p>First you have to add new permissions to fetch events at <code>internal/apiserver/task_search.go</code> file header.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">task_search.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("1ce1dc0006e06ba3d708b98a1334bc4b")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-1ce1dc0006e06ba3d708b98a1334bc4b style=display:none>// &#43;kubebuilder:rbac:groups=&#34;&#34;,resources=events,verbs=get;list
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=c1>// +kubebuilder:rbac:groups=&#34;&#34;,resources=events,verbs=get;list</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>You’ll continue by defining a CombinedTask resource that aggregates a Task with its related Events.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">task_search.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("a85803de5947daca1373efb35587cc11")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-a85803de5947daca1373efb35587cc11 style=display:none>type TaskStatus struct {
+	Events []corev1.Event `json:&#34;events&#34;`
+}
+
+type CombinedTask struct {
+	metav1.TypeMeta   `json:&#34;,inline&#34;`
+	metav1.ObjectMeta `json:&#34;metadata,omitempty&#34;`
+
+	Spec   examplev1.TaskSpec `json:&#34;spec,omitempty&#34;`
+	Status TaskStatus         `json:&#34;status,omitempty&#34;`
+}
+
+type CombinedTaskList struct {
+	metav1.TypeMeta `json:&#34;,inline&#34;`
+	metav1.ListMeta `json:&#34;metadata,omitempty&#34;`
+	Items           []CombinedTask `json:&#34;items&#34;`
+}
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=kd>type</span><span class=w> </span><span class=nx>TaskStatus</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>Events</span><span class=w> </span><span class=p>[]</span><span class=nx>corev1</span><span class=p>.</span><span class=nx>Event</span><span class=w> </span><span class=s>`json:&#34;events&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>type</span><span class=w> </span><span class=nx>CombinedTask</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=w>   </span><span class=s>`json:&#34;,inline&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>ObjectMeta</span><span class=w> </span><span class=s>`json:&#34;metadata,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>Spec</span><span class=w>   </span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>TaskSpec</span><span class=w> </span><span class=s>`json:&#34;spec,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>Status</span><span class=w> </span><span class=nx>TaskStatus</span><span class=w>         </span><span class=s>`json:&#34;status,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=kd>type</span><span class=w> </span><span class=nx>CombinedTaskList</span><span class=w> </span><span class=kd>struct</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=w> </span><span class=s>`json:&#34;,inline&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>metav1</span><span class=p>.</span><span class=nx>ListMeta</span><span class=w> </span><span class=s>`json:&#34;metadata,omitempty&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>Items</span><span class=w>           </span><span class=p>[]</span><span class=nx>CombinedTask</span><span class=w> </span><span class=s>`json:&#34;items&#34;`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Update function signature, because new endpoint has to reach Kubernetes API.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">task_search.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("0569f96d27275fc4db422fc5e259c2c4")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-0569f96d27275fc4db422fc5e259c2c4 style=display:none>func New(kubeClient client.Client, dynamicKubeClient *dynamic.DynamicClient, port, certFile, keyFile, dataDir string) *searchAPIServer {
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=kd>func</span><span class=w> </span><span class=nf>New</span><span class=p>(</span><span class=nx>kubeClient</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>Client</span><span class=p>,</span><span class=w> </span><span class=nx>dynamicKubeClient</span><span class=w> </span><span class=o>*</span><span class=nx>dynamic</span><span class=p>.</span><span class=nx>DynamicClient</span><span class=p>,</span><span class=w> </span><span class=nx>port</span><span class=p>,</span><span class=w> </span><span class=nx>certFile</span><span class=p>,</span><span class=w> </span><span class=nx>keyFile</span><span class=p>,</span><span class=w> </span><span class=nx>dataDir</span><span class=w> </span><span class=kt>string</span><span class=p>)</span><span class=w> </span><span class=o>*</span><span class=nx>searchAPIServer</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Pass Kubernetes client to <code>kaf.ServerConfig</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">task_search.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("d7f8281cebf8b96384832d997b090051")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-d7f8281cebf8b96384832d997b090051 style=display:none>Server: *kaf.NewServer(kaf.ServerConfig{
+  KubeClient:        kubeClient,
+  DynamicKubeClient: dynamicKubeClient,
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>Server</span><span class=p>:</span><span class=w> </span><span class=o>*</span><span class=nx>kaf</span><span class=p>.</span><span class=nf>NewServer</span><span class=p>(</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>ServerConfig</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>KubeClient</span><span class=p>:</span><span class=w>        </span><span class=nx>kubeClient</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>DynamicKubeClient</span><span class=p>:</span><span class=w> </span><span class=nx>dynamicKubeClient</span><span class=p>,</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Add service implementation to <code>kaf.ServerConfig.APIKInds</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">task_search.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("ee7b7befc734a7e2a65b2aeed978ae6f")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-ee7b7befc734a7e2a65b2aeed978ae6f style=display:none>{
+  ApiResource: metav1.APIResource{
+    Name:       &#34;combinedtasks&#34;,
+    Namespaced: true,
+    Kind:       &#34;CombinedTask&#34;,
+    Verbs:      []string{&#34;get&#34;, &#34;list&#34;, &#34;watch&#34;},
+  },
+  Resource: &amp;kaf.Resource{
+    CreateNew: func() (schema.GroupVersionResource, client.Object) {
+      return examplev1.GroupVersion.WithResource(&#34;tasks&#34;), &amp;examplev1.Task{}
+    },
+    CreateNewList: func() (schema.GroupVersionResource, client.ObjectList) {
+      return examplev1.GroupVersion.WithResource(&#34;tasklist&#34;), &amp;examplev1.TaskList{}
+    },
+    ListCallback: func(ctx context.Context, namespace, _ string, objList client.ObjectList) (any, error) {
+      taskList, ok := objList.(*examplev1.TaskList)
+      if !ok {
+        return nil, fmt.Errorf(&#34;failed to convert tasklist for: %s&#34;, objList.GetObjectKind().GroupVersionKind().String())
+      }
+
+      combinedTasks := CombinedTaskList{
+        TypeMeta: metav1.TypeMeta{
+          Kind:       &#34;CombinedTaskList&#34;,
+          APIVersion: Group &#43; &#34;/&#34; &#43; Version,
+        },
+        ListMeta: metav1.ListMeta{
+          ResourceVersion:    taskList.ResourceVersion,
+          Continue:           taskList.Continue,
+          RemainingItemCount: taskList.RemainingItemCount,
+        },
+        Items: []CombinedTask{},
+      }
+
+      rawLabelSelector := &#34;example.example.com/task-uid=&#34; &#43; string(taskList.Items[0].UID)
+      if len(taskList.Items) &gt; 1 {
+        taskUIDs := make([]string, 0, len(taskList.Items))
+        for _, t := range taskList.Items {
+          taskUIDs = append(taskUIDs, string(t.UID))
+        }
+
+        rawLabelSelector = &#34;example.example.com/task-uid in (&#34; &#43; strings.Join(taskUIDs, &#34;,&#34;) &#43; &#34;)&#34;
+      }
+
+      eventLabelSelector, _ := labels.Parse(rawLabelSelector)
+
+      events := corev1.EventList{}
+      if err := kubeClient.List(ctx, &amp;events, &amp;client.ListOptions{
+        Namespace:     namespace,
+        LabelSelector: eventLabelSelector,
+      }); err != nil {
+        return nil, fmt.Errorf(&#34;failed to list events: %v&#34;, err)
+      }
+
+      eventsByUID := map[string][]corev1.Event{}
+      for _, e := range events.Items {
+        uid := e.Labels[&#34;example.example.com/task-uid&#34;]
+        if _, ok := eventsByUID[uid]; !ok {
+          eventsByUID[uid] = []corev1.Event{}
+        }
+        eventsByUID[uid] = append(eventsByUID[uid], e)
+      }
+
+      items, err := meta.ExtractList(objList)
+      if err != nil {
+        return nil, fmt.Errorf(&#34;failed to extract list: %v&#34;, err)
+      }
+
+      for _, t := range items {
+        task := t.(*examplev1.Task)
+
+        ct := CombinedTask{
+          TypeMeta: metav1.TypeMeta{
+            Kind:       &#34;CombinedTask&#34;,
+            APIVersion: Group &#43; &#34;/&#34; &#43; Version,
+          },
+          ObjectMeta: task.ObjectMeta,
+          Spec:       task.Spec,
+          Status: TaskStatus{
+            Events: eventsByUID[string(task.UID)],
+          },
+        }
+
+        combinedTasks.Items = append(combinedTasks.Items, ct)
+      }
+
+      return combinedTasks, nil
+    },
+    WatchCallback: func(ctx context.Context, _, _ string, unstructuredObj *unstructured.Unstructured) (any, error) {
+      task := examplev1.Task{}
+      if err := runtime.DefaultUnstructuredConverter.FromUnstructured(unstructuredObj.Object, &amp;task); err != nil {
+        return nil, fmt.Errorf(&#34;failed to convert unstructured: %v&#34;, err)
+      }
+
+      ct := CombinedTask{
+        TypeMeta: metav1.TypeMeta{
+          Kind:       &#34;CombinedTask&#34;,
+          APIVersion: Group &#43; &#34;/&#34; &#43; Version,
+        },
+        ObjectMeta: task.ObjectMeta,
+        Spec:       task.Spec,
+      }
+
+      eventLabelSelector, _ := labels.Parse(&#34;example.example.com/task-uid=&#34; &#43; string(task.UID))
+
+      events := corev1.EventList{}
+      if err := kubeClient.List(ctx, &amp;events, &amp;client.ListOptions{
+        Namespace:     task.Namespace,
+        LabelSelector: eventLabelSelector,
+      }); err != nil {
+        return nil, fmt.Errorf(&#34;failed to list events: %v&#34;, err)
+      }
+
+      ct.Status = TaskStatus{
+        Events: events.Items,
+      }
+
+      return ct, nil
+    },
+
+  },
+},
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>ApiResource</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>APIResource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Name</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;combinedtasks&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Namespaced</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedTask&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Verbs</span><span class=p>:</span><span class=w>      </span><span class=p>[]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;get&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;list&#34;</span><span class=p>,</span><span class=w> </span><span class=s>&#34;watch&#34;</span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Resource</span><span class=p>:</span><span class=w> </span><span class=o>&amp;</span><span class=nx>kaf</span><span class=p>.</span><span class=nx>Resource</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>CreateNew</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>()</span><span class=w> </span><span class=p>(</span><span class=nx>schema</span><span class=p>.</span><span class=nx>GroupVersionResource</span><span class=p>,</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>Object</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>return</span><span class=w> </span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>GroupVersion</span><span class=p>.</span><span class=nf>WithResource</span><span class=p>(</span><span class=s>&#34;tasks&#34;</span><span class=p>),</span><span class=w> </span><span class=o>&amp;</span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>Task</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>CreateNewList</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>()</span><span class=w> </span><span class=p>(</span><span class=nx>schema</span><span class=p>.</span><span class=nx>GroupVersionResource</span><span class=p>,</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>ObjectList</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>return</span><span class=w> </span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>GroupVersion</span><span class=p>.</span><span class=nf>WithResource</span><span class=p>(</span><span class=s>&#34;tasklist&#34;</span><span class=p>),</span><span class=w> </span><span class=o>&amp;</span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>TaskList</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>ListCallback</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>ctx</span><span class=w> </span><span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span><span class=w> </span><span class=nx>namespace</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>objList</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>ObjectList</span><span class=p>)</span><span class=w> </span><span class=p>(</span><span class=kt>any</span><span class=p>,</span><span class=w> </span><span class=kt>error</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>taskList</span><span class=p>,</span><span class=w> </span><span class=nx>ok</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>objList</span><span class=p>.(</span><span class=o>*</span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>TaskList</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>if</span><span class=w> </span><span class=p>!</span><span class=nx>ok</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=kc>nil</span><span class=p>,</span><span class=w> </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;failed to convert tasklist for: %s&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>objList</span><span class=p>.</span><span class=nf>GetObjectKind</span><span class=p>().</span><span class=nf>GroupVersionKind</span><span class=p>().</span><span class=nf>String</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>combinedTasks</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>CombinedTaskList</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>TypeMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedTaskList&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>APIVersion</span><span class=p>:</span><span class=w> </span><span class=nx>Group</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=s>&#34;/&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nx>Version</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ListMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>ListMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>ResourceVersion</span><span class=p>:</span><span class=w>    </span><span class=nx>taskList</span><span class=p>.</span><span class=nx>ResourceVersion</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>Continue</span><span class=p>:</span><span class=w>           </span><span class=nx>taskList</span><span class=p>.</span><span class=nx>Continue</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>RemainingItemCount</span><span class=p>:</span><span class=w> </span><span class=nx>taskList</span><span class=p>.</span><span class=nx>RemainingItemCount</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Items</span><span class=p>:</span><span class=w> </span><span class=p>[]</span><span class=nx>CombinedTask</span><span class=p>{},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>rawLabelSelector</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=s>&#34;example.example.com/task-uid=&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nb>string</span><span class=p>(</span><span class=nx>taskList</span><span class=p>.</span><span class=nx>Items</span><span class=p>[</span><span class=mi>0</span><span class=p>].</span><span class=nx>UID</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>if</span><span class=w> </span><span class=nb>len</span><span class=p>(</span><span class=nx>taskList</span><span class=p>.</span><span class=nx>Items</span><span class=p>)</span><span class=w> </span><span class=p>&gt;</span><span class=w> </span><span class=mi>1</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>taskUIDs</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nb>make</span><span class=p>([]</span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=mi>0</span><span class=p>,</span><span class=w> </span><span class=nb>len</span><span class=p>(</span><span class=nx>taskList</span><span class=p>.</span><span class=nx>Items</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>for</span><span class=w> </span><span class=nx>_</span><span class=p>,</span><span class=w> </span><span class=nx>t</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=k>range</span><span class=w> </span><span class=nx>taskList</span><span class=p>.</span><span class=nx>Items</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>taskUIDs</span><span class=w> </span><span class=p>=</span><span class=w> </span><span class=nb>append</span><span class=p>(</span><span class=nx>taskUIDs</span><span class=p>,</span><span class=w> </span><span class=nb>string</span><span class=p>(</span><span class=nx>t</span><span class=p>.</span><span class=nx>UID</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>rawLabelSelector</span><span class=w> </span><span class=p>=</span><span class=w> </span><span class=s>&#34;example.example.com/task-uid in (&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nx>strings</span><span class=p>.</span><span class=nf>Join</span><span class=p>(</span><span class=nx>taskUIDs</span><span class=p>,</span><span class=w> </span><span class=s>&#34;,&#34;</span><span class=p>)</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=s>&#34;)&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>eventLabelSelector</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>labels</span><span class=p>.</span><span class=nf>Parse</span><span class=p>(</span><span class=nx>rawLabelSelector</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>events</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>EventList</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>kubeClient</span><span class=p>.</span><span class=nf>List</span><span class=p>(</span><span class=nx>ctx</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=nx>events</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=nx>client</span><span class=p>.</span><span class=nx>ListOptions</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Namespace</span><span class=p>:</span><span class=w>     </span><span class=nx>namespace</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>LabelSelector</span><span class=p>:</span><span class=w> </span><span class=nx>eventLabelSelector</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>});</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=kc>nil</span><span class=p>,</span><span class=w> </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;failed to list events: %v&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>eventsByUID</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>][]</span><span class=nx>corev1</span><span class=p>.</span><span class=nx>Event</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>for</span><span class=w> </span><span class=nx>_</span><span class=p>,</span><span class=w> </span><span class=nx>e</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=k>range</span><span class=w> </span><span class=nx>events</span><span class=p>.</span><span class=nx>Items</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>uid</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>e</span><span class=p>.</span><span class=nx>Labels</span><span class=p>[</span><span class=s>&#34;example.example.com/task-uid&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>if</span><span class=w> </span><span class=nx>_</span><span class=p>,</span><span class=w> </span><span class=nx>ok</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>eventsByUID</span><span class=p>[</span><span class=nx>uid</span><span class=p>];</span><span class=w> </span><span class=p>!</span><span class=nx>ok</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>eventsByUID</span><span class=p>[</span><span class=nx>uid</span><span class=p>]</span><span class=w> </span><span class=p>=</span><span class=w> </span><span class=p>[]</span><span class=nx>corev1</span><span class=p>.</span><span class=nx>Event</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>eventsByUID</span><span class=p>[</span><span class=nx>uid</span><span class=p>]</span><span class=w> </span><span class=p>=</span><span class=w> </span><span class=nb>append</span><span class=p>(</span><span class=nx>eventsByUID</span><span class=p>[</span><span class=nx>uid</span><span class=p>],</span><span class=w> </span><span class=nx>e</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>items</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>meta</span><span class=p>.</span><span class=nf>ExtractList</span><span class=p>(</span><span class=nx>objList</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=kc>nil</span><span class=p>,</span><span class=w> </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;failed to extract list: %v&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>for</span><span class=w> </span><span class=nx>_</span><span class=p>,</span><span class=w> </span><span class=nx>t</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=k>range</span><span class=w> </span><span class=nx>items</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>task</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>t</span><span class=p>.(</span><span class=o>*</span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>Task</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ct</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>CombinedTask</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>TypeMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedTask&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>APIVersion</span><span class=p>:</span><span class=w> </span><span class=nx>Group</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=s>&#34;/&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nx>Version</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>ObjectMeta</span><span class=p>:</span><span class=w> </span><span class=nx>task</span><span class=p>.</span><span class=nx>ObjectMeta</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>Spec</span><span class=p>:</span><span class=w>       </span><span class=nx>task</span><span class=p>.</span><span class=nx>Spec</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>Status</span><span class=p>:</span><span class=w> </span><span class=nx>TaskStatus</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nx>Events</span><span class=p>:</span><span class=w> </span><span class=nx>eventsByUID</span><span class=p>[</span><span class=nb>string</span><span class=p>(</span><span class=nx>task</span><span class=p>.</span><span class=nx>UID</span><span class=p>)],</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>combinedTasks</span><span class=p>.</span><span class=nx>Items</span><span class=w> </span><span class=p>=</span><span class=w> </span><span class=nb>append</span><span class=p>(</span><span class=nx>combinedTasks</span><span class=p>.</span><span class=nx>Items</span><span class=p>,</span><span class=w> </span><span class=nx>ct</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>return</span><span class=w> </span><span class=nx>combinedTasks</span><span class=p>,</span><span class=w> </span><span class=kc>nil</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>WatchCallback</span><span class=p>:</span><span class=w> </span><span class=kd>func</span><span class=p>(</span><span class=nx>ctx</span><span class=w> </span><span class=nx>context</span><span class=p>.</span><span class=nx>Context</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=kt>string</span><span class=p>,</span><span class=w> </span><span class=nx>unstructuredObj</span><span class=w> </span><span class=o>*</span><span class=nx>unstructured</span><span class=p>.</span><span class=nx>Unstructured</span><span class=p>)</span><span class=w> </span><span class=p>(</span><span class=kt>any</span><span class=p>,</span><span class=w> </span><span class=kt>error</span><span class=p>)</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>task</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>examplev1</span><span class=p>.</span><span class=nx>Task</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>runtime</span><span class=p>.</span><span class=nx>DefaultUnstructuredConverter</span><span class=p>.</span><span class=nf>FromUnstructured</span><span class=p>(</span><span class=nx>unstructuredObj</span><span class=p>.</span><span class=nx>Object</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=nx>task</span><span class=p>);</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=kc>nil</span><span class=p>,</span><span class=w> </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;failed to convert unstructured: %v&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>ct</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>CombinedTask</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>TypeMeta</span><span class=p>:</span><span class=w> </span><span class=nx>metav1</span><span class=p>.</span><span class=nx>TypeMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>Kind</span><span class=p>:</span><span class=w>       </span><span class=s>&#34;CombinedTask&#34;</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nx>APIVersion</span><span class=p>:</span><span class=w> </span><span class=nx>Group</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=s>&#34;/&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nx>Version</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>ObjectMeta</span><span class=p>:</span><span class=w> </span><span class=nx>task</span><span class=p>.</span><span class=nx>ObjectMeta</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Spec</span><span class=p>:</span><span class=w>       </span><span class=nx>task</span><span class=p>.</span><span class=nx>Spec</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>eventLabelSelector</span><span class=p>,</span><span class=w> </span><span class=nx>_</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>labels</span><span class=p>.</span><span class=nf>Parse</span><span class=p>(</span><span class=s>&#34;example.example.com/task-uid=&#34;</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=nb>string</span><span class=p>(</span><span class=nx>task</span><span class=p>.</span><span class=nx>UID</span><span class=p>))</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>events</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>EventList</span><span class=p>{}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>kubeClient</span><span class=p>.</span><span class=nf>List</span><span class=p>(</span><span class=nx>ctx</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=nx>events</span><span class=p>,</span><span class=w> </span><span class=o>&amp;</span><span class=nx>client</span><span class=p>.</span><span class=nx>ListOptions</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Namespace</span><span class=p>:</span><span class=w>     </span><span class=nx>task</span><span class=p>.</span><span class=nx>Namespace</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>LabelSelector</span><span class=p>:</span><span class=w> </span><span class=nx>eventLabelSelector</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>});</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=k>return</span><span class=w> </span><span class=kc>nil</span><span class=p>,</span><span class=w> </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;failed to list events: %v&#34;</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nx>ct</span><span class=p>.</span><span class=nx>Status</span><span class=w> </span><span class=p>=</span><span class=w> </span><span class=nx>TaskStatus</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nx>Events</span><span class=p>:</span><span class=w> </span><span class=nx>events</span><span class=p>.</span><span class=nx>Items</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=k>return</span><span class=w> </span><span class=nx>ct</span><span class=p>,</span><span class=w> </span><span class=kc>nil</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>},</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Change API initialization at <code>cmd/main.go</code> file.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">main.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("049e00dbe5b74e121afddcfdf2ea3523")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-049e00dbe5b74e121afddcfdf2ea3523 style=display:none>kubeClient, err := client.New(ctrl.GetConfigOrDie(), client.Options{
+  Scheme: scheme,
+})
+if err != nil {
+  setupLog.Error(err, &#34;unable to create kube client&#34;)
+  os.Exit(1)
+}
+
+dynamicKubeClient, err := dynamic.NewForConfig(ctrl.GetConfigOrDie())
+if err != nil {
+  setupLog.Error(err, &#34;unable to create dynamic kube client&#34;)
+  os.Exit(1)
+}
+
+if err := mgr.Add(apiserver.New(kubeClient, dynamicKubeClient, apiServerPort, apiServerCertFile, apiServerKeyFile, apiServerDataDir)); err != nil {
+  setupLog.Error(err, &#34;unable to add API server to manager&#34;)
+  os.Exit(1)
+}
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>kubeClient</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>ctrl</span><span class=p>.</span><span class=nf>GetConfigOrDie</span><span class=p>(),</span><span class=w> </span><span class=nx>client</span><span class=p>.</span><span class=nx>Options</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>Scheme</span><span class=p>:</span><span class=w> </span><span class=nx>scheme</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>})</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>setupLog</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span><span class=w> </span><span class=s>&#34;unable to create kube client&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>os</span><span class=p>.</span><span class=nf>Exit</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nx>dynamicKubeClient</span><span class=p>,</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>dynamic</span><span class=p>.</span><span class=nf>NewForConfig</span><span class=p>(</span><span class=nx>ctrl</span><span class=p>.</span><span class=nf>GetConfigOrDie</span><span class=p>())</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>setupLog</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span><span class=w> </span><span class=s>&#34;unable to create dynamic kube client&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>os</span><span class=p>.</span><span class=nf>Exit</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=k>if</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>mgr</span><span class=p>.</span><span class=nf>Add</span><span class=p>(</span><span class=nx>apiserver</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>kubeClient</span><span class=p>,</span><span class=w> </span><span class=nx>dynamicKubeClient</span><span class=p>,</span><span class=w> </span><span class=nx>apiServerPort</span><span class=p>,</span><span class=w> </span><span class=nx>apiServerCertFile</span><span class=p>,</span><span class=w> </span><span class=nx>apiServerKeyFile</span><span class=p>,</span><span class=w> </span><span class=nx>apiServerDataDir</span><span class=p>));</span><span class=w> </span><span class=nx>err</span><span class=w> </span><span class=o>!=</span><span class=w> </span><span class=kc>nil</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>setupLog</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span><span class=w> </span><span class=s>&#34;unable to add API server to manager&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>os</span><span class=p>.</span><span class=nf>Exit</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>To associate events with tasks and avoiding N+1 query problem, the controller must label them with the task UID. Update your controller to set index label on the created events at <code>internal/controller/task_controller.go</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">task_controller.go</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("4a94a34259549d6ab9466377dc96a675")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-4a94a34259549d6ab9466377dc96a675 style=display:none>event := corev1.Event{
+  ObjectMeta: ctrl.ObjectMeta{
+    Name:      krand.String(40),
+    Namespace: task.Namespace,
+    Labels: map[string]string{
+      &#34;example.example.com/task-uid&#34;: string(task.UID),
+    },
+  },
+...
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-golang data-lang=golang><span class=line><span class=cl><span class=nx>event</span><span class=w> </span><span class=o>:=</span><span class=w> </span><span class=nx>corev1</span><span class=p>.</span><span class=nx>Event</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>ObjectMeta</span><span class=p>:</span><span class=w> </span><span class=nx>ctrl</span><span class=p>.</span><span class=nx>ObjectMeta</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Name</span><span class=p>:</span><span class=w>      </span><span class=nx>krand</span><span class=p>.</span><span class=nf>String</span><span class=p>(</span><span class=mi>40</span><span class=p>),</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Namespace</span><span class=p>:</span><span class=w> </span><span class=nx>task</span><span class=p>.</span><span class=nx>Namespace</span><span class=p>,</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nx>Labels</span><span class=p>:</span><span class=w> </span><span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>string</span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=s>&#34;example.example.com/task-uid&#34;</span><span class=p>:</span><span class=w> </span><span class=nb>string</span><span class=p>(</span><span class=nx>task</span><span class=p>.</span><span class=nx>UID</span><span class=p>),</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=p>},</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=o>...</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Re-deploy the application.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("03f416902deaef0ed676423bf1e2626c")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-03f416902deaef0ed676423bf1e2626c style=display:none>make docker-build
+../bin/kind load docker-image $IMG
+make deploy
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>make docker-build
+</span></span><span class=line><span class=cl>../bin/kind load docker-image <span class=nv>$IMG</span>
+</span></span><span class=line><span class=cl>make deploy
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Create your <code>Task</code> object.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("3af98977e5cc71a7e1fb49a2f3a4ebdd")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-3af98977e5cc71a7e1fb49a2f3a4ebdd style=display:none>cat | kubectl apply -f - &lt;&lt;EOF
+apiVersion: example.example.com/v1
+kind: Task
+metadata:
+  name: task-sample-5
+spec:
+  priority: 2
+  details: Sample task details
+  deadline: &#34;2025-08-19T16:52:15Z&#34;
+EOF
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat <span class=p>|</span> kubectl apply -f - <span class=s>&lt;&lt;EOF
+</span></span></span><span class=line><span class=cl><span class=s>apiVersion: example.example.com/v1
+</span></span></span><span class=line><span class=cl><span class=s>kind: Task
+</span></span></span><span class=line><span class=cl><span class=s>metadata:
+</span></span></span><span class=line><span class=cl><span class=s>  name: task-sample-5
+</span></span></span><span class=line><span class=cl><span class=s>spec:
+</span></span></span><span class=line><span class=cl><span class=s>  priority: 2
+</span></span></span><span class=line><span class=cl><span class=s>  details: Sample task details
+</span></span></span><span class=line><span class=cl><span class=s>  deadline: &#34;2025-08-19T16:52:15Z&#34;
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Validate business logic via <code>kubectl</code> for simplicity, fetch the <code>combinedtasks</code> in all namespaces.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("517fe414510d0b76d912a23ef80d1728")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-517fe414510d0b76d912a23ef80d1728 style=display:none>kubectl get combinedtasks -A
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get combinedtasks -A
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem;margin-top:-30px><div class="p-4 overflow-x-auto"><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>NAMESPACE   NAME             AGE
+</span></span><span class=line><span class=cl>default     task-sample-1   45h
+</span></span><span class=line><span class=cl>default     task-sample-2    2d5h
+</span></span><span class=line><span class=cl>default     task-sample-3    45h
+</span></span><span class=line><span class=cl>default     task-sample-4    45h
+</span></span><span class=line><span class=cl>default     task-sample-5    3s
+</span></span></code></pre></div></div></div><p>Fetch the <code>combinedtasks</code> in default namespace.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("a260fd8bc3fdf8a82142366d689a64b7")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-a260fd8bc3fdf8a82142366d689a64b7 style=display:none>kubectl get combinedtasks -n default
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get combinedtasks -n default
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem;margin-top:-30px><div class="p-4 overflow-x-auto"><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>NAMESPACE   NAME             AGE
+</span></span><span class=line><span class=cl>default     task-sample-1   45h
+</span></span><span class=line><span class=cl>default     task-sample-2    2d5h
+</span></span><span class=line><span class=cl>default     task-sample-3    45h
+</span></span><span class=line><span class=cl>default     task-sample-4    45h
+</span></span><span class=line><span class=cl>default     task-sample-5    5s
+</span></span></code></pre></div></div></div><p>Fetch a <code>combinedtask</code> by name in default namespace.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("69c38ad3ce292f2fa4c8aacdb9b5d6f2")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-69c38ad3ce292f2fa4c8aacdb9b5d6f2 style=display:none>kubectl get combinedtasks -n default task-sample-5
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get combinedtasks -n default task-sample-5
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem;margin-top:-30px><div class="p-4 overflow-x-auto"><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>NAME            AGE
+</span></span><span class=line><span class=cl>task-sample-5   8s
+</span></span></code></pre></div></div></div><p>Validate <code>combinedtask</code> contains events.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("f56bf4bd368df3f01b2ee9144dd9c7ae")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-f56bf4bd368df3f01b2ee9144dd9c7ae style=display:none>kubectl get combinedtasks -n default task-sample-5 -o yaml
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get combinedtasks -n default task-sample-5 -o yaml
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem;margin-top:-30px><div class="p-4 overflow-x-auto"><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apiVersion: v1
+</span></span><span class=line><span class=cl>items:
+</span></span><span class=line><span class=cl>- apiVersion: search.task.example.example.com/v1
+</span></span><span class=line><span class=cl>  kind: CombinedTask
+</span></span><span class=line><span class=cl>  metadata:
+</span></span><span class=line><span class=cl>    ...
+</span></span><span class=line><span class=cl>    name: task-sample-5
+</span></span><span class=line><span class=cl>    namespace: default
+</span></span><span class=line><span class=cl>  spec:
+</span></span><span class=line><span class=cl>    deadline: <span class=s2>&#34;2025-08-19T16:52:15Z&#34;</span>
+</span></span><span class=line><span class=cl>    details: Sample task details <span class=k>for</span> task-sample-4
+</span></span><span class=line><span class=cl>    priority: <span class=m>3</span>
+</span></span><span class=line><span class=cl>    taskState: Pending
+</span></span><span class=line><span class=cl>  status:
+</span></span><span class=line><span class=cl>    events:
+</span></span><span class=line><span class=cl>    - eventTime: null
+</span></span><span class=line><span class=cl>      firstTimestamp: null
+</span></span><span class=line><span class=cl>      involvedObject:
+</span></span><span class=line><span class=cl>        apiVersion: example.example.com/v1
+</span></span><span class=line><span class=cl>        kind: Task
+</span></span><span class=line><span class=cl>        name: task-sample-5
+</span></span><span class=line><span class=cl>        namespace: default
+</span></span><span class=line><span class=cl>        resourceVersion: <span class=s2>&#34;128025&#34;</span>
+</span></span><span class=line><span class=cl>        uid: 21e694cb-4735-45a5-91c4-198b0cf01311
+</span></span><span class=line><span class=cl>      lastTimestamp: null
+</span></span><span class=line><span class=cl>      message: Task has been updated
+</span></span><span class=line><span class=cl>      ...
+</span></span><span class=line><span class=cl>      reason: TaskUpdated
+</span></span><span class=line><span class=cl>      reportingComponent: <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>      reportingInstance: <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>      source: <span class=o>{}</span>
+</span></span><span class=line><span class=cl>      type: Normal
+</span></span><span class=line><span class=cl>    - eventTime: null
+</span></span><span class=line><span class=cl>      firstTimestamp: null
+</span></span><span class=line><span class=cl>      involvedObject:
+</span></span><span class=line><span class=cl>        apiVersion: example.example.com/v1
+</span></span><span class=line><span class=cl>        kind: Task
+</span></span><span class=line><span class=cl>        name: task-sample-5
+</span></span><span class=line><span class=cl>        namespace: default
+</span></span><span class=line><span class=cl>        resourceVersion: <span class=s2>&#34;128025&#34;</span>
+</span></span><span class=line><span class=cl>        uid: 21e694cb-4735-45a5-91c4-198b0cf01311
+</span></span><span class=line><span class=cl>      lastTimestamp: null
+</span></span><span class=line><span class=cl>      message: Task has been created
+</span></span><span class=line><span class=cl>      metadata:
+</span></span><span class=line><span class=cl>        ...
+</span></span><span class=line><span class=cl>      reason: TaskCreated
+</span></span><span class=line><span class=cl>      reportingComponent: <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>      reportingInstance: <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>      source: <span class=o>{}</span>
+</span></span><span class=line><span class=cl>      type: Normal
+</span></span><span class=line><span class=cl>kind: List
+</span></span><span class=line><span class=cl>metadata:
+</span></span><span class=line><span class=cl>  resourceVersion: <span class=s2>&#34;128025&#34;</span>
+</span></span></code></pre></div></div></div><p>Kubernetes is a powerful platform, but its native API has limitations for complex, domain-specific logic. By using the API Aggregation Layer, you can create fully customized APIs that extend Kubernetes&rsquo; functionality and address these challenges. This approach allows you to implement specialized endpoints.</p><hr><p><strong>Ready to run your application in production? Learn how to prepare your Kubernetes to use HariKube as underlaying storage.</strong> <a href=/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/#-stop-waiting-welcome-to-the-cloud-native-platform-as-a-service-reality>[→]</a></p><hr><p>That&rsquo;s the takeaway! By using the <strong>Kubernetes API Aggregation Layer</strong>, you gain the power to define and serve <strong>fully custom APIs and composite resources</strong> like CombinedTask directly through kubectl. This is how you extend Kubernetes to handle complex data relationships and domain-specific logic, decoupling your presentation from your core data storage.</p><p>Thank you for reading, and feel free to <a href=https://github.com/HariKube/harikube/discussions>share your thoughts</a>.</p></div></article><aside class="lg:w-80 xl:w-96"><div class=space-y-8><div class="bg-white rounded-lg shadow-md p-6"><h3 class="text-lg font-bold mb-4">Recent Articles</h3><div class=space-y-4><div class=group><a href=/blog/the_hidden_infrastructure_challenge_behind_ai_agents/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/the_hidden_infrastructure_challenge_behind_ai_agents_harikube.png alt="A Quick Dive into Kubernetes Operators - Custom APIs" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">The Hidden Infrastructure Challenge Behind AI Agents</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-06-03>Jun 3, 2026</time></div></a></div><div class=group><a href=/blog/kubernetes-etcd-bottleneck-ai-training/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/kubernetes-etcd-bottleneck-ai-training.png alt="A Quick Dive into Kubernetes Operators - Custom APIs" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-05-19>May 19, 2026</time></div></a></div><div class=group><a href=/blog/ai-agenting-on-kubernetes-with-harikube/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/ai-agenting-on-kubernetes-with-harikube.png alt="A Quick Dive into Kubernetes Operators - Custom APIs" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">AI Agenting on Kubernetes with HariKube</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-05-15>May 15, 2026</time></div></a></div><div class=group><a href=/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program.png alt="A Quick Dive into Kubernetes Operators - Custom APIs" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">Enterprise Kubernetes Scaling: HariKube Joins the SUSE Sapphire Innovate Partner Program</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-04-23>Apr 23, 2026</time></div></a></div><div class=group><a href=/blog/harikube-vs-vanilla-kubernetes/ class=block><div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg"><img src=/images/blog/harikube-vs-vanilla-kubernetes.png alt="A Quick Dive into Kubernetes Operators - Custom APIs" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300" loading=lazy></div><h4 class="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-200 line-clamp-2">HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</h4><div class="flex items-center text-sm text-gray-500 mt-2"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
+<time datetime=2026-04-01>Apr 1, 2026</time></div></a></div></div></div><div class="bg-white rounded-lg shadow-md p-6"><h3 class="text-lg font-bold mb-4">Popular Tags</h3><div class="flex flex-wrap gap-2"><a href=/tags/kubernetes/ class="text-sm text-gray-600 hover:text-primary-600">#kubernetes
+<span class=text-gray-500>(18)</span>
+</a><a href=/tags/microservice/ class="text-sm text-gray-600 hover:text-primary-600">#microservice
+<span class=text-gray-500>(9)</span>
+</a><a href=/tags/infrastructure/ class="text-sm text-gray-600 hover:text-primary-600">#infrastructure
+<span class=text-gray-500>(8)</span>
+</a><a href=/tags/scalability/ class="text-sm text-gray-600 hover:text-primary-600">#scalability
+<span class=text-gray-500>(7)</span>
+</a><a href=/tags/custom-resource/ class="text-sm text-gray-600 hover:text-primary-600">#custom resource
+<span class=text-gray-500>(6)</span>
+</a><a href=/tags/development/ class="text-sm text-gray-600 hover:text-primary-600">#development
+<span class=text-gray-500>(6)</span>
+</a><a href=/tags/agentic-ai/ class="text-sm text-gray-600 hover:text-primary-600">#agentic ai
+<span class=text-gray-500>(4)</span>
+</a><a href=/tags/serverless/ class="text-sm text-gray-600 hover:text-primary-600">#serverless
+<span class=text-gray-500>(3)</span>
+</a><a href=/tags/ai/ class="text-sm text-gray-600 hover:text-primary-600">#ai
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/ai-training/ class="text-sm text-gray-600 hover:text-primary-600">#ai training
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/control-plane/ class="text-sm text-gray-600 hover:text-primary-600">#control plane
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/devops/ class="text-sm text-gray-600 hover:text-primary-600">#devops
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/eks/ class="text-sm text-gray-600 hover:text-primary-600">#eks
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/etcd/ class="text-sm text-gray-600 hover:text-primary-600">#etcd
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/etcd-replacement/ class="text-sm text-gray-600 hover:text-primary-600">#etcd replacement
+<span class=text-gray-500>(1)</span>
+</a><a href=/tags/partners/ class="text-sm text-gray-600 hover:text-primary-600">#partners
+<span class=text-gray-500>(1)</span></a></div></div></div></aside></div><nav class="border-t border-gray-200 mt-12 pt-8"><div class="flex justify-between items-center"><a href=/blog/create-microservice-with-operator-3/ class="group flex items-center"><svg class="w-5 h-5 mr-2 text-gray-600 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0 7-7m-7 7h18"/></svg><div><div class="text-sm text-gray-600">Previous Post</div><div class="font-medium group-hover:text-primary-600">A Quick Dive into Kubernetes Operators - Services+</div></div></a><a href=/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/ class="group flex items-center text-right"><div><div class="text-sm text-gray-600">Next Post</div><div class="font-medium group-hover:text-primary-600">We make Kubernetes work at enterprise scale - no more ETCD limits</div></div><svg class="w-5 h-5 ml-2 text-gray-600 group-hover:text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0-7 7m7-7H3"/></svg></a></div></nav><div class=mt-16><section class=cta-section><div class=container><div class="relative rounded-lg overflow-hidden bg-primary-600 cta-gradient" style="--gradient-angle:45;--gradient-from: ;--gradient-to:"><div class="relative text-center max-w-3xl mx-auto px-6 py-10"><h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Read the Technical Whitepaper!</h2><p class="text-xl text-primary-100 mb-8">Beyond the Benchmarks: If 50% of your engineering effort is currently spent on platform integration rather than business logic, your infrastructure is a bottleneck. In our technical whitepaper, we share the research behind the Unified Service Model and demonstrate how HariKube eliminates the integration overhead that stalls enterprise growth.</p><div class="flex flex-col sm:flex-row justify-center gap-4"><a href=/whitepapers/transforming_kubernetes_from_infrastructure_to_application_platform_v1/ class="btn bg-white text-primary-600 hover:bg-gray-100">Download</a></div></div></div></div></section></div></div></div><footer class="bg-gray-50 py-12 border-t border-gray-200"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><div class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0"><div class=flex-1><div class="flex items-center space-x-3 mb-4"><a href=/ class=inline-block><img src=/images/harikube-logo.png alt="HariKube - Zero-Overhead PaaS for Kubernetes" class=h-6></a></div><div class="flex space-x-3 p-2"><a href=https://linkedin.com/company/harikube/ class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>LinkedIn</span>
+<img src=/images/social/linkedin.svg alt=LinkedIn class="h-5 w-5">
+</a><a href=https://github.com/HariKube class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>GitHub</span>
+<img src=/images/social/github.svg alt=GitHub class="h-5 w-5"></a></div></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/faq/ class="text-gray-600 hover:text-primary-600">FAQ</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/company/ class="text-gray-600 hover:text-primary-600">About Us</a></li><li><a href=/legal/ class="text-gray-600 hover:text-primary-600">Legal</a></li><li><a href=/careers/ class="text-gray-600 hover:text-primary-600">Careers</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/terms-conditions/ class="text-gray-600 hover:text-primary-600">Terms and Conditions</a></li><li><a href=/privacy-policy/ class="text-gray-600 hover:text-primary-600">Privacy Policy</a></li><li><a href=/eula/ class="text-gray-600 hover:text-primary-600">End User License Agreement</a></li><li><a href=/sla/ class="text-gray-600 hover:text-primary-600">Service Level Agreement</a></li></ul></div></div><div class="mt-12 pt-8 border-t border-gray-200"><div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"><p class="text-gray-600 text-sm">© 2026 HariKube - Zero-Overhead PaaS for Kubernetes. All rights reserved. HariKube is a product of Inspirnation LP, registered in Hungary.</p></div></div></div></footer><style type=text/css>blockquote{quotes:none!important}</style><div id=cookie-banner style=display:none;position:fixed;bottom:0;width:100%;background-color:#131a40;color:#fff;padding:16px;text-align:center;font-size:14px;z-index:1000><span>We use cookies to enhance your experience. By continuing, you agree to our use of cookies.
+<a href=/terms-conditions/ style=color:#425ad6;text-decoration:underline>Learn more</a>
+</span><button onclick=acceptCookies() style="margin-left:12px;background-color:#425ad6;border:none;padding:8px 16px;color:#fff;font-weight:700;cursor:pointer;border-radius:4px">Accept</button></div><script type=text/javascript src=/js/cookiebar.js></script><script>const mobileMenuButton=document.getElementById("mobile-menu-button");mobileMenuButton&&mobileMenuButton.addEventListener("click",function(){const e=document.getElementById("mobile-menu");e&&e.classList.toggle("hidden")})</script></body></html>
