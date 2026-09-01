@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DataStreaming on HariKube - Zero-Overhead PaaS for Kubernetes</title><link>/categories/datastreaming/</link><description>Recent content in DataStreaming on HariKube - Zero-Overhead PaaS for Kubernetes</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 01 Sep 2026 15:50:48 +0200</lastBuildDate><atom:link href="/categories/datastreaming/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes is HariKube's query language, control protocol, and application interface for managing data streams</title><link>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</link><pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-lets-analyze-the-title"&gt;🔎 Let&amp;rsquo;s analyze the title!&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-looks-on-paper"&gt;📎 How it looks on paper&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧠 What is HariKube&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-it-looks-like-in-action"&gt;👷 What it looks like in action&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-where-this-architecture-shines"&gt;🎯 Where this architecture shines&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thought-how-i-imagine-a-system-like-this"&gt;🏁 Final Thought: How I Imagine a System Like This&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;Building production-grade microservices has meant wrestling with legacy anti-patterns, dealing with tightly coupled databases, managing complex service meshes, and &lt;strong&gt;burning 20 to 40 percent of our development cycles purely on repetitive infrastructure boilerplate&lt;/strong&gt;. We have all felt the steep learning curves and the constant headache of trying to faithfully reproduce production environments locally. We &lt;strong&gt;all had scary nigths scaling Control-Plane&lt;/strong&gt; or watching memory filling up with unused resources &lt;strong&gt;for too long&amp;hellip;&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
