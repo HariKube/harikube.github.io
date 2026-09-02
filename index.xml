@@ -10,9 +10,10 @@
  &lt;nav id="TableOfContents"&gt;
  &lt;ul&gt;
  &lt;li&gt;&lt;a href="#-lets-analyze-the-title"&gt;🔎 Let&amp;rsquo;s analyze the title!&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-how-it-looks-on-paper"&gt;📎 How it looks on paper&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧠 What is HariKube&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-what-it-looks-like-in-action"&gt;👷 What it looks like in action&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-looks-on-paper"&gt;📎 How it looks on paper?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧠 What is HariKube?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikube-is-a-petabyte-scale-time-travel-state-machine-with-a-kubernetes-interface-and-kafka-streaming"&gt;🧭 HariKube is a Petabyte-scale, Time-travel State-machine with a Kubernetes Interface and Kafka streaming&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-looks-like-in-action"&gt;👷 How it looks like in action?&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-where-this-architecture-shines"&gt;🎯 Where this architecture shines&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-final-thought-how-i-imagine-a-system-like-this"&gt;🏁 Final Thought: How I Imagine a System Like This&lt;/a&gt;&lt;/li&gt;
  &lt;/ul&gt;
