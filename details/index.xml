@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Details on HariKube - Zero-Overhead PaaS for Kubernetes</title><link>/details/</link><description>Recent content in Details on HariKube - Zero-Overhead PaaS for Kubernetes</description><generator>Hugo</generator><language>en-us</language><atom:link href="/details/index.xml" rel="self" type="application/rss+xml"/><item><title>Is ETCD Limiting Your Kubernetes Scaling?</title><link>/details/scalingexp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/scalingexp/</guid><description>&lt;h3 id="the-pain-point-the-etcd-bottleneck"&gt;The Pain Point: The ETCD Bottleneck&lt;/h3&gt;
-&lt;p&gt;Kubernetes’ architecture relies solely on ETCD for all cluster state data. While reliable, ETCD is not optimized for high-volume, high-throughput, or complex data operations. For large-scale or data-intensive workloads, this dependence creates a critical scaling wall, limiting performance, increasing latency, and restricting the flexibility of your architecture.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Details on HariKube - Zero-Overhead PaaS for Kubernetes</title><link>/details/</link><description>Recent content in Details on HariKube - Zero-Overhead PaaS for Kubernetes</description><generator>Hugo</generator><language>en-us</language><atom:link href="/details/index.xml" rel="self" type="application/rss+xml"/><item><title>Business Benefits</title><link>/details/business_values/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/business_values/</guid><description>&lt;h3 id="the-pain-point-infrastructure-costs-sabotaging-business-growth"&gt;The Pain Point: Infrastructure Costs Sabotaging Business Growth&lt;/h3&gt;
+&lt;p&gt;As companies scale their digital services and deploy advanced features, cloud bills skyrocket while feature velocity grinds to a halt. Engineering teams become bogged down by complex system administration instead of delivering customer value. Unpredictable compute expenses, bloated infrastructure overhead, and slow product rollouts directly threaten bottom-line profitability and market competitiveness.&lt;/p&gt;
 
 
 
@@ -7,17 +7,15 @@
 &lt;section class="section"&gt;
  &lt;div class="container"&gt;
  &lt;div class="text-center max-w-3xl mx-auto mb-16"&gt;
- &lt;h2 class="text-3xl md:text-4xl font-bold mb-6"&gt;The HariKube Solution: Optimized Dynamic Data Stores 🚀&lt;/h2&gt;
+ &lt;h2 class="text-3xl md:text-4xl font-bold mb-6"&gt;The HariKube Solution: Maximum Value, Faster Time-to-Market 🚀&lt;/h2&gt;
  
- &lt;p class="text-xl text-gray-600"&gt;HariKube natively solves this constraint by intelligently offloading the most demanding data from ETCD to optimized dynamic data stores. By utilizing data solutions built for scale, HariKube unlocks true high-throughput performance and massive scalability within a pure Kubernetes environment, allowing your cluster to handle the complex, data-heavy workloads you need.&lt;/p&gt;</description></item><item><title>Is Infrastructure Code Slowing and Fragmenting Your Development?</title><link>/details/devexp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/devexp/</guid><description>&lt;h3 id="the-pain-point-infrastructure-creep"&gt;The Pain Point: Infrastructure Creep&lt;/h3&gt;
-&lt;p&gt;Many services built on Kubernetes must carry the burden of managing their own infrastructure (like defining complex resources, storage, or security policies) directly within the application or via endless configuration files. This leads to fragmented logic, where developers spend more time managing Kubernetes boilerplate than writing actual business features. The result is slower delivery, brittle code, and inconsistent environments across teams.&lt;/p&gt;
-
-
-
-
-&lt;section class="section"&gt;
- &lt;div class="container"&gt;
- &lt;div class="text-center max-w-3xl mx-auto mb-16"&gt;
- &lt;h2 class="text-3xl md:text-4xl font-bold mb-6"&gt;The HariKube Solution: Services as First-Class Citizens 🥇&lt;/h2&gt;
- 
- &lt;p class="text-xl text-gray-600"&gt;HariKube transforms Kubernetes to recognize and manage services as first-class citizens. Your teams can focus only on business logic, without needing to write or manage infrastructure code within the service itself. We handle the underlying Kubernetes complexity, dramatically accelerating development and ensuring standardized, consistent deployments.&lt;/p&gt;</description></item></channel></rss>
+ &lt;p class="text-xl text-gray-600"&gt;HariKube transforms software infrastructure from a cost center into a competitive advantage. By streamlining operations and maximizing resource efficiency, HariKube enables businesses to scale their operations dramatically while slashing operational overhead, accelerating innovation, and keeping infrastructure budgets predictable.&lt;/p&gt;</description></item><item><title>Is Infrastructure Code Slowing and Fragmenting Your Development?</title><link>/details/arhitecture/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/arhitecture/</guid><description>&lt;p&gt;We know this sounds ambitious, so let&amp;rsquo;s architecture talks for itself.&lt;/p&gt;
+&lt;div style="text-align: center"&gt;
+ &lt;a href="/images/harikube-architecture-overview.png" target="_blank"&gt;&lt;img src="/images/harikube-architecture-overview.png" alt="Harikube Architecture Overview" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="the-pain-point-microservice-sprawl--state-fragmentation"&gt;The Pain Point: Microservice Sprawl &amp;amp; State Fragmentation&lt;/h3&gt;
+&lt;p&gt;Traditional microservice architectures force applications to manage distributed state, complex network calls, and heavy infrastructure boilerplate (Custom Resources, persistent volumes, connection pools). Adding AI workloads makes this worse - models require low-latency, petabyte-scale state access that microservices split across fragile, high-overhead networks. Developers waste time wrestling with distributed system complexity rather than building core business logic and intelligent features.&lt;/p&gt;</description></item><item><title>The Kubernetes Performance Challenge</title><link>/details/kubernetes-performance-challenge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/kubernetes-performance-challenge/</guid><description>&lt;h1 id="the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/h1&gt;
+&lt;p&gt;We were interested in how far we can go with Kubernetes. While it can scale up applications to the space (beyond the clouds 😜), Kubernetes itself fails to scale gracefully. Or maybe not?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Think your cluster is fast? Beat or cluster!&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="-the-challenge"&gt;🚀 The Challenge&lt;/h2&gt;
+&lt;p&gt;Participants are invited to execute standardized performance tests against the Kubernetes to measure latency, throughput, and system stability.&lt;/p&gt;</description></item></channel></rss>

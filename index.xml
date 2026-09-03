@@ -12,7 +12,7 @@
  &lt;li&gt;&lt;a href="#-lets-analyze-the-title"&gt;🔎 Let&amp;rsquo;s analyze the title!&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-how-it-looks-on-paper"&gt;📎 How it looks on paper?&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧠 What is HariKube?&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-harikube-is-a-petabyte-scale-time-travel-state-machine-with-a-kubernetes-interface-and-kafka-streaming"&gt;🧭 HariKube is a Petabyte-scale, Time-travel State-machine with a Kubernetes Interface and Kafka streaming&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikube-is-a-petabyte-scale-versioned-state-machine-with-kubernetes-interface-and-kafka-streaming"&gt;🧭 HariKube is a Petabyte-scale versioned State-machine with Kubernetes Interface and Kafka streaming&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-how-it-looks-like-in-action"&gt;👷 How it looks like in action?&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-where-this-architecture-shines"&gt;🎯 Where this architecture shines&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-final-thought-how-i-imagine-a-system-like-this"&gt;🏁 Final Thought: How I Imagine a System Like This&lt;/a&gt;&lt;/li&gt;
@@ -592,7 +592,18 @@ function copyContentToClipboard(id) {
 }
 &lt;/script&gt;
 
-&lt;p&gt;Find the compiled binaries in &lt;code&gt;_output/local/bin/linux/amd64&lt;/code&gt; folder.&lt;/p&gt;</description></item><item><title>Commonly Exposed Metrics</title><link>/docs/details/exposed-metrics-bbolt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/exposed-metrics-bbolt/</guid><description>&lt;div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style="max-width: 800px; border-radius: 0.5rem;"&gt;
+&lt;p&gt;Find the compiled binaries in &lt;code&gt;_output/local/bin/linux/amd64&lt;/code&gt; folder.&lt;/p&gt;</description></item><item><title>Business Benefits</title><link>/details/business_values/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/business_values/</guid><description>&lt;h3 id="the-pain-point-infrastructure-costs-sabotaging-business-growth"&gt;The Pain Point: Infrastructure Costs Sabotaging Business Growth&lt;/h3&gt;
+&lt;p&gt;As companies scale their digital services and deploy advanced features, cloud bills skyrocket while feature velocity grinds to a halt. Engineering teams become bogged down by complex system administration instead of delivering customer value. Unpredictable compute expenses, bloated infrastructure overhead, and slow product rollouts directly threaten bottom-line profitability and market competitiveness.&lt;/p&gt;
+
+
+
+
+&lt;section class="section"&gt;
+ &lt;div class="container"&gt;
+ &lt;div class="text-center max-w-3xl mx-auto mb-16"&gt;
+ &lt;h2 class="text-3xl md:text-4xl font-bold mb-6"&gt;The HariKube Solution: Maximum Value, Faster Time-to-Market 🚀&lt;/h2&gt;
+ 
+ &lt;p class="text-xl text-gray-600"&gt;HariKube transforms software infrastructure from a cost center into a competitive advantage. By streamlining operations and maximizing resource efficiency, HariKube enables businesses to scale their operations dramatically while slashing operational overhead, accelerating innovation, and keeping infrastructure budgets predictable.&lt;/p&gt;</description></item><item><title>Commonly Exposed Metrics</title><link>/docs/details/exposed-metrics-bbolt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/exposed-metrics-bbolt/</guid><description>&lt;div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style="max-width: 800px; border-radius: 0.5rem;"&gt;
  &lt;div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"&gt;
  &lt;div class="text-sm text-gray-200 font-mono"&gt;
  
@@ -5710,29 +5721,12 @@ HariKube meets this challenge with a flexible, composable architecture that inte
  }
 }
 &lt;/script&gt;
-&lt;p&gt;Kubernetes has become the de facto standard for orchestrating containerized applications due to its flexibility, extensibility, and ability to automate deployment, scaling, and operations. It enables teams to adopt microservices architectures, build scalable cloud-native platforms, and maintain service reliability even under dynamic workloads.&lt;/p&gt;</description></item><item><title>Is ETCD Limiting Your Kubernetes Scaling?</title><link>/details/scalingexp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/scalingexp/</guid><description>&lt;h3 id="the-pain-point-the-etcd-bottleneck"&gt;The Pain Point: The ETCD Bottleneck&lt;/h3&gt;
-&lt;p&gt;Kubernetes’ architecture relies solely on ETCD for all cluster state data. While reliable, ETCD is not optimized for high-volume, high-throughput, or complex data operations. For large-scale or data-intensive workloads, this dependence creates a critical scaling wall, limiting performance, increasing latency, and restricting the flexibility of your architecture.&lt;/p&gt;
-
-
-
-
-&lt;section class="section"&gt;
- &lt;div class="container"&gt;
- &lt;div class="text-center max-w-3xl mx-auto mb-16"&gt;
- &lt;h2 class="text-3xl md:text-4xl font-bold mb-6"&gt;The HariKube Solution: Optimized Dynamic Data Stores 🚀&lt;/h2&gt;
- 
- &lt;p class="text-xl text-gray-600"&gt;HariKube natively solves this constraint by intelligently offloading the most demanding data from ETCD to optimized dynamic data stores. By utilizing data solutions built for scale, HariKube unlocks true high-throughput performance and massive scalability within a pure Kubernetes environment, allowing your cluster to handle the complex, data-heavy workloads you need.&lt;/p&gt;</description></item><item><title>Is Infrastructure Code Slowing and Fragmenting Your Development?</title><link>/details/devexp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/devexp/</guid><description>&lt;h3 id="the-pain-point-infrastructure-creep"&gt;The Pain Point: Infrastructure Creep&lt;/h3&gt;
-&lt;p&gt;Many services built on Kubernetes must carry the burden of managing their own infrastructure (like defining complex resources, storage, or security policies) directly within the application or via endless configuration files. This leads to fragmented logic, where developers spend more time managing Kubernetes boilerplate than writing actual business features. The result is slower delivery, brittle code, and inconsistent environments across teams.&lt;/p&gt;
-
-
-
-
-&lt;section class="section"&gt;
- &lt;div class="container"&gt;
- &lt;div class="text-center max-w-3xl mx-auto mb-16"&gt;
- &lt;h2 class="text-3xl md:text-4xl font-bold mb-6"&gt;The HariKube Solution: Services as First-Class Citizens 🥇&lt;/h2&gt;
- 
- &lt;p class="text-xl text-gray-600"&gt;HariKube transforms Kubernetes to recognize and manage services as first-class citizens. Your teams can focus only on business logic, without needing to write or manage infrastructure code within the service itself. We handle the underlying Kubernetes complexity, dramatically accelerating development and ensuring standardized, consistent deployments.&lt;/p&gt;</description></item><item><title>Join Our Team</title><link>/careers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/careers/</guid><description>&lt;p&gt;At inspirNation, we believe in empowering our team members to do their best work. We foster an environment of innovation, collaboration, and continuous learning. Our culture is built on trust, transparency, and a shared commitment to excellence.&lt;/p&gt;
+&lt;p&gt;Kubernetes has become the de facto standard for orchestrating containerized applications due to its flexibility, extensibility, and ability to automate deployment, scaling, and operations. It enables teams to adopt microservices architectures, build scalable cloud-native platforms, and maintain service reliability even under dynamic workloads.&lt;/p&gt;</description></item><item><title>Is Infrastructure Code Slowing and Fragmenting Your Development?</title><link>/details/arhitecture/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/arhitecture/</guid><description>&lt;p&gt;We know this sounds ambitious, so let&amp;rsquo;s architecture talks for itself.&lt;/p&gt;
+&lt;div style="text-align: center"&gt;
+ &lt;a href="/images/harikube-architecture-overview.png" target="_blank"&gt;&lt;img src="/images/harikube-architecture-overview.png" alt="Harikube Architecture Overview" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;h3 id="the-pain-point-microservice-sprawl--state-fragmentation"&gt;The Pain Point: Microservice Sprawl &amp;amp; State Fragmentation&lt;/h3&gt;
+&lt;p&gt;Traditional microservice architectures force applications to manage distributed state, complex network calls, and heavy infrastructure boilerplate (Custom Resources, persistent volumes, connection pools). Adding AI workloads makes this worse - models require low-latency, petabyte-scale state access that microservices split across fragile, high-overhead networks. Developers waste time wrestling with distributed system complexity rather than building core business logic and intelligent features.&lt;/p&gt;</description></item><item><title>Join Our Team</title><link>/careers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/careers/</guid><description>&lt;p&gt;At inspirNation, we believe in empowering our team members to do their best work. We foster an environment of innovation, collaboration, and continuous learning. Our culture is built on trust, transparency, and a shared commitment to excellence.&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;re looking for passionate individuals who want to make a difference and grow with us. If you&amp;rsquo;re excited about building the future of PaaS and working with cutting-edge technology, we&amp;rsquo;d love to hear from you.&lt;/p&gt;</description></item><item><title>Kubernetes Helm Install</title><link>/docs/details/kubernetes-helm-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/kubernetes-helm-install/</guid><description>&lt;p&gt;The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like &lt;a href="https://www.vcluster.com"&gt;vCluster&lt;/a&gt; to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.&lt;/p&gt;
 &lt;p&gt;This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.&lt;/p&gt;
 &lt;ul&gt;
@@ -6118,7 +6112,11 @@ such as matching by resource type, namespace, key prefix, or custom resource def
 }
 &lt;/script&gt;
 &lt;p&gt;&lt;a href="/docs/8.5.4-a4-r0-terms-and-conditions-newsletter.pdf"&gt;Download&lt;/a&gt;&lt;/p&gt;
-&lt;iframe src="/docs/8.5.4-a4-r0-terms-and-conditions-newsletter.pdf" style="width: 100%; height:768px;"&gt;&lt;/iframe&gt;</description></item><item><title>TLS Configuration Per Routing</title><link>/docs/details/tls-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/tls-config/</guid><description>&lt;div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style="max-width: 800px; border-radius: 0.5rem;"&gt;
+&lt;iframe src="/docs/8.5.4-a4-r0-terms-and-conditions-newsletter.pdf" style="width: 100%; height:768px;"&gt;&lt;/iframe&gt;</description></item><item><title>The Kubernetes Performance Challenge</title><link>/details/kubernetes-performance-challenge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/details/kubernetes-performance-challenge/</guid><description>&lt;h1 id="the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/h1&gt;
+&lt;p&gt;We were interested in how far we can go with Kubernetes. While it can scale up applications to the space (beyond the clouds 😜), Kubernetes itself fails to scale gracefully. Or maybe not?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Think your cluster is fast? Beat or cluster!&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="-the-challenge"&gt;🚀 The Challenge&lt;/h2&gt;
+&lt;p&gt;Participants are invited to execute standardized performance tests against the Kubernetes to measure latency, throughput, and system stability.&lt;/p&gt;</description></item><item><title>TLS Configuration Per Routing</title><link>/docs/details/tls-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/tls-config/</guid><description>&lt;div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style="max-width: 800px; border-radius: 0.5rem;"&gt;
  &lt;div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"&gt;
  &lt;div class="text-sm text-gray-200 font-mono"&gt;
  
