@@ -1,0 +1,128 @@
+<!doctype html><html lang=en-us class=h-full><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><script async src="https://www.googletagmanager.com/gtag/js?id=G-YVQCSK996Q"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-YVQCSK996Q")</script><script id=mcjs>!function(e,t,n,s,o){s=e.createElement(t),o=e.getElementsByTagName(t)[0],s.async=1,s.src=n,o.parentNode.insertBefore(s,o)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/ce88ef7143c9148f30f7cda5f/10ef28bb04b6ce918a13dc417.js")</script><title>Rancher Install | HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><meta name=description content="HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices."><meta name=author content="Richárd Kovács"><meta name=robots content="index, follow"><meta property="og:title" content="Rancher Install | HariKube - Petabyte-scale, Versioned State-machine for next gen of applications"><meta property="og:description" content="HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices."><meta property="og:type" content="article"><meta property="og:url" content="/docs/details/rancher-install/"><meta property="og:site_name" content="HariKube - Petabyte-scale, Versioned State-machine for next gen of applications"><meta property="og:image" content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Rancher Install | HariKube - Petabyte-scale, Versioned State-machine for next gen of applications"><meta name=twitter:description content="HariKube brings together Kubernetes-native management and Kafka event streaming in a petabyte-scale, versioned state machine. Merge the power of monoliths with the scalability of microservices."><meta name=twitter:image content="/images/harikube-is-a-kubernetes-hyper-scaler-that-turns-your-cluster-into-a-zero-effort-platform-as-a-service.png"><link rel=icon type=image/x-icon href=/images/favicon.ico><link rel=canonical href=/docs/details/rancher-install/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel=stylesheet><link rel=stylesheet href="/css/main.min.a59c69cc213ee899fe81fd7b26563d5ef4e9a0a5f7807f53c06291b23b7722c5.css"></head><body class="min-h-screen flex flex-col"><div class="fixed top-0 left-0 right-0 z-50"><div class=mobile-menu-wrapper><input type=checkbox id=nav-toggle class=nav-toggle><header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-100"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><nav class="flex items-center justify-between h-20"><a href=/ class="flex items-center space-x-4"><img src=/images/harikube-logo.png alt="HariKube - Petabyte-scale, Versioned State-machine for next gen of applications" class=h-12></a><div class="hidden md:flex items-center space-x-8"><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Features
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/features/developer-experience/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Developer Experience</a>
+<a href=/features/performance/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Performance</a>
+<a href=/features/consistency/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Consistency</a>
+<a href=/features/flexible-stack/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Data Isolation</a></div></div></div><div class="relative group"><button class="flex items-center text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">
+Docs
+<svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="absolute left-0 mt-2 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out"><div class="py-6 bg-white border border-gray-100 shadow-xl rounded-lg"><a href=/docs/overview/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Overview</a>
+<a href=/docs/installation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Installation</a>
+<a href=/docs/custom-resource/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Custom Resource</a>
+<a href=/docs/automation/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Automation</a>
+<a href=/docs/monitoring/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Monitoring</a>
+<a href=/docs/future-plans/ class="block px-8 py-3 text-sm text-gray-700 hover:bg-gray-50">Future Plans</a></div></div></div><a href=/blog/ class="text-base text-gray-900 hover:text-primary-600 font-bold transition duration-200">Blog</a></div><div class="hidden md:flex items-center space-x-4"><a href=/editions/ class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div><div class=md:hidden><label for=nav-toggle class="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 transition-colors cursor-pointer"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></label></div></nav></div><div class="nav-content md:hidden w-full fixed left-0 right-0 top-20 bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-5rem)] overflow-y-auto"><div class="w-full px-6 py-4"><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Features</div><div class=pl-4><a href=/features/developer-experience/ class="block text-gray-700 hover:text-primary-600 py-2">Developer Experience</a>
+<a href=/features/performance/ class="block text-gray-700 hover:text-primary-600 py-2">Performance</a>
+<a href=/features/consistency/ class="block text-gray-700 hover:text-primary-600 py-2">Consistency</a>
+<a href=/features/flexible-stack/ class="block text-gray-700 hover:text-primary-600 py-2">Infrastructure Flexibility</a>
+<a href=/features/data-isolation/ class="block text-gray-700 hover:text-primary-600 py-2">Data Isolation</a></div></div><div class=py-2><div class="text-xl text-gray-900 font-bold mb-2">Docs</div><div class=pl-4><a href=/docs/overview/ class="block text-gray-700 hover:text-primary-600 py-2">Overview</a>
+<a href=/docs/installation/ class="block text-gray-700 hover:text-primary-600 py-2">Installation</a>
+<a href=/docs/custom-resource/ class="block text-gray-700 hover:text-primary-600 py-2">Custom Resource</a>
+<a href=/docs/automation/ class="block text-gray-700 hover:text-primary-600 py-2">Automation</a>
+<a href=/docs/monitoring/ class="block text-gray-700 hover:text-primary-600 py-2">Monitoring</a>
+<a href=/docs/future-plans/ class="block text-gray-700 hover:text-primary-600 py-2">Future Plans</a></div></div><a href=/blog/ class="block text-xl text-gray-900 hover:text-primary-600 font-bold transition duration-200 py-2">Blog</a><div class="pt-4 space-y-4"><a href=/editions/ class="block text-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div></div></div></header><style>.mobile-menu-wrapper{position:relative}.nav-toggle{display:none}.nav-content{display:none}.nav-toggle:checked~header .nav-content{display:block}</style></div></div><div class=pt-20><div class="container mx-auto px-4 py-8 mb-12 flex-1"><h1 class="text-4xl font-bold text-center mb-12">Rancher Install</h1><div class="prose prose-lg !max-w-none"><p>You have two options. If you would like to let Rancher itself uses HariKube.</p><h3 id=standalone-install>Standalone install</h3><p>In this setup you get a fully featured Rancher with HariKube control-plane to scale workloads but enjoying Rancher experience.</p><p>First run your HariKube instance:</p><blockquote><p>⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our <a href=/editions/>Editions</a> page.</p></blockquote><p>Start by authenticating your local Docker client with the private registry at <code>registry.harikube.info</code>. This step is essential for pulling images from the registry.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("0aecc6b9d0fe39dd82c86e9f53be61d9")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-0aecc6b9d0fe39dd82c86e9f53be61d9 style=display:none>docker login registry.harikube.info
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker login registry.harikube.info
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("e4372272130f251edaffaa0bd9f2fcf1")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-e4372272130f251edaffaa0bd9f2fcf1 style=display:none>docker run -d \
+  --stop-timeout=-1 \
+  -e LICENSE_KEY_FILE=/license \
+  -e TOPOLOGY_CONFIG=file:///topology.yaml \
+  -e ENABLE_TELEMETRY_PUSH=true \
+  -v ${PWD}/license:/license:ro \
+  -v $(pwd)/topology.yaml:/topology.yaml \
+  -v harikube_db:/db \
+  -p 2379:2379 \
+  registry.harikube.info/harikube/middleware:release-v0.14.5 \
+  --endpoint=multi://http://&lt;default.database.server:2379&gt;
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker run -d <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --stop-timeout<span class=o>=</span>-1 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -e <span class=nv>LICENSE_KEY_FILE</span><span class=o>=</span>/license <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -e <span class=nv>TOPOLOGY_CONFIG</span><span class=o>=</span>file:///topology.yaml <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -e <span class=nv>ENABLE_TELEMETRY_PUSH</span><span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -v <span class=si>${</span><span class=nv>PWD</span><span class=si>}</span>/license:/license:ro <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -v <span class=k>$(</span><span class=nb>pwd</span><span class=k>)</span>/topology.yaml:/topology.yaml <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -v harikube_db:/db <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  -p 2379:2379 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  registry.harikube.info/harikube/middleware:release-v0.14.5 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --endpoint<span class=o>=</span>multi://http://&lt;default.database.server:2379&gt;
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Change your Rancher <code>/etc/rancher/rke2/config.yaml</code>:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("415a76fa3accbd681db19cedacb63701")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-415a76fa3accbd681db19cedacb63701 style=display:none>kube-apiserver-image: &#34;quay.io/harikube/kube-apiserver:v1.36.2&#34;
+kube-apiserver-arg:
+- &#34;feature-gates=WatchList=true,WatchListClient=true,VolumeAttributesClass=true,MutatingAdmissionPolicy=true,CustomResourceFieldSelectors=true&#34;
+- &#34;runtime-config=admissionregistration.k8s.io/v1beta1=true,admissionregistration.k8s.io/v1=true&#34;
+- &#34;storage-media-type=application/json&#34;
+- &#34;encryption-provider-config=&#34;
+- &#34;encryption-provider-config-automatic-reload=false&#34;
+- &#34;max-requests-inflight=900&#34;
+- &#34;max-mutating-requests-inflight=300&#34;
+- &#34;watch-cache=false&#34;
+- &#34;etcd-servers=http://172.17.0.1:2369&#34;
+
+kube-controller-manager-image: &#34;quay.io/harikube/kube-controller-manager:v1.36.2&#34;
+kube-controller-manager-arg:
+- &#34;feature-gates=WatchList=true,WatchListClient=true,VolumeAttributesClass=true,MutatingAdmissionPolicy=true,CustomResourceFieldSelectors=true&#34;
+- &#34;kube-api-burst=90&#34;
+- &#34;kube-api-qps=60&#34;
+- &#34;node-cidr-mask-size-ipv4=23&#34;
+- &#34;terminated-pod-gc-threshold=1000&#34;
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kube-apiserver-image: <span class=s2>&#34;quay.io/harikube/kube-apiserver:v1.36.2&#34;</span>
+</span></span><span class=line><span class=cl>kube-apiserver-arg:
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;feature-gates=WatchList=true,WatchListClient=true,VolumeAttributesClass=true,MutatingAdmissionPolicy=true,CustomResourceFieldSelectors=true&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;runtime-config=admissionregistration.k8s.io/v1beta1=true,admissionregistration.k8s.io/v1=true&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;storage-media-type=application/json&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;encryption-provider-config=&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;encryption-provider-config-automatic-reload=false&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;max-requests-inflight=900&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;max-mutating-requests-inflight=300&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;watch-cache=false&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;etcd-servers=http://172.17.0.1:2369&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kube-controller-manager-image: <span class=s2>&#34;quay.io/harikube/kube-controller-manager:v1.36.2&#34;</span>
+</span></span><span class=line><span class=cl>kube-controller-manager-arg:
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;feature-gates=WatchList=true,WatchListClient=true,VolumeAttributesClass=true,MutatingAdmissionPolicy=true,CustomResourceFieldSelectors=true&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;kube-api-burst=90&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;kube-api-qps=60&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;node-cidr-mask-size-ipv4=23&#34;</span>
+</span></span><span class=line><span class=cl>- <span class=s2>&#34;terminated-pod-gc-threshold=1000&#34;</span>
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>And install your cluster just like normaly:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("f84611f495f9462c431bcefe5649f099")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-f84611f495f9462c431bcefe5649f099 style=display:none>curl -sfL https://get.rke2.io | INSTALL_RKE2_VERSION=v1.36.2&#43;rke2r1 sh -
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl -sfL https://get.rke2.io <span class=p>|</span> <span class=nv>INSTALL_RKE2_VERSION</span><span class=o>=</span>v1.36.2+rke2r1 sh -
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like <a href=https://www.vcluster.com>vCluster</a> to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.</p><p>This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.</p><ul><li>Works Seamlessly on Cloud and Bare-metal</li><li>Decoupled Infrastructure Management</li><li>Enhanced Multi-Tenancy and Isolation</li><li>Independent Scaling and Configuration</li><li>Fine-Grained Resource Synchronization between host and virtual clusters</li></ul><p>Start by bringing your favorite Kubernetes deployment.</p><h3 id=helm-install>Helm install</h3><p>Please visit Helm install method in documentation.</p></div></div></div><footer class="bg-gray-50 py-12 border-t border-gray-200"><div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl"><div class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0"><div class=flex-1><div class="flex items-center space-x-3 mb-4"><a href=/ class=inline-block><img src=/images/harikube-logo.png alt="HariKube - Petabyte-scale, Versioned State-machine for next gen of applications" class=h-6></a></div><div class="flex space-x-3 p-2"><a href=https://linkedin.com/company/harikube/ class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>LinkedIn</span>
+<img src=/images/social/linkedin.svg alt=LinkedIn class="h-5 w-5">
+</a><a href=https://github.com/HariKube class="text-gray-600 hover:text-gray-900" target=_blank rel="noopener noreferrer"><span class=sr-only>GitHub</span>
+<img src=/images/social/github.svg alt=GitHub class="h-5 w-5"></a></div></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/faq/ class="text-gray-600 hover:text-primary-600">FAQ</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/company/ class="text-gray-600 hover:text-primary-600">About Us</a></li><li><a href=/legal/ class="text-gray-600 hover:text-primary-600">Legal</a></li><li><a href=/careers/ class="text-gray-600 hover:text-primary-600">Careers</a></li></ul></div><div class=flex-1><h3 class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4"></h3><ul class=space-y-2><li><a href=/terms-conditions/ class="text-gray-600 hover:text-primary-600">Terms and Conditions</a></li><li><a href=/privacy-policy/ class="text-gray-600 hover:text-primary-600">Privacy Policy</a></li><li><a href=/eula/ class="text-gray-600 hover:text-primary-600">End User License Agreement</a></li><li><a href=/sla/ class="text-gray-600 hover:text-primary-600">Service Level Agreement</a></li></ul></div></div><div class="mt-12 pt-8 border-t border-gray-200"><div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"><p class="text-gray-600 text-sm">© 2026 HariKube - Petabyte-scale, Versioned State-machine for next gen of applications. All rights reserved. HariKube is a product of Inspirnation LP, registered in Hungary.</p></div></div></div></footer><style type=text/css>blockquote{quotes:none!important}</style><div id=cookie-banner style=display:none;position:fixed;bottom:0;width:100%;background-color:#131a40;color:#fff;padding:16px;text-align:center;font-size:14px;z-index:1000><span>We use cookies to enhance your experience. By continuing, you agree to our use of cookies.
+<a href=/terms-conditions/ style=color:#425ad6;text-decoration:underline>Learn more</a>
+</span><button onclick=acceptCookies() style="margin-left:12px;background-color:#425ad6;border:none;padding:8px 16px;color:#fff;font-weight:700;cursor:pointer;border-radius:4px">Accept</button></div><script type=text/javascript src=/js/cookiebar.js></script><script type=text/javascript>_linkedin_partner_id="10814289",window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[],window._linkedin_data_partner_ids.push(_linkedin_partner_id)</script><script type=text/javascript>(function(e){e||(window.lintrk=function(e,t){window.lintrk.q.push([e,t])},window.lintrk.q=[]);var n=document.getElementsByTagName("script")[0],t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://snap.licdn.com/li.lms-analytics/insight.min.js",n.parentNode.insertBefore(t,n)})(window.lintrk)</script><noscript><img height=1 width=1 style=display:none alt src="https://px.ads.linkedin.com/collect/?pid=10814289&fmt=gif"></noscript><script>const mobileMenuButton=document.getElementById("mobile-menu-button");mobileMenuButton&&mobileMenuButton.addEventListener("click",function(){const e=document.getElementById("mobile-menu");e&&e.classList.toggle("hidden")})</script></body></html>

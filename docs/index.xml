@@ -5200,7 +5200,14 @@ and hierarchical database layouts (e.g., multiple databases for the same resourc
 microservices and custom resources are managed by distributing data
 across multiple databases. It addresses ETCD&amp;rsquo;s limitations by introducing
 a powerful multi-layer and vendor database topology. Bringing a cloud-native
-development experience and turning Kubernetes into a true PaaS.&lt;/p&gt;</description></item><item><title>Reliability</title><link>/docs/details/reliability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/reliability/</guid><description>&lt;ul&gt;
+development experience and turning Kubernetes into a true PaaS.&lt;/p&gt;</description></item><item><title>Rancher Install</title><link>/docs/details/rancher-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/rancher-install/</guid><description>&lt;p&gt;You have two options. If you would like to let Rancher itself uses HariKube.&lt;/p&gt;
+&lt;h3 id="standalone-install"&gt;Standalone install&lt;/h3&gt;
+&lt;p&gt;In this setup you get a fully featured Rancher with HariKube control-plane to scale workloads but enjoying Rancher experience.&lt;/p&gt;
+&lt;p&gt;First run your HariKube instance:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our &lt;a href="/editions/"&gt;Editions&lt;/a&gt; page.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Start by authenticating your local Docker client with the private registry at &lt;code&gt;registry.harikube.info&lt;/code&gt;. This step is essential for pulling images from the registry.&lt;/p&gt;</description></item><item><title>Reliability</title><link>/docs/details/reliability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/reliability/</guid><description>&lt;ul&gt;
 &lt;li&gt;Each data type is isolated to avoid cascading failures&lt;/li&gt;
 &lt;li&gt;ETCD is protected from misuse as a general-purpose data store&lt;/li&gt;
 &lt;li&gt;Minimizes downtime by allowing independent database maintenance and updates per service&lt;/li&gt;
