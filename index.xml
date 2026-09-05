@@ -11,7 +11,7 @@
  &lt;ul&gt;
  &lt;li&gt;&lt;a href="#-the-pendulum-of-architectural-shifts"&gt;🔎 The pendulum of architectural shifts&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-monolithic-state--cncf-nanoservices"&gt;🧠 Monolithic State + CNCF Nanoservices&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-what-harikube-is"&gt;🧭 What HariKube Is?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧭 What Is HariKube&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-why-this-is-a-game-changer-for-you"&gt;🎯 Why this is a game changer for you?&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-how-we-got-here-from-kubernetes-hyper-scaler-to-total-stack-collapse"&gt;🏁 How we got here: From Kubernetes hyper-scaler to total stack collapse&lt;/a&gt;&lt;/li&gt;
  &lt;/ul&gt;
@@ -35,7 +35,7 @@
  &lt;li&gt;&lt;a href="#-lets-analyze-the-title"&gt;🔎 Let&amp;rsquo;s analyze the title!&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-how-it-looks-on-paper"&gt;📎 How it looks on paper?&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧠 What is HariKube&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-what-harikubes-identity-is"&gt;🧭 What HariKube&amp;rsquo;s identity Is&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikubes-identity"&gt;🧭 What Is HariKube&amp;rsquo;s Identity&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-how-it-looks-like-in-action"&gt;👷 How it looks like in action&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-where-this-architecture-shines"&gt;🎯 Where this architecture shines&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-final-thought-how-i-imagine-a-system-like-this"&gt;🏁 Final Thought: How I Imagine a System Like This&lt;/a&gt;&lt;/li&gt;
