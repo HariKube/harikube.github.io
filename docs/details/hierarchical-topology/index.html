@@ -37,8 +37,8 @@ Docs
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class=l>kube-system</span><span class=w>
 </span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h5 id=routing-configuration-explained>Routing Configuration Explained</h5><ul><li><p><strong>ETCD</strong> endpoint with namespace matching:
-All objects in the <code>kube-system</code> namespace are routed to a ETCD backend.</p></li><li><p>Rest of the objects are stored in the default database.</p></li></ul><p>As shown, this middleware connects to a backing etcd server to store and retrieve objects within the kube-system namespace. However, instead of connecting directly to etcd, you can deploy another middleware that listens on kube-system.etcd.server:2379. This allows you to insert an additional routing layer between Kubernetes and the storage backend - enabling advanced behaviors, all while preserving the etcd-compatible API surface.</p><blockquote><p>Update your endpoints, because the example uses Docker bridge IP!</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kube-system-topology.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("df63416d3607c45c1b265055de552342")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-df63416d3607c45c1b265055de552342 style=display:none>backends:
+All objects in the <code>kube-system</code> namespace are routed to a ETCD backend.</p></li><li><p>Rest of the objects are stored in the default database.</p></li></ul><p>As shown, this middleware connects to a backing etcd server to store and retrieve objects within the kube-system namespace. However, instead of connecting directly to etcd, you can deploy another middleware that listens on kube-system.etcd.server:2379. This allows you to insert an additional routing layer between Kubernetes and the storage backend - enabling advanced behaviors, all while preserving the etcd-compatible API surface.</p><blockquote><p>Update your endpoints, because the example uses Docker bridge IP!</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kube-system-topology.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("bdd15bf1375a65a10ebc340ff21802fc")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-bdd15bf1375a65a10ebc340ff21802fc style=display:none>backends:
 backends:
 - name: pods
   endpoint: http://172.17.0.1:2579
@@ -53,7 +53,7 @@ backends:
   prefix:
     prefix: configmaps
 - name: deployments
-  endpoint: sqlite://./db/deployments.db?_journal=WAL&amp;cache=shared
+  endpoint: sqlite://./db/deployments.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared
   prefix:
     prefix: deployments
 </textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -89,7 +89,7 @@ backends:
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prefix</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>prefix</span><span class=p>:</span><span class=w> </span><span class=l>configmaps</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>deployments</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>sqlite://./db/deployments.db?_journal=WAL&amp;cache=shared</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>sqlite://./db/deployments.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prefix</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>prefix</span><span class=p>:</span><span class=w> </span><span class=l>deployments</span><span class=w>
 </span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h5 id=routing-configuration-explained-1>Routing Configuration Explained</h5><ul><li><p><strong>ETCD</strong> endpoint with prefix matching:

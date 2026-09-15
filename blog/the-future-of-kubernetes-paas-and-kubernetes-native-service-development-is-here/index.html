@@ -75,8 +75,8 @@ Kubernetes design tradeoffs.</p><table><thead><tr><th>Limitation</th><th>Descrip
 <textarea id=code-2dc278fd1344b9311a356ac37f39fb81 style=display:none>kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 statefulset/harikube --timeout=5m
 </textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> statefulset/harikube --timeout<span class=o>=</span>5m
-</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Let’s create your first topology configuration. This tells the HariKube Operator how to route data for a specific custom resource, or all records in a namespace for example. You can have as many as you want. For simplicity this example for <code>Shirts</code> uses SQLite database, but you can freely select any of the supported databases. For more info please visit the <a href=/docs/overview/#-supported-databases>supported databases</a> section in the docs.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("e0741b1734337b5a01c049446c657bbd")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-e0741b1734337b5a01c049446c657bbd style=display:none>cat | kubectl apply -f - &lt;&lt;EOF
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Let’s create your first topology configuration. This tells the HariKube Operator how to route data for a specific custom resource, or all records in a namespace for example. You can have as many as you want. For simplicity this example for <code>Shirts</code> uses SQLite database, but you can freely select any of the supported databases. For more info please visit the <a href=/docs/overview/#-supported-databases>supported databases</a> section in the docs.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("a36848fe2ea4efa5f578553476ef0861")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-a36848fe2ea4efa5f578553476ef0861 style=display:none>cat | kubectl apply -f - &lt;&lt;EOF
 apiVersion: harikube.info/v1
 kind: TopologyConfig
 metadata:
@@ -86,7 +86,7 @@ spec:
   targetSecret: harikube/topology-config
   backends:
   - name: shirts
-    endpoint: sqlite:///db/shirts.db?_journal=WAL&amp;cache=shared
+    endpoint: sqlite:///db/shirts.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared
     customresource:
       group: stable.example.com
       kind: shirts
@@ -116,7 +116,7 @@ EOF
 </span></span></span><span class=line><span class=cl><span class=s>  targetSecret: harikube/topology-config
 </span></span></span><span class=line><span class=cl><span class=s>  backends:
 </span></span></span><span class=line><span class=cl><span class=s>  - name: shirts
-</span></span></span><span class=line><span class=cl><span class=s>    endpoint: sqlite:///db/shirts.db?_journal=WAL&amp;cache=shared
+</span></span></span><span class=line><span class=cl><span class=s>    endpoint: sqlite:///db/shirts.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared
 </span></span></span><span class=line><span class=cl><span class=s>    customresource:
 </span></span></span><span class=line><span class=cl><span class=s>      group: stable.example.com
 </span></span></span><span class=line><span class=cl><span class=s>      kind: shirts

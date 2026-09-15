@@ -96,8 +96,8 @@ services:
 <textarea id=code-1983ded431860d1054b987608e212f81 style=display:none>docker compose up -d
 </textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>docker compose up -d</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Next, create a data routing configuration file called <code>topology.yaml</code>.</p><blockquote><p>Update your endpoints, because the example uses Docker bridge IP!</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">topology.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("92c4dbf7bde9149cec4dbb3d56c47a08")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-92c4dbf7bde9149cec4dbb3d56c47a08 style=display:none>backends:
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Next, create a data routing configuration file called <code>topology.yaml</code>.</p><blockquote><p>Update your endpoints, because the example uses Docker bridge IP!</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">topology.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("5833c403a321cfac422243fd06165b67")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-5833c403a321cfac422243fd06165b67 style=display:none>backends:
 - name: rbac
   endpoint: http://172.17.0.1:2379
   regexp:
@@ -112,7 +112,7 @@ services:
   prefix:
     prefix: pods
 - name: shirts
-  endpoint: sqlite:///db/shirts.db?_journal=WAL&amp;cache=shared
+  endpoint: sqlite:///db/shirts.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared
   customresource:
     group: stable.example.com
     kind: shirts
@@ -150,7 +150,7 @@ services:
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prefix</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>prefix</span><span class=p>:</span><span class=w> </span><span class=l>pods</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>shirts</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>sqlite:///db/shirts.db?_journal=WAL&amp;cache=shared</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=l>sqlite:///db/shirts.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>customresource</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>group</span><span class=p>:</span><span class=w> </span><span class=l>stable.example.com</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>shirts</span><span class=w>
@@ -158,8 +158,8 @@ services:
 <textarea id=code-0aecc6b9d0fe39dd82c86e9f53be61d9 style=display:none>docker login registry.harikube.info
 </textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker login registry.harikube.info
-</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("4d17ed6db99482d9eeb7ef55ef6b002b")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-4d17ed6db99482d9eeb7ef55ef6b002b style=display:none>docker run -d \
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("6013dbe1f5f75f8a09876b763b4b4e7b")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-6013dbe1f5f75f8a09876b763b4b4e7b style=display:none>docker run -d \
   --name harikube_middleware \
   --net=host \
   -e LICENSE_KEY_FILE=/license \
@@ -169,7 +169,7 @@ services:
   -v $(pwd)/topology.yaml:/topology.yaml \
   -v harikube_db:/db \
   registry.harikube.info/harikube/middleware:release-v0.14.5 \
-  --listen-address=0.0.0.0:2369 --endpoint=&#39;multi://sqlite:///db/main.db?_journal=WAL&amp;cache=shared&#39;
+  --listen-address=0.0.0.0:2369 --endpoint=&#39;multi://sqlite:///db/main.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared&#39;
 </textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -191,7 +191,7 @@ services:
 </span></span></span><span class=line><span class=cl><span class=se></span>  -v <span class=k>$(</span><span class=nb>pwd</span><span class=k>)</span>/topology.yaml:/topology.yaml <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  -v harikube_db:/db <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  registry.harikube.info/harikube/middleware:release-v0.14.5 <span class=se>\
-</span></span></span><span class=line><span class=cl><span class=se></span>  --listen-address<span class=o>=</span>0.0.0.0:2369 --endpoint<span class=o>=</span><span class=s1>&#39;multi://sqlite:///db/main.db?_journal=WAL&amp;cache=shared&#39;</span>
+</span></span></span><span class=line><span class=cl><span class=se></span>  --listen-address<span class=o>=</span>0.0.0.0:2369 --endpoint<span class=o>=</span><span class=s1>&#39;multi://sqlite:///db/main.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared&#39;</span>
 </span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>The final step is to start the Kubernetes cluster. As mentioned, HariKube is transparent to Kubernetes and works out of the box. However, supporting large datasets requires recompiling the Kubernetes API Server and Controller Manager. You can follow the guide <a href=/docs/installation/#-setup-and-start-kubernetes>here</a>, but for simplicity, this tutorial uses <a href=https://kind.sigs.k8s.io>Kind</a> with vanilla Kubernetes.</p><p>Create a Kind config in <code>kind-config.yaml</code>.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kind-config.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("66239f563f2a5d8a28b1ac9f7bf3a62e")' class="text-sm text-gray-200 font-mono">copy</button>
 <textarea id=code-66239f563f2a5d8a28b1ac9f7bf3a62e style=display:none>kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
