@@ -539,7 +539,7 @@
  &lt;button onclick="copyContentToClipboard('37131ff54da3403e2bcdd7c5d4689c7c')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
  &lt;textarea id="code-37131ff54da3403e2bcdd7c5d4689c7c" style="display: none;"&gt;export KUBE_FASTBUILD=true # false for cross compiling
 export KUBE_GIT_TREE_STATE=clean
-export KUBE_GIT_VERSION=v1.36.0
+export KUBE_GIT_VERSION=v1.36.2
 export KUBE_DOCKER_REGISTRY=&amp;lt;your-registry.example.com/kubernetes&amp;gt;
 make release-images
 &lt;/textarea&gt;
@@ -557,7 +557,7 @@ make release-images
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_FASTBUILD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; &lt;span class="c1"&gt;# false for cross compiling&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_TREE_STATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;clean
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_DOCKER_REGISTRY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;your-registry.example.com/kubernetes&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make release-images
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -582,7 +582,7 @@ function copyContentToClipboard(id) {
  &lt;button onclick="copyContentToClipboard('10cc03983e00f676e3e064d5603a0c61')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
  &lt;textarea id="code-10cc03983e00f676e3e064d5603a0c61" style="display: none;"&gt;export KUBE_FASTBUILD=true # false for cross compiling
 export KUBE_GIT_TREE_STATE=clean
-export KUBE_GIT_VERSION=v1.36.0
+export KUBE_GIT_VERSION=v1.36.2
 make WHAT=cmd/kube-apiserver
 make WHAT=cmd/kube-controller-manager
 &lt;/textarea&gt;
@@ -600,7 +600,7 @@ make WHAT=cmd/kube-controller-manager
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_FASTBUILD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; &lt;span class="c1"&gt;# false for cross compiling&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_TREE_STATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;clean
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-apiserver
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-controller-manager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -4971,7 +4971,7 @@ To reduce memory usage and improve performance in high-volume environments, you 
  &lt;button onclick="copyContentToClipboard('e80a3cf7b3b8d0fd2c24c89f8bfe4a23')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
  &lt;textarea id="code-e80a3cf7b3b8d0fd2c24c89f8bfe4a23" style="display: none;"&gt;export KUBE_FASTBUILD=true # false for cross compiling
 export KUBE_GIT_TREE_STATE=clean
-export KUBE_GIT_VERSION=v1.36.0
+export KUBE_GIT_VERSION=v1.36.2
 ./build/run.sh make WHAT=cmd/kube-apiserver
 ./build/run.sh make WHAT=cmd/kube-controller-manager
 &lt;/textarea&gt;
@@ -4989,7 +4989,7 @@ export KUBE_GIT_VERSION=v1.36.0
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_FASTBUILD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; &lt;span class="c1"&gt;# false for cross compiling&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_TREE_STATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;clean
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./build/run.sh make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-apiserver
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./build/run.sh make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-controller-manager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -5751,7 +5751,7 @@ HariKube meets this challenge with a flexible, composable architecture that inte
 &lt;/div&gt;
 &lt;h3 id="the-pain-point-microservice-sprawl--state-fragmentation"&gt;The Pain Point: Microservice Sprawl &amp;amp; State Fragmentation&lt;/h3&gt;
 &lt;p&gt;Traditional microservice architectures force applications to manage distributed state, complex network calls, and heavy infrastructure boilerplate (Custom Resources, persistent volumes, connection pools). Adding AI workloads makes this worse - models require low-latency, petabyte-scale state access that microservices split across fragile, high-overhead networks. Developers waste time wrestling with distributed system complexity rather than building core business logic and intelligent features.&lt;/p&gt;</description></item><item><title>Join Our Team</title><link>/careers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/careers/</guid><description>&lt;p&gt;At inspirNation, we believe in empowering our team members to do their best work. We foster an environment of innovation, collaboration, and continuous learning. Our culture is built on trust, transparency, and a shared commitment to excellence.&lt;/p&gt;
-&lt;p&gt;We&amp;rsquo;re looking for passionate individuals who want to make a difference and grow with us. If you&amp;rsquo;re excited about building the future of PaaS and working with cutting-edge technology, we&amp;rsquo;d love to hear from you.&lt;/p&gt;</description></item><item><title>Kubernetes Helm Install</title><link>/docs/details/kubernetes-helm-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/kubernetes-helm-install/</guid><description>&lt;p&gt;The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like &lt;a href="https://www.vcluster.com"&gt;vCluster&lt;/a&gt; to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re looking for passionate individuals who want to make a difference and grow with us. If you&amp;rsquo;re excited about building the future of PaaS and working with cutting-edge technology, we&amp;rsquo;d love to hear from you.&lt;/p&gt;</description></item><item><title>Kubernetes Helm Install</title><link>/docs/details/install-helm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-helm/</guid><description>&lt;p&gt;The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like &lt;a href="https://www.vcluster.com"&gt;vCluster&lt;/a&gt; to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.&lt;/p&gt;
 &lt;p&gt;This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Works Seamlessly on Cloud and Bare-metal&lt;/li&gt;
@@ -5760,7 +5760,7 @@ HariKube meets this challenge with a flexible, composable architecture that inte
 &lt;li&gt;Independent Scaling and Configuration&lt;/li&gt;
 &lt;li&gt;Fine-Grained Resource Synchronization between host and virtual clusters&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Start by bringing your favorite Kubernetes deployment.&lt;/p&gt;</description></item><item><title>Kubernetes Self Hosted Install</title><link>/docs/details/kubernetes-selfhosted-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/kubernetes-selfhosted-install/</guid><description>&lt;p&gt;Kubernetes is compatible with &lt;code&gt;HariKube&lt;/code&gt; by default. However, due to architectural constraints in ETCD-its underlying storage system-it is not optimized for handling very large datasets. To enable support for high-volume data workloads, modifications to specific Kubernetes components (such as the API server) are required and shipped.&lt;/p&gt;
+&lt;p&gt;Start by bringing your favorite Kubernetes deployment.&lt;/p&gt;</description></item><item><title>Kubernetes Self Hosted Install</title><link>/docs/details/install-kubeadm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-kubeadm/</guid><description>&lt;p&gt;Kubernetes is compatible with &lt;code&gt;HariKube&lt;/code&gt; by default. However, due to architectural constraints in ETCD-its underlying storage system-it is not optimized for handling very large datasets. To enable support for high-volume data workloads, modifications to specific Kubernetes components (such as the API server) are required and shipped.&lt;/p&gt;
 &lt;h2 id="-setup-and-start-kubernetes"&gt;🚀 Setup and start Kubernetes&lt;/h2&gt;
 &lt;h3 id="kubernetes-configuration"&gt;Kubernetes Configuration&lt;/h3&gt;
 &lt;p&gt;HariKube requires specific Kubernetes configuration to enable custom resource routing and external data store integration.&lt;/p&gt;
@@ -6021,7 +6021,7 @@ development experience and turning Kubernetes into a true PaaS.&lt;/p&gt;</descr
 }
 &lt;/script&gt;
 &lt;p&gt;&lt;a href="/docs/7.5.1-a1-r0-privacy-policy-260202.pdf"&gt;Download&lt;/a&gt;&lt;/p&gt;
-&lt;iframe src="/docs/7.5.1-a1-r0-privacy-policy-260202.pdf" style="width: 100%; height:768px;"&gt;&lt;/iframe&gt;</description></item><item><title>Rancher Install</title><link>/docs/details/rancher-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/rancher-install/</guid><description>&lt;p&gt;You have two options. If you would like to let Rancher itself uses HariKube.&lt;/p&gt;
+&lt;iframe src="/docs/7.5.1-a1-r0-privacy-policy-260202.pdf" style="width: 100%; height:768px;"&gt;&lt;/iframe&gt;</description></item><item><title>Rancher Install</title><link>/docs/details/install-rancher/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-rancher/</guid><description>&lt;p&gt;You have two options. If you would like to let Rancher itself uses HariKube.&lt;/p&gt;
 &lt;h3 id="standalone-install"&gt;Standalone install&lt;/h3&gt;
 &lt;p&gt;In this setup you get a fully featured Rancher with HariKube control-plane to scale workloads but enjoying Rancher experience.&lt;/p&gt;
 &lt;p&gt;First run your HariKube instance:&lt;/p&gt;

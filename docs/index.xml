@@ -60,7 +60,7 @@
  &lt;button onclick="copyContentToClipboard('37131ff54da3403e2bcdd7c5d4689c7c')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
  &lt;textarea id="code-37131ff54da3403e2bcdd7c5d4689c7c" style="display: none;"&gt;export KUBE_FASTBUILD=true # false for cross compiling
 export KUBE_GIT_TREE_STATE=clean
-export KUBE_GIT_VERSION=v1.36.0
+export KUBE_GIT_VERSION=v1.36.2
 export KUBE_DOCKER_REGISTRY=&amp;lt;your-registry.example.com/kubernetes&amp;gt;
 make release-images
 &lt;/textarea&gt;
@@ -78,7 +78,7 @@ make release-images
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_FASTBUILD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; &lt;span class="c1"&gt;# false for cross compiling&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_TREE_STATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;clean
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_DOCKER_REGISTRY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;your-registry.example.com/kubernetes&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make release-images
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -103,7 +103,7 @@ function copyContentToClipboard(id) {
  &lt;button onclick="copyContentToClipboard('10cc03983e00f676e3e064d5603a0c61')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
  &lt;textarea id="code-10cc03983e00f676e3e064d5603a0c61" style="display: none;"&gt;export KUBE_FASTBUILD=true # false for cross compiling
 export KUBE_GIT_TREE_STATE=clean
-export KUBE_GIT_VERSION=v1.36.0
+export KUBE_GIT_VERSION=v1.36.2
 make WHAT=cmd/kube-apiserver
 make WHAT=cmd/kube-controller-manager
 &lt;/textarea&gt;
@@ -121,7 +121,7 @@ make WHAT=cmd/kube-controller-manager
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_FASTBUILD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; &lt;span class="c1"&gt;# false for cross compiling&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_TREE_STATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;clean
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-apiserver
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-controller-manager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -4456,7 +4456,7 @@ To reduce memory usage and improve performance in high-volume environments, you 
  &lt;button onclick="copyContentToClipboard('e80a3cf7b3b8d0fd2c24c89f8bfe4a23')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
  &lt;textarea id="code-e80a3cf7b3b8d0fd2c24c89f8bfe4a23" style="display: none;"&gt;export KUBE_FASTBUILD=true # false for cross compiling
 export KUBE_GIT_TREE_STATE=clean
-export KUBE_GIT_VERSION=v1.36.0
+export KUBE_GIT_VERSION=v1.36.2
 ./build/run.sh make WHAT=cmd/kube-apiserver
 ./build/run.sh make WHAT=cmd/kube-controller-manager
 &lt;/textarea&gt;
@@ -4474,7 +4474,7 @@ export KUBE_GIT_VERSION=v1.36.0
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_FASTBUILD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; &lt;span class="c1"&gt;# false for cross compiling&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_TREE_STATE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;clean
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;KUBE_GIT_VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;v1.36.2
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./build/run.sh make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-apiserver
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./build/run.sh make &lt;span class="nv"&gt;WHAT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;cmd/kube-controller-manager
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -5010,7 +5010,7 @@ and hierarchical database layouts (e.g., multiple databases for the same resourc
 &lt;h4 id="1-database-management"&gt;1. Database Management&lt;/h4&gt;
 &lt;p&gt;Implement robust tooling to deploy, manage, and back up multi-vendor databases (e.g., PostgreSQL, MySQL) across clusters and cloud providers. This includes automated provisioning, policy-driven lifecycle management, and seamless integration with existing infrastructure.&lt;/p&gt;</description></item><item><title>Help Us Improve by Enabling Telemetry</title><link>/docs/details/telemetry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/telemetry/</guid><description>&lt;p&gt;To continuously improve our software and deliver the best possible experience, we kindly ask you to enable telemetry. When enabled, your application will periodically send anonymized usage data to our central telemetry collector. This data helps us understand how the software is used in real-world scenarios and allows us to detect bugs, optimize performance, and prioritize new features.&lt;/p&gt;
 &lt;p&gt;We &lt;strong&gt;do not collect any sensitive or personally identifiable information&lt;/strong&gt;. All collected data is strictly anonymized and used solely for diagnostic and analytical purposes. Examples include feature usage frequency, error events, and environment metadata like OS type or version.&lt;/p&gt;</description></item><item><title>Hierarchical Topology</title><link>/docs/details/hierarchical-topology/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/hierarchical-topology/</guid><description>&lt;p&gt;You can deploy multiple instances of the middleware, where each instance can be configured to delegate to another middleware as its backend. This enables the construction of a multi-layered, hierarchical topology, where data access requests can propagate through multiple layers of the middleware.&lt;/p&gt;
-&lt;p&gt;Initialize your primary middleware instance to act as the entry point for Kubernetes by launching it with the following configuration. This instance will serve as the top-level interface for Kubernetes API server requests, abstracting the underlying data storage layer while maintaining full compatibility with the etcd API.&lt;/p&gt;</description></item><item><title>Kubernetes Helm Install</title><link>/docs/details/kubernetes-helm-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/kubernetes-helm-install/</guid><description>&lt;p&gt;The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like &lt;a href="https://www.vcluster.com"&gt;vCluster&lt;/a&gt; to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.&lt;/p&gt;
+&lt;p&gt;Initialize your primary middleware instance to act as the entry point for Kubernetes by launching it with the following configuration. This instance will serve as the top-level interface for Kubernetes API server requests, abstracting the underlying data storage layer while maintaining full compatibility with the etcd API.&lt;/p&gt;</description></item><item><title>Kubernetes Helm Install</title><link>/docs/details/install-helm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-helm/</guid><description>&lt;p&gt;The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like &lt;a href="https://www.vcluster.com"&gt;vCluster&lt;/a&gt; to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.&lt;/p&gt;
 &lt;p&gt;This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Works Seamlessly on Cloud and Bare-metal&lt;/li&gt;
@@ -5019,7 +5019,7 @@ and hierarchical database layouts (e.g., multiple databases for the same resourc
 &lt;li&gt;Independent Scaling and Configuration&lt;/li&gt;
 &lt;li&gt;Fine-Grained Resource Synchronization between host and virtual clusters&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Start by bringing your favorite Kubernetes deployment.&lt;/p&gt;</description></item><item><title>Kubernetes Self Hosted Install</title><link>/docs/details/kubernetes-selfhosted-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/kubernetes-selfhosted-install/</guid><description>&lt;p&gt;Kubernetes is compatible with &lt;code&gt;HariKube&lt;/code&gt; by default. However, due to architectural constraints in ETCD-its underlying storage system-it is not optimized for handling very large datasets. To enable support for high-volume data workloads, modifications to specific Kubernetes components (such as the API server) are required and shipped.&lt;/p&gt;
+&lt;p&gt;Start by bringing your favorite Kubernetes deployment.&lt;/p&gt;</description></item><item><title>Kubernetes Self Hosted Install</title><link>/docs/details/install-kubeadm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-kubeadm/</guid><description>&lt;p&gt;Kubernetes is compatible with &lt;code&gt;HariKube&lt;/code&gt; by default. However, due to architectural constraints in ETCD-its underlying storage system-it is not optimized for handling very large datasets. To enable support for high-volume data workloads, modifications to specific Kubernetes components (such as the API server) are required and shipped.&lt;/p&gt;
 &lt;h2 id="-setup-and-start-kubernetes"&gt;🚀 Setup and start Kubernetes&lt;/h2&gt;
 &lt;h3 id="kubernetes-configuration"&gt;Kubernetes Configuration&lt;/h3&gt;
 &lt;p&gt;HariKube requires specific Kubernetes configuration to enable custom resource routing and external data store integration.&lt;/p&gt;
@@ -5199,7 +5199,7 @@ and hierarchical database layouts (e.g., multiple databases for the same resourc
 microservices and custom resources are managed by distributing data
 across multiple databases. It addresses ETCD&amp;rsquo;s limitations by introducing
 a powerful multi-layer and vendor database topology. Bringing a cloud-native
-development experience and turning Kubernetes into a true PaaS.&lt;/p&gt;</description></item><item><title>Rancher Install</title><link>/docs/details/rancher-install/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/rancher-install/</guid><description>&lt;p&gt;You have two options. If you would like to let Rancher itself uses HariKube.&lt;/p&gt;
+development experience and turning Kubernetes into a true PaaS.&lt;/p&gt;</description></item><item><title>Rancher Install</title><link>/docs/details/install-rancher/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-rancher/</guid><description>&lt;p&gt;You have two options. If you would like to let Rancher itself uses HariKube.&lt;/p&gt;
 &lt;h3 id="standalone-install"&gt;Standalone install&lt;/h3&gt;
 &lt;p&gt;In this setup you get a fully featured Rancher with HariKube control-plane to scale workloads but enjoying Rancher experience.&lt;/p&gt;
 &lt;p&gt;First run your HariKube instance:&lt;/p&gt;
