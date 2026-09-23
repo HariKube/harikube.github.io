@@ -1,4 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/scalability/</link><description>Recent content in Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 10:31:25 +0200</lastBuildDate><atom:link href="/tags/scalability/index.xml" rel="self" type="application/rss+xml"/><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/scalability/</link><description>Recent content in Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 11:43:29 +0200</lastBuildDate><atom:link href="/tags/scalability/index.xml" rel="self" type="application/rss+xml"/><item><title>HariKube v0.16.3: Certified on Rancher &amp; OpenShift, K8s 1.36.2 Upgrade, Adaptive Rate Limiting, and Scalable Control Planes</title><link>/blog/harikube-v0_16_3-release/</link><pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-v0_16_3-release/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-standardized-versioning-scheme-aligned-with-kine"&gt;🏷️ Standardized Versioning Scheme (Aligned with Kine)&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-certified-on-suse-rancher--available-in-rancher-app-store"&gt;🤠 Certified on SUSE Rancher &amp;amp; Available in Rancher App Store&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-certified-on-red-hat-openshift"&gt;🔴 Certified on Red Hat OpenShift&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-built-in-adaptive-rate-limiter-ewma"&gt;🛡️ Built-in Adaptive Rate Limiter (EWMA)&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-performance-boost-accelerated-field-selector-filtering"&gt;⚡ Performance Boost: Accelerated Field Selector Filtering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-upgraded-to-kubernetes-1362"&gt;☸️ Upgraded to Kubernetes 1.36.2&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-streamlined-helm-deployments--control-plane-architecture"&gt;📦 Streamlined Helm Deployments &amp;amp; Control Plane Architecture&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-get-started-today"&gt;🚀 Get Started Today&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;p&gt;Today, we are taking a massive leap forward in making HariKube the ultimate high-scale state platform for production cloud-native environments.&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }

@@ -9,7 +9,7 @@ entries:
       charts.openshift.io/name: harikube
     apiVersion: v2
     appVersion: 0.16.3
-    created: "2026-09-23T08:33:08.457594023Z"
+    created: "2026-09-23T09:44:46.236080309Z"
     dependencies:
     - name: vcluster
       repository: https://charts.loft.sh
@@ -33,7 +33,7 @@ entries:
       catalog.cattle.io/release-name: harikube
     apiVersion: v2
     appVersion: 0.15.0
-    created: "2026-09-23T08:33:08.450106618Z"
+    created: "2026-09-23T09:44:46.231403094Z"
     dependencies:
     - name: vcluster
       repository: https://charts.loft.sh
@@ -54,7 +54,7 @@ entries:
       catalog.cattle.io/release-name: harikube
     apiVersion: v2
     appVersion: 0.14.5
-    created: "2026-09-23T08:33:08.444430216Z"
+    created: "2026-09-23T09:44:46.226390098Z"
     dependencies:
     - name: vcluster
       repository: https://charts.loft.sh
@@ -68,4 +68,4 @@ entries:
     urls:
     - https://harikube.info/harikube-helm-charts/harikube-0.14.5.tgz
     version: 0.14.5
-generated: "2026-09-23T08:33:08.431448907Z"
+generated: "2026-09-23T09:44:46.21680388Z"
