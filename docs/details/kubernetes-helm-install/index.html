@@ -20,18 +20,21 @@ Docs
 <a href=/docs/custom-resource/ class="block text-gray-700 hover:text-primary-600 py-2">Custom Resource</a>
 <a href=/docs/automation/ class="block text-gray-700 hover:text-primary-600 py-2">Automation</a>
 <a href=/docs/monitoring/ class="block text-gray-700 hover:text-primary-600 py-2">Monitoring</a>
-<a href=/docs/future-plans/ class="block text-gray-700 hover:text-primary-600 py-2">Future Plans</a></div></div><a href=/blog/ class="block text-xl text-gray-900 hover:text-primary-600 font-bold transition duration-200 py-2">Blog</a><div class="pt-4 space-y-4"><a href=/editions/ class="block text-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div></div></div></header><style>.mobile-menu-wrapper{position:relative}.nav-toggle{display:none}.nav-content{display:none}.nav-toggle:checked~header .nav-content{display:block}</style></div></div><div class=pt-20><div class="container mx-auto px-4 py-8 mb-12 flex-1"><h1 class="text-4xl font-bold text-center mb-12">Kubernetes Helm Install</h1><div class="prose prose-lg !max-w-none"><p>The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like <a href=https://www.vcluster.com>vCluster</a> to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.</p><p>This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.</p><ul><li>Works Seamlessly on Cloud and Bare-metal</li><li>Decoupled Infrastructure Management</li><li>Enhanced Multi-Tenancy and Isolation</li><li>Independent Scaling and Configuration</li><li>Fine-Grained Resource Synchronization between host and virtual clusters</li></ul><p>Start by bringing your favorite Kubernetes deployment.</p><h3 id=install-harikube>Install HariKube</h3><blockquote><p>💡 Prerequisite: The target cluster must have cert-manager pre-installed.</p></blockquote><blockquote><p>⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our <a href=/editions/>Editions</a> page.</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("8d1028a90d91ae45709b2e08be8f80af")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-8d1028a90d91ae45709b2e08be8f80af style=display:none>helm install harikube oci://quay.io/harikube/harikube \
-  --version 0.14.5 \
-  --dependency-update \
+<a href=/docs/future-plans/ class="block text-gray-700 hover:text-primary-600 py-2">Future Plans</a></div></div><a href=/blog/ class="block text-xl text-gray-900 hover:text-primary-600 font-bold transition duration-200 py-2">Blog</a><div class="pt-4 space-y-4"><a href=/editions/ class="block text-center px-6 py-3 rounded-lg font-bold transition duration-200 ease-in-out bg-primary-600 text-white hover:bg-primary-700 hover:scale-105">Get Yours</a></div></div></div></header><style>.mobile-menu-wrapper{position:relative}.nav-toggle{display:none}.nav-content{display:none}.nav-toggle:checked~header .nav-content{display:block}</style></div></div><div class=pt-20><div class="container mx-auto px-4 py-8 mb-12 flex-1"><h1 class="text-4xl font-bold text-center mb-12">Kubernetes Helm Install</h1><div class="prose prose-lg !max-w-none"><p>The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like <a href=https://www.vcluster.com>vCluster</a> to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.</p><p>This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.</p><ul><li>Works Seamlessly on Cloud and Bare-metal</li><li>Decoupled Infrastructure Management</li><li>Enhanced Multi-Tenancy and Isolation</li><li>Independent Scaling and Configuration</li><li>Fine-Grained Resource Synchronization between host and virtual clusters</li></ul><p>Start by bringing your favorite Kubernetes deployment.</p><h3 id=install-harikube>Install HariKube</h3><blockquote><p>💡 Prerequisite: The target cluster must have cert-manager pre-installed.</p></blockquote><blockquote><p>⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our <a href=/editions/>Editions</a> page.</p></blockquote><h4 id=simple-method>Simple method</h4><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("104dee8791a3b37b753718f6aa1b3676")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-104dee8791a3b37b753718f6aa1b3676 style=display:none>kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
+
+helm install harikube oci://quay.io/harikube/harikube \
+  --version 0.16.3 \
   --create-namespace \
   --namespace harikube \
-  --set enterprise.key=&#34;&lt;license&gt;&#34; \
-  --set enterprise.user=&lt;oci-user&gt; \
-  --set enterprise.password=&#34;&lt;secure@password&gt;&#34; \
+  --set enterprise.key=&#34;&lt;LICENSE_KEY&gt;&#34; \
+  --set enterprise.user=&lt;REGISTRY_USER&gt; \
+  --set enterprise.password=&#34;&lt;REGISTRY_PASSWORD&gt;&#34; \
   --set operator.create=true \
-  --set apiServer.create=true \
-  --set controllerManager.create=true
+  --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
+kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 deployment/harikube-operator-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 deployment/harikube-middleware-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 statefulset/harikube --timeout=5m
 </textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -43,18 +46,118 @@ Docs
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>helm install harikube oci://quay.io/harikube/harikube <span class=se>\
-</span></span></span><span class=line><span class=cl><span class=se></span>  --version 0.14.5 <span class=se>\
-</span></span></span><span class=line><span class=cl><span class=se></span>  --dependency-update <span class=se>\
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>helm install harikube oci://quay.io/harikube/harikube <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --version 0.16.3 <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --create-namespace <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --namespace harikube <span class=se>\
-</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.key<span class=o>=</span><span class=s2>&#34;&lt;license&gt;&#34;</span> <span class=se>\
-</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.user<span class=o>=</span>&lt;oci-user&gt; <span class=se>\
-</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.password<span class=o>=</span><span class=s2>&#34;&lt;secure@password&gt;&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.key<span class=o>=</span><span class=s2>&#34;&lt;LICENSE_KEY&gt;&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.user<span class=o>=</span>&lt;REGISTRY_USER&gt; <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.password<span class=o>=</span><span class=s2>&#34;&lt;REGISTRY_PASSWORD&gt;&#34;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set operator.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set vcluster.exportKubeConfig.server<span class=o>=</span>https://harikube.harikube:443
+</span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/harikube-operator-deploy --timeout<span class=o>=</span>2m
+</span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/harikube-middleware-deploy --timeout<span class=o>=</span>2m
+</span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> statefulset/harikube --timeout<span class=o>=</span>5m
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h4 id=ready-to-use-install>Ready To Use Install</h4><blockquote><p>For more details please follow the <a href=https://github.com/HariKube/harikube-helm-charts/releases/tag/release-v0.16.3>release docs</a>. Please find configuration options in the <a href=https://github.com/HariKube/harikube-helm-charts/blob/release-v0.16.3/harikube/values.yaml>Helm Chart</a> repo.</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("908f43a1e04caf1f7a15a2fdd48aa0ce")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-908f43a1e04caf1f7a15a2fdd48aa0ce style=display:none>kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
+kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.77.1/stripped-down-crds.yaml
+kubectl wait -n cert-manager --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 deployment/cert-manager-webhook --timeout=2m
+
+kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
+
+kubectl create namespace harikube
+kubectl label namespace harikube harikube.info/harikube-middleware=enabled --overwrite
+kubectl label namespace harikube harikube.info/harikube-apiserver=enabled --overwrite
+kubectl label namespace harikube harikube.info/harikube-controllermanager=enabled --overwrite
+
+helm install harikube oci://quay.io/harikube/harikube  \
+  --version 0.16.3 \
+  --namespace harikube \
+  --set enterprise.key=&#34;&lt;LICENSE_KEY&gt;&#34; \
+  --set enterprise.user=&lt;REGISTRY_USER&gt; \
+  --set enterprise.password=&#34;&lt;REGISTRY_PASSWORD&gt;&#34; \
+  --set middleware.monitoring.create=true \
+  --set middleware.networkPolicy.create=true \
+  --set operator.create=true \
+  --set operator.monitoring.create=true \
+  --set apiServer.create=true \
+  --set apiServer.monitoring.create=true \
+  --set apiServer.networkPolicy.create=true \
+  --set controllerManager.create=true \
+  --set controllerManager.monitoring.create=true \
+  --set controllerManager.networkPolicy.create=true \
+  --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
+kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 deployment/harikube-operator-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 deployment/harikube-middleware-deploy --timeout=2m
+kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 statefulset/harikube --timeout=5m
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
+</span></span><span class=line><span class=cl>kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.77.1/stripped-down-crds.yaml
+</span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n cert-manager --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/cert-manager-webhook --timeout<span class=o>=</span>2m
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubectl create namespace harikube
+</span></span><span class=line><span class=cl>kubectl label namespace harikube harikube.info/harikube-middleware<span class=o>=</span>enabled --overwrite
+</span></span><span class=line><span class=cl>kubectl label namespace harikube harikube.info/harikube-apiserver<span class=o>=</span>enabled --overwrite
+</span></span><span class=line><span class=cl>kubectl label namespace harikube harikube.info/harikube-controllermanager<span class=o>=</span>enabled --overwrite
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>helm install harikube oci://quay.io/harikube/harikube  <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --version 0.16.3 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --namespace harikube <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.key<span class=o>=</span><span class=s2>&#34;&lt;LICENSE_KEY&gt;&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.user<span class=o>=</span>&lt;REGISTRY_USER&gt; <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.password<span class=o>=</span><span class=s2>&#34;&lt;REGISTRY_PASSWORD&gt;&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set middleware.monitoring.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set middleware.networkPolicy.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set operator.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set operator.monitoring.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set apiServer.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
-</span></span></span><span class=line><span class=cl><span class=se></span>  --set controllerManager.create<span class=o>=</span><span class=nb>true</span>
-</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><blockquote><p>For more details please follow the <a href=https://github.com/HariKube/harikube-helm-charts/releases/tag/release-v0.14.5>release docs</a>. Please find configuration options in the <a href=https://github.com/HariKube/harikube-helm-charts/blob/release-v0.14.5/harikube/values.yaml>Helm Chart</a> repo.</p></blockquote><p>Once the virtual cluster is running, you can Store your previously created topology config, or create configs on the fly with our <a href=/docs/automation/>automation</a> tool. You can edit the secret any time, the middleware will apply the changes:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("7c46e8eaf62721ad63a8f133bb10a5a6")' class="text-sm text-gray-200 font-mono">copy</button>
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set apiServer.monitoring.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set apiServer.networkPolicy.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set controllerManager.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set controllerManager.monitoring.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set controllerManager.networkPolicy.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set vcluster.exportKubeConfig.server<span class=o>=</span>https://harikube.harikube:443
+</span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/harikube-operator-deploy --timeout<span class=o>=</span>2m
+</span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/harikube-middleware-deploy --timeout<span class=o>=</span>2m
+</span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> statefulset/harikube --timeout<span class=o>=</span>5m
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h4 id=post-install>Post Install</h4><p>Once the virtual cluster is running, you can Store your previously created topology config, or create configs on the fly with our <a href=/docs/automation/>automation</a> tool. You can edit the secret any time, the middleware will apply the changes:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("7c46e8eaf62721ad63a8f133bb10a5a6")' class="text-sm text-gray-200 font-mono">copy</button>
 <textarea id=code-7c46e8eaf62721ad63a8f133bb10a5a6 style=display:none>kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 statefulset/harikube --timeout=5m
 kubectl create secret generic --namespace harikube topology-config --from-file=$(pwd)/topology.yaml
 </textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1

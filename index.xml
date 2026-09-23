@@ -521,7 +521,6 @@
  &lt;ul&gt;
  &lt;li&gt;&lt;a href="#-configure-kubernetes-with-harikube"&gt;🔧 Configure Kubernetes with HariKube&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-setup-database-operators"&gt;🛢️ Setup Database Operators&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-deploy-harikube-operator"&gt;🔌 Deploy HariKube Operator&lt;/a&gt;&lt;/li&gt;
  &lt;li&gt;&lt;a href="#-create-your-first-routing-configuration"&gt;🗂️ Create your first routing configuration&lt;/a&gt;&lt;/li&gt;
  &lt;/ul&gt;
 &lt;/nav&gt;
@@ -4796,8 +4795,8 @@ function copyContentToClipboard(id) {
  
  &lt;/div&gt;
  &lt;div class="flex space-x-2"&gt;
- &lt;button onclick="copyContentToClipboard('a8cdb698add65bd7a192e29561178710')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
- &lt;textarea id="code-a8cdb698add65bd7a192e29561178710" style="display: none;"&gt;backends:
+ &lt;button onclick="copyContentToClipboard('170c87c36ecd3dd87ad4d6b377c11f3a')" class="text-sm text-gray-200 font-mono"&gt;copy&lt;/button&gt;
+ &lt;textarea id="code-170c87c36ecd3dd87ad4d6b377c11f3a" style="display: none;"&gt;backends:
 - name: kube-system
  endpoint: mysql://root:passwd@tcp(172.17.0.1:3306)/kube_system
  namespace:
@@ -4806,7 +4805,7 @@ function copyContentToClipboard(id) {
  maxIdle: 50
  maxOpen: 90
  maxLifeTime: 5m
- maxIdleLifeTime: 5m
+ maxIdleTime: 5m
 &lt;/textarea&gt;
  &lt;/div&gt;
  &lt;/div&gt;
@@ -4834,7 +4833,7 @@ function copyContentToClipboard(id) {
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;maxIdle&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;maxOpen&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;90&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;maxLifeTime&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;5m&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;maxIdleLifeTime&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;5m&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;maxIdleTime&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;5m&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6029,7 +6028,8 @@ development experience and turning Kubernetes into a true PaaS.&lt;/p&gt;</descr
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our &lt;a href="/editions/"&gt;Editions&lt;/a&gt; page.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Start by authenticating your local Docker client with the private registry at &lt;code&gt;registry.harikube.info&lt;/code&gt;. This step is essential for pulling images from the registry.&lt;/p&gt;</description></item><item><title>Reliability</title><link>/docs/details/reliability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/reliability/</guid><description>&lt;ul&gt;
+&lt;p&gt;Start by authenticating your local Docker client with the private registry at &lt;code&gt;registry.harikube.info&lt;/code&gt;. This step is essential for pulling images from the registry.&lt;/p&gt;</description></item><item><title>Ratelimiter</title><link>/docs/details/ratelimiter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/ratelimiter/</guid><description>&lt;p&gt;The built-in ratelimiter provides an adaptive rate limiter designed to protect database backends from overload. It dynamically scales allowed throughput (requests per second) based on observed query execution latencies using an Exponentially Weighted Moving Average (EWMA).&lt;/p&gt;
+&lt;p&gt;When latencies are low, the limiter allows operations up to a configured maximum rate. If observed latencies rise due to backend stress, the limiter dynamically throttles incoming traffic down to a minimum rate to allow the database to recover.&lt;/p&gt;</description></item><item><title>Reliability</title><link>/docs/details/reliability/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/reliability/</guid><description>&lt;ul&gt;
 &lt;li&gt;Each data type is isolated to avoid cascading failures&lt;/li&gt;
 &lt;li&gt;ETCD is protected from misuse as a general-purpose data store&lt;/li&gt;
 &lt;li&gt;Minimizes downtime by allowing independent database maintenance and updates per service&lt;/li&gt;
