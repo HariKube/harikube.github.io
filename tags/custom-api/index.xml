@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Custom-Api on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/custom-api/</link><description>Recent content in Custom-Api on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/custom-api/index.xml" rel="self" type="application/rss+xml"/><item><title>A Quick Dive into Kubernetes Operators - Custom APIs</title><link>/blog/create-microservice-with-operator-4/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-4/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 3 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator-3/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-3/"&gt;&amp;lt;-- Part 3&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-implement-a-fully-customized-api"&gt;🧑‍🏭 Implement a Fully Customized API&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-extending-built-in-resources-with-aggregated-endpoints"&gt;➕ Extending Built-in Resources with Aggregated Endpoints&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;In the previous parts of this series, we built the foundation for a Kubernetes operator, explored how to expose and manage custom resources and implememnted a custom search API. Now, let’s take the next step: &lt;strong&gt;implementing fully custom APIs inside Kubernetes&lt;/strong&gt;. This allows you to present complex, aggregated, or domain-specific custom logic directly through the Kubernetes API.&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - Services+</title><link>/blog/create-microservice-with-operator-3/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-3/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 2 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator-2/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-2/"&gt;&amp;lt;-- Part 2&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-finding-a-solution"&gt;💡 Finding a Solution&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-prepare-server-manifests"&gt;🪢 Prepare Server Manifests&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-implement-aggregation-server"&gt;🧑‍🏭 Implement Aggregation Server&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-4/"&gt;Part 4 --&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/h2&gt;
+&lt;p&gt;Kubernetes is an incredibly powerful container orchestration platform, but it has some limitations you should be aware of. One key challenge is its &lt;strong&gt;limited data filtering capabilities&lt;/strong&gt;. While it excels at managing and scaling workloads, the platform doesn&amp;rsquo;t include an advanced query engine out of the box. This means you can&amp;rsquo;t easily perform complex, fine-grained searches or data manipulation directly within Kubernetes, which can be a roadblock when you need to find records based on &lt;strong&gt;full text search&lt;/strong&gt; for example.&lt;/p&gt;</description></item></channel></rss>

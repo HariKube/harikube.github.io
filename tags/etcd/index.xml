@@ -1,1 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Etcd on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/etcd/</link><description>Recent content in Etcd on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 11:43:29 +0200</lastBuildDate><atom:link href="/tags/etcd/index.xml" rel="self" type="application/rss+xml"/><item><title>The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</title><link>/blog/kubernetes-etcd-bottleneck-ai-training/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-etcd-bottleneck-ai-training/</guid><description>&lt;p&gt;The &lt;strong&gt;Kubernetes etcd bottleneck&lt;/strong&gt; has always existed. For most clusters, it stayed quiet. AI training workloads changed that. When Amazon announced in July 2025 that EKS now supports 100,000 nodes in a single cluster, they buried a critical detail three paragraphs in: to make it work, they had to &lt;strong&gt;rebuild the etcd storage layer from scratch&lt;/strong&gt;. That is not a tuning decision. It is an admission that standard Kubernetes was not ready for AI at scale &amp;ndash; and that AWS had to fix it in private.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Etcd on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/etcd/</link><description>Recent content in Etcd on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/etcd/index.xml" rel="self" type="application/rss+xml"/><item><title>The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</title><link>/blog/kubernetes-etcd-bottleneck-ai-training/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-etcd-bottleneck-ai-training/</guid><description>&lt;p&gt;The &lt;strong&gt;Kubernetes etcd bottleneck&lt;/strong&gt; has always existed. For most clusters, it stayed quiet. AI training workloads changed that. When Amazon announced in July 2025 that EKS now supports 100,000 nodes in a single cluster, they buried a critical detail three paragraphs in: to make it work, they had to &lt;strong&gt;rebuild the etcd storage layer from scratch&lt;/strong&gt;. That is not a tuning decision. It is an admission that standard Kubernetes was not ready for AI at scale &amp;ndash; and that AWS had to fix it in private.&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-performance-test"&gt;📈 The Performance Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-correctness-test"&gt;🤹 The Correctness Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-summary"&gt;🧭 Summary&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;Kubernetes has a dirty secret: &lt;strong&gt;ETCD is a bottleneck&lt;/strong&gt;. The default storage backend for Kubernetes was designed for configuration data, not for the scale modern clusters demand. As cluster resource counts grow into the tens or hundreds of thousands, the Kubernetes API server begins to crack - eating RAM, slowing down, and eventually dying with an OOM kill. The reason is simple: ETCD lacks server-side filtering, so the Kubernetes API server must load entire datasets into memory to filter records.&lt;/p&gt;</description></item><item><title>Build Your Kubernetes Platform-as-a-Service Today</title><link>/blog/build-your-kubernetes-platform-as-a-service-today/</link><pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate><guid>/blog/build-your-kubernetes-platform-as-a-service-today/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-our-mission-at-harikube-unlocking-kubernetes-true-potential"&gt;💡 Our Mission at HariKube: Unlocking Kubernetes&amp;rsquo; True Potential&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-scalability-wall-etcd-limits-and-client-side-filtering"&gt;🛑 The Scalability Wall: ETCD Limits and Client-Side Filtering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikubes-dynamic-data-fabric-scaling-to-infinity"&gt;🚀 HariKube&amp;rsquo;s Dynamic Data Fabric: Scaling to Infinity&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-introducing-the-harikube-open-source-toolset"&gt;🛠️ Introducing the HariKube Open Source Toolset&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-step-1-bring-your-cluster"&gt;⚙️ Step 1: Bring Your Cluster&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-step-2-launch-the-scalable-control-plane"&gt;✨ Step 2: Launch the Scalable Control Plane&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-scaling-the-open-source-edition"&gt;📈 Scaling the Open Source Edition&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thoughts"&gt;🧠 Final Thoughts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-share-feedback-and-report-issues"&gt;🙏 Share Feedback and Report Issues&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-our-mission-at-harikube-unlocking-kubernetes-true-potential"&gt;💡 Our Mission at HariKube: Unlocking Kubernetes&amp;rsquo; True Potential&lt;/h2&gt;
+&lt;p&gt;The promise of &lt;strong&gt;Kubernetes&lt;/strong&gt; was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale-specifically, the limitations of &lt;strong&gt;ETCD&lt;/strong&gt; and a fragmented application development experience. The result? A fantastic container orchestrator, but a &lt;strong&gt;broken Platform-as-a-Service (PaaS)&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Unlock your Kubernetes to run custom resource based microservices in any scale</title><link>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</link><pubDate>Sat, 24 May 2025 00:00:00 +0000</pubDate><guid>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-rise-of-custom-resources-and-their-challenges"&gt;🌅 The Rise of Custom Resources and Their Challenges&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-future-of-data-management-on-kubernetes"&gt;✨ The Future of Data Management on Kubernetes&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-getting-started"&gt;👷 Getting Started&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-the-rise-of-custom-resources-and-their-challenges"&gt;🌅 The Rise of Custom Resources and Their Challenges&lt;/h2&gt;
+&lt;p&gt;I don&amp;rsquo;t need to introduce Kubernetes in this post, as it is the de facto standard for running microservices at scale. Kubernetes provides a robust infrastructure not only for running workloads, but also for exposing services, securing applications, configuring authorization, and much more. The introduction of &lt;a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/"&gt;custom defined resources&lt;/a&gt; extended Kubernetes’ capabilities, enabling developers to implement custom services and controllers without worrying about the underlying infrastructure. This innovation promised faster development and portability. Over the past few years, custom resources and operators/controllers have become increasingly popular. &lt;a href="https://www.crossplane.io/"&gt;Crossplane&lt;/a&gt; marked another significant shift, allowing management of resources outside the cluster.&lt;/p&gt;</description></item></channel></rss>

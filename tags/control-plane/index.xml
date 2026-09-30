@@ -1,1 +1,73 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Control Plane on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/control-plane/</link><description>Recent content in Control Plane on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 11:43:29 +0200</lastBuildDate><atom:link href="/tags/control-plane/index.xml" rel="self" type="application/rss+xml"/><item><title>The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</title><link>/blog/kubernetes-etcd-bottleneck-ai-training/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-etcd-bottleneck-ai-training/</guid><description>&lt;p&gt;The &lt;strong&gt;Kubernetes etcd bottleneck&lt;/strong&gt; has always existed. For most clusters, it stayed quiet. AI training workloads changed that. When Amazon announced in July 2025 that EKS now supports 100,000 nodes in a single cluster, they buried a critical detail three paragraphs in: to make it work, they had to &lt;strong&gt;rebuild the etcd storage layer from scratch&lt;/strong&gt;. That is not a tuning decision. It is an admission that standard Kubernetes was not ready for AI at scale &amp;ndash; and that AWS had to fix it in private.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Control-Plane on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/control-plane/</link><description>Recent content in Control-Plane on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/control-plane/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes is HariKube's query language, control protocol, and application interface for managing data streams</title><link>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</link><pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-lets-analyze-the-title"&gt;🔎 Let&amp;rsquo;s analyze the title!&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-looks-on-paper"&gt;📎 How it looks on paper?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧠 What is HariKube&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikubes-identity"&gt;🧭 What Is HariKube&amp;rsquo;s Identity&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-looks-like-in-action"&gt;👷 How it looks like in action&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-where-this-architecture-shines"&gt;🎯 Where this architecture shines&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thought-how-i-imagine-a-system-like-this"&gt;🏁 Final Thought: How I Imagine a System Like This&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;If you are more interested in HariKube&amp;rsquo;s business impact, follow the link.&lt;/strong&gt; &lt;a href="/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Building production-grade microservices has meant wrestling with legacy anti-patterns, dealing with tightly coupled databases, managing complex service meshes, and &lt;strong&gt;burning 20 to 40 percent of our development cycles purely on repetitive infrastructure boilerplate&lt;/strong&gt;. We have all felt the steep learning curves and the constant headache of trying to faithfully reproduce production environments locally. We &lt;strong&gt;all had scary nigths scaling Control-Plane&lt;/strong&gt; or watching memory filling up with unused resources &lt;strong&gt;for too long&amp;hellip;&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>The Hidden Infrastructure Challenge Behind AI Agents</title><link>/blog/the_hidden_infrastructure_challenge_behind_ai_agents/</link><pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate><guid>/blog/the_hidden_infrastructure_challenge_behind_ai_agents/</guid><description>&lt;p&gt;The AI infrastructure conversation is dominated by compute.&lt;/p&gt;
+&lt;p&gt;Every week brings a new announcement about GPUs, training clusters, inference optimization, or model performance. Organizations are investing heavily in the hardware required to build and deploy AI systems, while investors are trying to understand how much infrastructure will be needed to support the next wave of adoption.&lt;/p&gt;
+&lt;p&gt;These discussions are important. But they focus primarily on one side of the equation.&lt;/p&gt;</description></item><item><title>The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</title><link>/blog/kubernetes-etcd-bottleneck-ai-training/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-etcd-bottleneck-ai-training/</guid><description>&lt;p&gt;The &lt;strong&gt;Kubernetes etcd bottleneck&lt;/strong&gt; has always existed. For most clusters, it stayed quiet. AI training workloads changed that. When Amazon announced in July 2025 that EKS now supports 100,000 nodes in a single cluster, they buried a critical detail three paragraphs in: to make it work, they had to &lt;strong&gt;rebuild the etcd storage layer from scratch&lt;/strong&gt;. That is not a tuning decision. It is an admission that standard Kubernetes was not ready for AI at scale &amp;ndash; and that AWS had to fix it in private.&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-performance-test"&gt;📈 The Performance Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-correctness-test"&gt;🤹 The Correctness Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-summary"&gt;🧭 Summary&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;Kubernetes has a dirty secret: &lt;strong&gt;ETCD is a bottleneck&lt;/strong&gt;. The default storage backend for Kubernetes was designed for configuration data, not for the scale modern clusters demand. As cluster resource counts grow into the tens or hundreds of thousands, the Kubernetes API server begins to crack - eating RAM, slowing down, and eventually dying with an OOM kill. The reason is simple: ETCD lacks server-side filtering, so the Kubernetes API server must load entire datasets into memory to filter records.&lt;/p&gt;</description></item><item><title>Build Your Kubernetes Platform-as-a-Service Today</title><link>/blog/build-your-kubernetes-platform-as-a-service-today/</link><pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate><guid>/blog/build-your-kubernetes-platform-as-a-service-today/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-our-mission-at-harikube-unlocking-kubernetes-true-potential"&gt;💡 Our Mission at HariKube: Unlocking Kubernetes&amp;rsquo; True Potential&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-scalability-wall-etcd-limits-and-client-side-filtering"&gt;🛑 The Scalability Wall: ETCD Limits and Client-Side Filtering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikubes-dynamic-data-fabric-scaling-to-infinity"&gt;🚀 HariKube&amp;rsquo;s Dynamic Data Fabric: Scaling to Infinity&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-introducing-the-harikube-open-source-toolset"&gt;🛠️ Introducing the HariKube Open Source Toolset&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-step-1-bring-your-cluster"&gt;⚙️ Step 1: Bring Your Cluster&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-step-2-launch-the-scalable-control-plane"&gt;✨ Step 2: Launch the Scalable Control Plane&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-scaling-the-open-source-edition"&gt;📈 Scaling the Open Source Edition&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thoughts"&gt;🧠 Final Thoughts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-share-feedback-and-report-issues"&gt;🙏 Share Feedback and Report Issues&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-our-mission-at-harikube-unlocking-kubernetes-true-potential"&gt;💡 Our Mission at HariKube: Unlocking Kubernetes&amp;rsquo; True Potential&lt;/h2&gt;
+&lt;p&gt;The promise of &lt;strong&gt;Kubernetes&lt;/strong&gt; was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale-specifically, the limitations of &lt;strong&gt;ETCD&lt;/strong&gt; and a fragmented application development experience. The result? A fantastic container orchestrator, but a &lt;strong&gt;broken Platform-as-a-Service (PaaS)&lt;/strong&gt;.&lt;/p&gt;</description></item></channel></rss>

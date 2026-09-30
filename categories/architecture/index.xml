@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Architecture on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/categories/architecture/</link><description>Recent content in Architecture on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/categories/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>From Weeks to Days: Building Your Service Without Glue Code</title><link>/blog/building-your-service-without-glue-code/</link><pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/building-your-service-without-glue-code/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-why-development-is-slow-in-traditional-platforms"&gt;🚀 Why Development Is Slow in Traditional Platforms&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikubes-simplicity-model-one-fabric-for-everything"&gt;⚡ HariKube’s Simplicity Model: One Fabric for Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-flexibility-by-design-choose-the-right-service-model-reuse-everything"&gt;🧩 Flexibility by Design: Choose the Right Service Model, Reuse Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-transformed-everything-by-changing-almost-nothing"&gt;🔁 Transformed Everything by Changing Almost Nothing&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-faster-ai-assisted-delivery-without-a-separate-ai-stack"&gt;🤖 Faster AI-Assisted Delivery, Without a Separate AI Stack&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-developer-experience-focus-on-product-logic"&gt;🧠 Developer Experience: Focus on Product Logic&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-business-impact-of-simpler-engineering"&gt;💼 Business Impact of Simpler Engineering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thought"&gt;🏁 Final Thought&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;💡 New here? No worries. HariKube, in one sentence:;&lt;br&gt;HariKube is a petabyte-scale, versioned state machine with Kubernetes and Kafka interfaces.&lt;br&gt;For technical deep-dive, please follow the link: &lt;a href="/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/"&gt;[→]&lt;/a&gt;&lt;/p&gt;</description></item><item><title>The Great Architectural Cycle; And the Next Wave Just Hit</title><link>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</link><pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-pendulum-of-architectural-shifts"&gt;🔎 The pendulum of architectural shifts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-monolithic-state--cncf-nanoservices"&gt;🧠 Monolithic State + CNCF Nanoservices&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧭 What Is HariKube&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-why-this-is-a-game-changer-for-you"&gt;🎯 Why this is a game changer for you?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-we-got-here-from-kubernetes-hyper-scaler-to-total-stack-collapse"&gt;🏁 How we got here: From Kubernetes hyper-scaler to total stack collapse&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;If you are interested in HariKube&amp;rsquo;s technical details, follow the link.&lt;/strong&gt; &lt;a href="/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Building modern software platforms often feels like riding an endless pendulum. Every decade, the tech industry promises a revolutionary paradigm shift that will solve all our development bottlenecks. Yet engineering budgets keep ballooning, time to market keeps stretching, and decision makers are left asking the exact same question: &lt;strong&gt;Why are we burning so much capital just to keep the lights on and ship basic features?&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Kubernetes is HariKube's query language, control protocol, and application interface for managing data streams</title><link>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</link><pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-lets-analyze-the-title"&gt;🔎 Let&amp;rsquo;s analyze the title!&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-looks-on-paper"&gt;📎 How it looks on paper?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧠 What is HariKube&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikubes-identity"&gt;🧭 What Is HariKube&amp;rsquo;s Identity&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-it-looks-like-in-action"&gt;👷 How it looks like in action&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-where-this-architecture-shines"&gt;🎯 Where this architecture shines&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thought-how-i-imagine-a-system-like-this"&gt;🏁 Final Thought: How I Imagine a System Like This&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;If you are more interested in HariKube&amp;rsquo;s business impact, follow the link.&lt;/strong&gt; &lt;a href="/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Building production-grade microservices has meant wrestling with legacy anti-patterns, dealing with tightly coupled databases, managing complex service meshes, and &lt;strong&gt;burning 20 to 40 percent of our development cycles purely on repetitive infrastructure boilerplate&lt;/strong&gt;. We have all felt the steep learning curves and the constant headache of trying to faithfully reproduce production environments locally. We &lt;strong&gt;all had scary nigths scaling Control-Plane&lt;/strong&gt; or watching memory filling up with unused resources &lt;strong&gt;for too long&amp;hellip;&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-performance-test"&gt;📈 The Performance Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-correctness-test"&gt;🤹 The Correctness Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-summary"&gt;🧭 Summary&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;Kubernetes has a dirty secret: &lt;strong&gt;ETCD is a bottleneck&lt;/strong&gt;. The default storage backend for Kubernetes was designed for configuration data, not for the scale modern clusters demand. As cluster resource counts grow into the tens or hundreds of thousands, the Kubernetes API server begins to crack - eating RAM, slowing down, and eventually dying with an OOM kill. The reason is simple: ETCD lacks server-side filtering, so the Kubernetes API server must load entire datasets into memory to filter records.&lt;/p&gt;</description></item><item><title>Beyond the Cluster: Rethinking Your Kubernetes Platform Strategy</title><link>/blog/beyond-the-cluster-rethinking-your-kubernetes-platform-strategy/</link><pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate><guid>/blog/beyond-the-cluster-rethinking-your-kubernetes-platform-strategy/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-kubernetes-is-a-platform-for-building-platforms-not-an-end-state-solution"&gt;💡 Kubernetes is a &amp;ldquo;platform for building platforms&amp;rdquo;, not an end-state solution&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-day-2-reality-check"&gt;👷 The &amp;ldquo;Day 2&amp;rdquo; Reality Check&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-options-landscape-finding-the-right-path-for-2026"&gt;🛤️ The &amp;ldquo;Options&amp;rdquo; Landscape: Finding the Right Path for 2026&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-verdict-which-path-is-yours"&gt;🏁 Final Verdict: Which Path is Yours?&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-kubernetes-is-a-platform-for-building-platforms-not-an-end-state-solution"&gt;💡 Kubernetes is a &amp;ldquo;platform for building platforms&amp;rdquo;, not an end-state solution&lt;/h2&gt;
+&lt;p&gt;As we navigate the technological landscape of 2026, the industry has reached a pivotal realization: Kubernetes was never meant to be the final destination for developers. While it has become the undisputed standard for orchestration, treating a raw Kubernetes cluster as an end-state solution often leads to &amp;ldquo;configuration fatigue&amp;rdquo; and fragmented architectures. The top trend this year is the aggressive shift toward &lt;strong&gt;Application Modernization&lt;/strong&gt; through specialized &lt;strong&gt;Platform-as-a-Service (PaaS)&lt;/strong&gt; layers built on top of the Kubernetes control plane.&lt;/p&gt;</description></item><item><title>The Future of Kubernetes PaaS and Kubernetes-native Service Development is Here</title><link>/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/</link><pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-future-of-kubernetes-and-service-development"&gt;✨ The Future of Kubernetes and Service Development&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-single-source-of-truth-unified-service-design"&gt;🦄 The Single Source of Truth: Unified Service Design&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-stop-waiting-welcome-to-the-cloud-native-platform-as-a-service-reality"&gt;🛑 Stop Waiting: Welcome to the Cloud-Native-Platform-as-a-Service Reality&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-demo-time-lets-see-it-in-action"&gt;🚀 The Demo Time: Let&amp;rsquo;s See It in Action&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-future-is-yours-to-build"&gt;🏗️ The Future is Yours to Build&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;We at &lt;strong&gt;HariKube&lt;/strong&gt; strongly believe in the transformative power of cutting-edge technology to shape the future of service development. As the digital landscape continues to evolve at an unprecedented pace, the need for robust, scalable, and efficient Cloud-Native infrastructure becomes paramount. We are committed to &lt;strong&gt;turning Kubernetes into a real Platform-as-a-Service (PaaS), where it not just orchestrates individual services, but becomes the source of truth for the entire platform&lt;/strong&gt;. Join us as we delve into the exciting advancements and upcoming trends that define &amp;hellip;&lt;/p&gt;</description></item><item><title>We make Kubernetes work at enterprise scale - no more ETCD limits</title><link>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-big-picture-kubernetes-as-a-full-paas-runtime"&gt;🌐 The Big Picture: Kubernetes as a Full PaaS Runtime&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikube---dynamic-database-agnostic-data-backend"&gt;🧱 HariKube - Dynamic, Database-Agnostic Data Backend&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-serverless---nanoservice-layer"&gt;⚡ Serverless - Nanoservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-agentic-ai---microservice-layer"&gt;🧠 Agentic AI - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-operators---microservice-layer"&gt;🔁 Operators - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-kubernetes-aggregation-api-layer---traditional-rest-api-layer"&gt;🌐 Kubernetes Aggregation API Layer - Traditional REST API Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-all-layers-combined-a-hybrid-architecture"&gt;🧠 All Layers Combined: A Hybrid Architecture&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-strategic-impact"&gt;🚀 Strategic Impact&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-a-new-platform-strategy"&gt;✨ A New Platform Strategy&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Imagine a world where Kubernetes itself becomes the platform&lt;/strong&gt; - not just for container orchestration, but for &lt;strong&gt;functions, microservices, and APIs&lt;/strong&gt;. With HariKube’s dynamic data layer, serverless function triggers, operator loops, and the Kubernetes Aggregation API layer, that world is not only possible - it’s here.&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - Custom APIs</title><link>/blog/create-microservice-with-operator-4/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-4/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 3 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator-3/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-3/"&gt;&amp;lt;-- Part 3&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-implement-a-fully-customized-api"&gt;🧑‍🏭 Implement a Fully Customized API&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-extending-built-in-resources-with-aggregated-endpoints"&gt;➕ Extending Built-in Resources with Aggregated Endpoints&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;In the previous parts of this series, we built the foundation for a Kubernetes operator, explored how to expose and manage custom resources and implememnted a custom search API. Now, let’s take the next step: &lt;strong&gt;implementing fully custom APIs inside Kubernetes&lt;/strong&gt;. This allows you to present complex, aggregated, or domain-specific custom logic directly through the Kubernetes API.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Developer-Productivity on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/developer-productivity/</link><description>Recent content in Developer-Productivity on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/developer-productivity/index.xml" rel="self" type="application/rss+xml"/><item><title>The Great Architectural Cycle; And the Next Wave Just Hit</title><link>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</link><pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-pendulum-of-architectural-shifts"&gt;🔎 The pendulum of architectural shifts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-monolithic-state--cncf-nanoservices"&gt;🧠 Monolithic State + CNCF Nanoservices&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧭 What Is HariKube&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-why-this-is-a-game-changer-for-you"&gt;🎯 Why this is a game changer for you?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-we-got-here-from-kubernetes-hyper-scaler-to-total-stack-collapse"&gt;🏁 How we got here: From Kubernetes hyper-scaler to total stack collapse&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;If you are interested in HariKube&amp;rsquo;s technical details, follow the link.&lt;/strong&gt; &lt;a href="/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Building modern software platforms often feels like riding an endless pendulum. Every decade, the tech industry promises a revolutionary paradigm shift that will solve all our development bottlenecks. Yet engineering budgets keep ballooning, time to market keeps stretching, and decision makers are left asking the exact same question: &lt;strong&gt;Why are we burning so much capital just to keep the lights on and ship basic features?&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Kubernetes Bottleneck is Broken, Development Taxes Are Repealed: Announcing HariKube 1.0</title><link>/blog/announcing-harikube-1_0/</link><pubDate>Mon, 02 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/announcing-harikube-1_0/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-end-of-the-etcd-bottleneck"&gt;🏋️ The End of the Etcd Bottleneck&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-repealing-the-development-tax"&gt;🏗️ Repealing the &amp;ldquo;Development Tax&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-who-is-harikube-for"&gt;🎯 Who is HariKube For?&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-road-to-10-and-beyond"&gt;🚀 The Road to 1.0 and Beyond&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;For too long, the &amp;ldquo;Kubernetes Tax&amp;rdquo; has been a mandatory payment for every engineering team. You pay it in &lt;strong&gt;time&lt;/strong&gt; spent configuring YAML, you pay it in &lt;strong&gt;cognitive load&lt;/strong&gt; trying to understand networking, and you pay it in &lt;strong&gt;performance&lt;/strong&gt; when etcd hits its scaling limit.&lt;/p&gt;</description></item></channel></rss>

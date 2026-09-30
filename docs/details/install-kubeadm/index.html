@@ -78,47 +78,45 @@ patches:
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>InitConfiguration</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>patches</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>directory</span><span class=p>:</span><span class=w> </span><span class=l>patches</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Inside the <code>patches</code> directory, create a file to override the default images for the API Server and Controller Manager:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("977cacfc8dc18aa3d25fa32835fdab92")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-977cacfc8dc18aa3d25fa32835fdab92 style=display:none>apiVersion: v1
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Inside the <code>patches</code> directory, create a file to override the default images for the API Server and Controller Manager:</p><p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kube-apiserver.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("bbdf11ef6892429ab577d2fb5da20cee")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-bbdf11ef6892429ab577d2fb5da20cee style=display:none>apiVersion: v1
 kind: Pod
 spec:
   containers:
     - name: kube-apiserver
       image: quay.io/harikube/kube-apiserver:v1.36.2
----
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-    - name: kube-controller-manager
-      image: quay.io/harikube/kube-controller-manager:v1.36.2
-</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Pod</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kube-apiserver</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>quay.io/harikube/kube-apiserver:v1.36.2</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kube-controller-manager.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("45c5e2eeb6df2a6ae47814f96a2fb6c5")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-45c5e2eeb6df2a6ae47814f96a2fb6c5 style=display:none>apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: kube-controller-manager
+      image: quay.io/harikube/kube-controller-manager:v1.36.2
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Pod</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kube-controller-manager</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>quay.io/harikube/kube-controller-manager:v1.36.2</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h3 id=comipiling-kubernetes-from-source-code-optional>Comipiling Kubernetes From Source Code (optional)</h3><p>For detailed information about how to build Kubernetes please follow
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script></p><h3 id=comipiling-kubernetes-from-source-code-optional>Comipiling Kubernetes From Source Code (optional)</h3><p>For detailed information about how to build Kubernetes please follow
 <a href=https://github.com/kubernetes/kubernetes/blob/v1.36.2/build/README.md>official documentation</a>. But here are some simple steps to compile it.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("392bdab3c0e13de82709aebe68be6444")' class="text-sm text-gray-200 font-mono">copy</button>
 <textarea id=code-392bdab3c0e13de82709aebe68be6444 style=display:none>git clone https://github.com/kubernetes/kubernetes.git
 cd kubernetes

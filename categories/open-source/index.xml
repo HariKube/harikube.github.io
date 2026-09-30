@@ -1,28 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Open-Source on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/categories/open-source/</link><description>Recent content in Open-Source on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 11:43:29 +0200</lastBuildDate><atom:link href="/categories/open-source/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes Performance Challenge</title><link>/blog/kubernetes-performance-challenge/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-performance-challenge/</guid><description>&lt;style&gt;
- html {
- scroll-padding-top: 100px;
- }
-&lt;/style&gt;
-
-&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
- &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
- 
- &lt;nav id="TableOfContents"&gt;
- &lt;ul&gt;
- &lt;li&gt;&lt;a href="#the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-challenge"&gt;🚀 The Challenge&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-grand-prize"&gt;🏆 The Grand Prize&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-first-ten-grant"&gt;🎖️ The &amp;ldquo;First Ten&amp;rdquo; Grant&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-second-chance-draw"&gt;🎲 The &amp;ldquo;Second Chance&amp;rdquo; Draw&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-rules-and-constraints"&gt;📜 Rules and Constraints&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-join-to-the-contest"&gt;🔀 Join to the Contest&lt;/a&gt;&lt;/li&gt;
- &lt;/ul&gt;
-&lt;/nav&gt;
- 
-&lt;/div&gt;
-
-&lt;h2 id="the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/h2&gt;
-&lt;p&gt;We were interested in how far we can go with Kubernetes. While it can scale up applications to the space (beyond the clouds 😜), Kubernetes itself fails to scale gracefully. Or maybe not?&lt;/p&gt;</description></item><item><title>Build Your Kubernetes Platform-as-a-Service Today</title><link>/blog/build-your-kubernetes-platform-as-a-service-today/</link><pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate><guid>/blog/build-your-kubernetes-platform-as-a-service-today/</guid><description>&lt;style&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Open Source on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/categories/open-source/</link><description>Recent content in Open Source on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/categories/open-source/index.xml" rel="self" type="application/rss+xml"/><item><title>Build Your Kubernetes Platform-as-a-Service Today</title><link>/blog/build-your-kubernetes-platform-as-a-service-today/</link><pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate><guid>/blog/build-your-kubernetes-platform-as-a-service-today/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }

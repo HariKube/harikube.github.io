@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/categories/ai/</link><description>Recent content in AI on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 11:43:29 +0200</lastBuildDate><atom:link href="/categories/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>The Great Architectural Cycle; And the Next Wave Just Hit</title><link>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</link><pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</guid><description>&lt;style&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/categories/ai/</link><description>Recent content in AI on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/categories/ai/index.xml" rel="self" type="application/rss+xml"/><item><title>From Weeks to Days: Building Your Service Without Glue Code</title><link>/blog/building-your-service-without-glue-code/</link><pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/building-your-service-without-glue-code/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }
@@ -9,19 +9,21 @@
  
  &lt;nav id="TableOfContents"&gt;
  &lt;ul&gt;
- &lt;li&gt;&lt;a href="#-the-pendulum-of-architectural-shifts"&gt;🔎 The pendulum of architectural shifts&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-monolithic-state--cncf-nanoservices"&gt;🧠 Monolithic State + CNCF Nanoservices&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-what-is-harikube"&gt;🧭 What Is HariKube&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-why-this-is-a-game-changer-for-you"&gt;🎯 Why this is a game changer for you?&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-how-we-got-here-from-kubernetes-hyper-scaler-to-total-stack-collapse"&gt;🏁 How we got here: From Kubernetes hyper-scaler to total stack collapse&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-why-development-is-slow-in-traditional-platforms"&gt;🚀 Why Development Is Slow in Traditional Platforms&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikubes-simplicity-model-one-fabric-for-everything"&gt;⚡ HariKube’s Simplicity Model: One Fabric for Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-flexibility-by-design-choose-the-right-service-model-reuse-everything"&gt;🧩 Flexibility by Design: Choose the Right Service Model, Reuse Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-transformed-everything-by-changing-almost-nothing"&gt;🔁 Transformed Everything by Changing Almost Nothing&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-faster-ai-assisted-delivery-without-a-separate-ai-stack"&gt;🤖 Faster AI-Assisted Delivery, Without a Separate AI Stack&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-developer-experience-focus-on-product-logic"&gt;🧠 Developer Experience: Focus on Product Logic&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-business-impact-of-simpler-engineering"&gt;💼 Business Impact of Simpler Engineering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thought"&gt;🏁 Final Thought&lt;/a&gt;&lt;/li&gt;
  &lt;/ul&gt;
 &lt;/nav&gt;
  
 &lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;If you are interested in HariKube&amp;rsquo;s technical details, follow the link.&lt;/strong&gt; &lt;a href="/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Building modern software platforms often feels like riding an endless pendulum. Every decade, the tech industry promises a revolutionary paradigm shift that will solve all our development bottlenecks. Yet engineering budgets keep ballooning, time to market keeps stretching, and decision makers are left asking the exact same question: &lt;strong&gt;Why are we burning so much capital just to keep the lights on and ship basic features?&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Kubernetes is HariKube's query language, control protocol, and application interface for managing data streams</title><link>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</link><pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</guid><description>&lt;style&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 New here? No worries. HariKube, in one sentence:;&lt;br&gt;HariKube is a petabyte-scale, versioned state machine with Kubernetes and Kafka interfaces.&lt;br&gt;For technical deep-dive, please follow the link: &lt;a href="/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/"&gt;[→]&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Kubernetes is HariKube's query language, control protocol, and application interface for managing data streams</title><link>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</link><pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }

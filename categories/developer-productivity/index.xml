@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Developer Productivity on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/categories/developer-productivity/</link><description>Recent content in Developer Productivity on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/categories/developer-productivity/index.xml" rel="self" type="application/rss+xml"/><item><title>From Weeks to Days: Building Your Service Without Glue Code</title><link>/blog/building-your-service-without-glue-code/</link><pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/building-your-service-without-glue-code/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-why-development-is-slow-in-traditional-platforms"&gt;🚀 Why Development Is Slow in Traditional Platforms&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikubes-simplicity-model-one-fabric-for-everything"&gt;⚡ HariKube’s Simplicity Model: One Fabric for Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-flexibility-by-design-choose-the-right-service-model-reuse-everything"&gt;🧩 Flexibility by Design: Choose the Right Service Model, Reuse Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-transformed-everything-by-changing-almost-nothing"&gt;🔁 Transformed Everything by Changing Almost Nothing&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-faster-ai-assisted-delivery-without-a-separate-ai-stack"&gt;🤖 Faster AI-Assisted Delivery, Without a Separate AI Stack&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-developer-experience-focus-on-product-logic"&gt;🧠 Developer Experience: Focus on Product Logic&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-business-impact-of-simpler-engineering"&gt;💼 Business Impact of Simpler Engineering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thought"&gt;🏁 Final Thought&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;💡 New here? No worries. HariKube, in one sentence:;&lt;br&gt;HariKube is a petabyte-scale, versioned state machine with Kubernetes and Kafka interfaces.&lt;br&gt;For technical deep-dive, please follow the link: &lt;a href="/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/"&gt;[→]&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

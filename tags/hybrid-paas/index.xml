@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hybrid-Paas on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/hybrid-paas/</link><description>Recent content in Hybrid-Paas on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/hybrid-paas/index.xml" rel="self" type="application/rss+xml"/><item><title>We make Kubernetes work at enterprise scale - no more ETCD limits</title><link>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-big-picture-kubernetes-as-a-full-paas-runtime"&gt;🌐 The Big Picture: Kubernetes as a Full PaaS Runtime&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikube---dynamic-database-agnostic-data-backend"&gt;🧱 HariKube - Dynamic, Database-Agnostic Data Backend&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-serverless---nanoservice-layer"&gt;⚡ Serverless - Nanoservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-agentic-ai---microservice-layer"&gt;🧠 Agentic AI - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-operators---microservice-layer"&gt;🔁 Operators - Microservice Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-kubernetes-aggregation-api-layer---traditional-rest-api-layer"&gt;🌐 Kubernetes Aggregation API Layer - Traditional REST API Layer&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-all-layers-combined-a-hybrid-architecture"&gt;🧠 All Layers Combined: A Hybrid Architecture&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-strategic-impact"&gt;🚀 Strategic Impact&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-a-new-platform-strategy"&gt;✨ A New Platform Strategy&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Imagine a world where Kubernetes itself becomes the platform&lt;/strong&gt; - not just for container orchestration, but for &lt;strong&gt;functions, microservices, and APIs&lt;/strong&gt;. With HariKube’s dynamic data layer, serverless function triggers, operator loops, and the Kubernetes Aggregation API layer, that world is not only possible - it’s here.&lt;/p&gt;</description></item></channel></rss>

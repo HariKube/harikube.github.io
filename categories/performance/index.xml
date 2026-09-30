@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Performance on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/categories/performance/</link><description>Recent content in Performance on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/categories/performance/index.xml" rel="self" type="application/rss+xml"/><item><title>The Kubernetes etcd Bottleneck Is Now an AI Infrastructure Problem</title><link>/blog/kubernetes-etcd-bottleneck-ai-training/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-etcd-bottleneck-ai-training/</guid><description>&lt;p&gt;The &lt;strong&gt;Kubernetes etcd bottleneck&lt;/strong&gt; has always existed. For most clusters, it stayed quiet. AI training workloads changed that. When Amazon announced in July 2025 that EKS now supports 100,000 nodes in a single cluster, they buried a critical detail three paragraphs in: to make it work, they had to &lt;strong&gt;rebuild the etcd storage layer from scratch&lt;/strong&gt;. That is not a tuning decision. It is an admission that standard Kubernetes was not ready for AI at scale &amp;ndash; and that AWS had to fix it in private.&lt;/p&gt;</description></item><item><title>Enterprise Kubernetes Scaling: HariKube Joins the SUSE Sapphire Innovate Partner Program</title><link>/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/</link><pubDate>Thu, 23 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#the-enterprise-kubernetes-scaling-challenge"&gt;The Enterprise Kubernetes Scaling Challenge&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#how-harikube-helps-enterprises-scale-kubernetes"&gt;How HariKube Helps Enterprises Scale Kubernetes&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#key-benefits-for-enterprises"&gt;Key Benefits for Enterprises&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#why-this-suse-partnership-matters"&gt;Why This SUSE Partnership Matters&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#what-this-means-for-enterprise-buyers"&gt;What This Means for Enterprise Buyers&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#looking-ahead"&gt;Looking Ahead&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;We are proud to announce that HariKube has officially been accepted as a SUSE Partner under the Sapphire Innovate track.&lt;/p&gt;
+&lt;p&gt;For us, this is more than a partnership milestone. It is strong validation that enterprise Kubernetes is entering a new era, where scalability, predictable performance, and operational efficiency are no longer optional. They are strategic requirements.&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-performance-test"&gt;📈 The Performance Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-correctness-test"&gt;🤹 The Correctness Test&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-summary"&gt;🧭 Summary&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;p&gt;Kubernetes has a dirty secret: &lt;strong&gt;ETCD is a bottleneck&lt;/strong&gt;. The default storage backend for Kubernetes was designed for configuration data, not for the scale modern clusters demand. As cluster resource counts grow into the tens or hundreds of thousands, the Kubernetes API server begins to crack - eating RAM, slowing down, and eventually dying with an OOM kill. The reason is simple: ETCD lacks server-side filtering, so the Kubernetes API server must load entire datasets into memory to filter records.&lt;/p&gt;</description></item><item><title>Kubernetes Performance Challenge</title><link>/blog/kubernetes-performance-challenge/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-performance-challenge/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-challenge"&gt;🚀 The Challenge&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-grand-prize"&gt;🏆 The Grand Prize&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-first-ten-grant"&gt;🎖️ The &amp;ldquo;First Ten&amp;rdquo; Grant&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-second-chance-draw"&gt;🎲 The &amp;ldquo;Second Chance&amp;rdquo; Draw&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-rules-and-constraints"&gt;📜 Rules and Constraints&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-join-to-the-contest"&gt;🔀 Join to the Contest&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="the-kubernetes-performance-challenge-join-to-the-contest"&gt;The Kubernetes Performance Challenge, Join to the contest!&lt;/h2&gt;
+&lt;p&gt;We were interested in how far we can go with Kubernetes. While it can scale up applications to the space (beyond the clouds 😜), Kubernetes itself fails to scale gracefully. Or maybe not?&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - Services+</title><link>/blog/create-microservice-with-operator-3/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-3/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 2 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator-2/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-2/"&gt;&amp;lt;-- Part 2&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-finding-a-solution"&gt;💡 Finding a Solution&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-prepare-server-manifests"&gt;🪢 Prepare Server Manifests&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-implement-aggregation-server"&gt;🧑‍🏭 Implement Aggregation Server&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-4/"&gt;Part 4 --&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/h2&gt;
+&lt;p&gt;Kubernetes is an incredibly powerful container orchestration platform, but it has some limitations you should be aware of. One key challenge is its &lt;strong&gt;limited data filtering capabilities&lt;/strong&gt;. While it excels at managing and scaling workloads, the platform doesn&amp;rsquo;t include an advanced query engine out of the box. This means you can&amp;rsquo;t easily perform complex, fine-grained searches or data manipulation directly within Kubernetes, which can be a roadblock when you need to find records based on &lt;strong&gt;full text search&lt;/strong&gt; for example.&lt;/p&gt;</description></item><item><title>Unlock your Kubernetes to run custom resource based microservices in any scale</title><link>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</link><pubDate>Sat, 24 May 2025 00:00:00 +0000</pubDate><guid>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-the-rise-of-custom-resources-and-their-challenges"&gt;🌅 The Rise of Custom Resources and Their Challenges&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-future-of-data-management-on-kubernetes"&gt;✨ The Future of Data Management on Kubernetes&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-getting-started"&gt;👷 Getting Started&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-the-rise-of-custom-resources-and-their-challenges"&gt;🌅 The Rise of Custom Resources and Their Challenges&lt;/h2&gt;
+&lt;p&gt;I don&amp;rsquo;t need to introduce Kubernetes in this post, as it is the de facto standard for running microservices at scale. Kubernetes provides a robust infrastructure not only for running workloads, but also for exposing services, securing applications, configuring authorization, and much more. The introduction of &lt;a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/"&gt;custom defined resources&lt;/a&gt; extended Kubernetes’ capabilities, enabling developers to implement custom services and controllers without worrying about the underlying infrastructure. This innovation promised faster development and portability. Over the past few years, custom resources and operators/controllers have become increasingly popular. &lt;a href="https://www.crossplane.io/"&gt;Crossplane&lt;/a&gt; marked another significant shift, allowing management of resources outside the cluster.&lt;/p&gt;</description></item></channel></rss>

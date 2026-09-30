@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kubectl on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/kubectl/</link><description>Recent content in Kubectl on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/kubectl/index.xml" rel="self" type="application/rss+xml"/><item><title>Turn any of your APIs into a Kubernetes-native citizen</title><link>/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen/</link><pubDate>Thu, 06 Nov 2025 00:00:00 +0000</pubDate><guid>/blog/turn-any-of-your-apis-into-a-kubernetes-native-citizen/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-transforming-apis-into-kubernetes-native-citizens"&gt;⚡ Transforming APIs into Kubernetes-Native Citizens&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-what-the-kubernetes-aggregation-layer-gives-you"&gt;❓ What the Kubernetes Aggregation Layer Gives You&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-difficulty-of-developing-an-api-server-without-frameworks"&gt;🤹 The Difficulty of Developing an API Server Without Frameworks&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-this-framework-simplifies-the-process"&gt;💡 How This Framework Simplifies the Process&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-how-to-use-it"&gt;🔌 How to Use It&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thoughts"&gt;🧠 Final Thoughts&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-share-feedback-and-report-issues"&gt;🙏 Share Feedback and Report Issues&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-transforming-apis-into-kubernetes-native-citizens"&gt;⚡ Transforming APIs into Kubernetes-Native Citizens&lt;/h2&gt;
+&lt;p&gt;The power of Kubernetes lies in its unified control plane and its resource model. But what if you could make any of your existing APIs or services behave like a native Kubernetes resource-complete with &lt;code&gt;kubectl&lt;/code&gt; compatibility, cluster-level governance, and seamless integration?&lt;/p&gt;</description></item></channel></rss>

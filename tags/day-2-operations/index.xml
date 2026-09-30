@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Day-2-Operations on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/day-2-operations/</link><description>Recent content in Day-2-Operations on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/day-2-operations/index.xml" rel="self" type="application/rss+xml"/><item><title>Beyond the Cluster: Rethinking Your Kubernetes Platform Strategy</title><link>/blog/beyond-the-cluster-rethinking-your-kubernetes-platform-strategy/</link><pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate><guid>/blog/beyond-the-cluster-rethinking-your-kubernetes-platform-strategy/</guid><description>&lt;style&gt;
+ html {
+ scroll-padding-top: 100px;
+ }
+&lt;/style&gt;
+
+&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
+ &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ 
+ &lt;nav id="TableOfContents"&gt;
+ &lt;ul&gt;
+ &lt;li&gt;&lt;a href="#-kubernetes-is-a-platform-for-building-platforms-not-an-end-state-solution"&gt;💡 Kubernetes is a &amp;ldquo;platform for building platforms&amp;rdquo;, not an end-state solution&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-day-2-reality-check"&gt;👷 The &amp;ldquo;Day 2&amp;rdquo; Reality Check&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-options-landscape-finding-the-right-path-for-2026"&gt;🛤️ The &amp;ldquo;Options&amp;rdquo; Landscape: Finding the Right Path for 2026&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-verdict-which-path-is-yours"&gt;🏁 Final Verdict: Which Path is Yours?&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt;
+ 
+&lt;/div&gt;
+
+&lt;h2 id="-kubernetes-is-a-platform-for-building-platforms-not-an-end-state-solution"&gt;💡 Kubernetes is a &amp;ldquo;platform for building platforms&amp;rdquo;, not an end-state solution&lt;/h2&gt;
+&lt;p&gt;As we navigate the technological landscape of 2026, the industry has reached a pivotal realization: Kubernetes was never meant to be the final destination for developers. While it has become the undisputed standard for orchestration, treating a raw Kubernetes cluster as an end-state solution often leads to &amp;ldquo;configuration fatigue&amp;rdquo; and fragmented architectures. The top trend this year is the aggressive shift toward &lt;strong&gt;Application Modernization&lt;/strong&gt; through specialized &lt;strong&gt;Platform-as-a-Service (PaaS)&lt;/strong&gt; layers built on top of the Kubernetes control plane.&lt;/p&gt;</description></item></channel></rss>

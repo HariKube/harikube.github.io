@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/scalability/</link><description>Recent content in Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 11:43:29 +0200</lastBuildDate><atom:link href="/tags/scalability/index.xml" rel="self" type="application/rss+xml"/><item><title>HariKube v0.16.3: Certified on Rancher &amp; OpenShift, K8s 1.36.2 Upgrade, Adaptive Rate Limiting, and Scalable Control Planes</title><link>/blog/harikube-v0_16_3-release/</link><pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-v0_16_3-release/</guid><description>&lt;style&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/scalability/</link><description>Recent content in Scalability on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/scalability/index.xml" rel="self" type="application/rss+xml"/><item><title>The Hidden Infrastructure Challenge Behind AI Agents</title><link>/blog/the_hidden_infrastructure_challenge_behind_ai_agents/</link><pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate><guid>/blog/the_hidden_infrastructure_challenge_behind_ai_agents/</guid><description>&lt;p&gt;The AI infrastructure conversation is dominated by compute.&lt;/p&gt;
+&lt;p&gt;Every week brings a new announcement about GPUs, training clusters, inference optimization, or model performance. Organizations are investing heavily in the hardware required to build and deploy AI systems, while investors are trying to understand how much infrastructure will be needed to support the next wave of adoption.&lt;/p&gt;
+&lt;p&gt;These discussions are important. But they focus primarily on one side of the equation.&lt;/p&gt;</description></item><item><title>Enterprise Kubernetes Scaling: HariKube Joins the SUSE Sapphire Innovate Partner Program</title><link>/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/</link><pubDate>Thu, 23 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }
@@ -9,40 +11,19 @@
  
  &lt;nav id="TableOfContents"&gt;
  &lt;ul&gt;
- &lt;li&gt;&lt;a href="#-standardized-versioning-scheme-aligned-with-kine"&gt;🏷️ Standardized Versioning Scheme (Aligned with Kine)&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-certified-on-suse-rancher--available-in-rancher-app-store"&gt;🤠 Certified on SUSE Rancher &amp;amp; Available in Rancher App Store&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-certified-on-red-hat-openshift"&gt;🔴 Certified on Red Hat OpenShift&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-built-in-adaptive-rate-limiter-ewma"&gt;🛡️ Built-in Adaptive Rate Limiter (EWMA)&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-performance-boost-accelerated-field-selector-filtering"&gt;⚡ Performance Boost: Accelerated Field Selector Filtering&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-upgraded-to-kubernetes-1362"&gt;☸️ Upgraded to Kubernetes 1.36.2&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-streamlined-helm-deployments--control-plane-architecture"&gt;📦 Streamlined Helm Deployments &amp;amp; Control Plane Architecture&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-get-started-today"&gt;🚀 Get Started Today&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#the-enterprise-kubernetes-scaling-challenge"&gt;The Enterprise Kubernetes Scaling Challenge&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#how-harikube-helps-enterprises-scale-kubernetes"&gt;How HariKube Helps Enterprises Scale Kubernetes&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#key-benefits-for-enterprises"&gt;Key Benefits for Enterprises&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#why-this-suse-partnership-matters"&gt;Why This SUSE Partnership Matters&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#what-this-means-for-enterprise-buyers"&gt;What This Means for Enterprise Buyers&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#looking-ahead"&gt;Looking Ahead&lt;/a&gt;&lt;/li&gt;
  &lt;/ul&gt;
 &lt;/nav&gt;
  
 &lt;/div&gt;
 
-&lt;hr&gt;
-&lt;p&gt;Today, we are taking a massive leap forward in making HariKube the ultimate high-scale state platform for production cloud-native environments.&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
- html {
- scroll-padding-top: 100px;
- }
-&lt;/style&gt;
-
-&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
- &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
- 
- &lt;nav id="TableOfContents"&gt;
- &lt;ul&gt;
- &lt;li&gt;&lt;a href="#-the-performance-test"&gt;📈 The Performance Test&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-correctness-test"&gt;🤹 The Correctness Test&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-summary"&gt;🧭 Summary&lt;/a&gt;&lt;/li&gt;
- &lt;/ul&gt;
-&lt;/nav&gt;
- 
-&lt;/div&gt;
-
-&lt;p&gt;Kubernetes has a dirty secret: &lt;strong&gt;ETCD is a bottleneck&lt;/strong&gt;. The default storage backend for Kubernetes was designed for configuration data, not for the scale modern clusters demand. As cluster resource counts grow into the tens or hundreds of thousands, the Kubernetes API server begins to crack - eating RAM, slowing down, and eventually dying with an OOM kill. The reason is simple: ETCD lacks server-side filtering, so the Kubernetes API server must load entire datasets into memory to filter records.&lt;/p&gt;</description></item><item><title>Kubernetes Performance Challenge</title><link>/blog/kubernetes-performance-challenge/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-performance-challenge/</guid><description>&lt;style&gt;
+&lt;p&gt;We are proud to announce that HariKube has officially been accepted as a SUSE Partner under the Sapphire Innovate track.&lt;/p&gt;
+&lt;p&gt;For us, this is more than a partnership milestone. It is strong validation that enterprise Kubernetes is entering a new era, where scalability, predictable performance, and operational efficiency are no longer optional. They are strategic requirements.&lt;/p&gt;</description></item><item><title>Kubernetes Performance Challenge</title><link>/blog/kubernetes-performance-challenge/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/kubernetes-performance-challenge/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }
@@ -115,7 +96,10 @@
 &lt;/div&gt;
 
 &lt;h2 id="-our-mission-at-harikube-unlocking-kubernetes-true-potential"&gt;💡 Our Mission at HariKube: Unlocking Kubernetes&amp;rsquo; True Potential&lt;/h2&gt;
-&lt;p&gt;The promise of &lt;strong&gt;Kubernetes&lt;/strong&gt; was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale-specifically, the limitations of &lt;strong&gt;ETCD&lt;/strong&gt; and a fragmented application development experience. The result? A fantastic container orchestrator, but a &lt;strong&gt;broken Platform-as-a-Service (PaaS)&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>The Future of Kubernetes PaaS and Kubernetes-native Service Development is Here</title><link>/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/</link><pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/the-future-of-kubernetes-paas-and-kubernetes-native-service-development-is-here/</guid><description>&lt;style&gt;
+&lt;p&gt;The promise of &lt;strong&gt;Kubernetes&lt;/strong&gt; was simple: to become the universal operating system for the cloud. Yet, for all its power, it hit a wall at enterprise scale-specifically, the limitations of &lt;strong&gt;ETCD&lt;/strong&gt; and a fragmented application development experience. The result? A fantastic container orchestrator, but a &lt;strong&gt;broken Platform-as-a-Service (PaaS)&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>A Quick Dive into Kubernetes Operators - Services+</title><link>/blog/create-microservice-with-operator-3/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/create-microservice-with-operator-3/</guid><description>&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Before diving in, make sure you have finished part 2 of the series.&lt;/strong&gt; &lt;a href="/blog/create-microservice-with-operator-2/"&gt;[→]&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }
@@ -124,44 +108,23 @@
 &lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
  &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
  
- &lt;nav id="TableOfContents"&gt;
- &lt;ul&gt;
- &lt;li&gt;&lt;a href="#-the-future-of-kubernetes-and-service-development"&gt;✨ The Future of Kubernetes and Service Development&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-single-source-of-truth-unified-service-design"&gt;🦄 The Single Source of Truth: Unified Service Design&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-stop-waiting-welcome-to-the-cloud-native-platform-as-a-service-reality"&gt;🛑 Stop Waiting: Welcome to the Cloud-Native-Platform-as-a-Service Reality&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-demo-time-lets-see-it-in-action"&gt;🚀 The Demo Time: Let&amp;rsquo;s See It in Action&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-the-future-is-yours-to-build"&gt;🏗️ The Future is Yours to Build&lt;/a&gt;&lt;/li&gt;
- &lt;/ul&gt;
-&lt;/nav&gt;
- 
-&lt;/div&gt;
-
-&lt;p&gt;We at &lt;strong&gt;HariKube&lt;/strong&gt; strongly believe in the transformative power of cutting-edge technology to shape the future of service development. As the digital landscape continues to evolve at an unprecedented pace, the need for robust, scalable, and efficient Cloud-Native infrastructure becomes paramount. We are committed to &lt;strong&gt;turning Kubernetes into a real Platform-as-a-Service (PaaS), where it not just orchestrates individual services, but becomes the source of truth for the entire platform&lt;/strong&gt;. Join us as we delve into the exciting advancements and upcoming trends that define &amp;hellip;&lt;/p&gt;</description></item><item><title>We make Kubernetes work at enterprise scale - no more ETCD limits</title><link>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</link><pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate><guid>/blog/harikube-the-hybrid-paas-blueprint-for-kubernetes/</guid><description>&lt;style&gt;
- html {
- scroll-padding-top: 100px;
- }
-&lt;/style&gt;
-
-&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
- &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-2/"&gt;&amp;lt;-- Part 2&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
  
  &lt;nav id="TableOfContents"&gt;
  &lt;ul&gt;
- &lt;li&gt;&lt;a href="#-the-big-picture-kubernetes-as-a-full-paas-runtime"&gt;🌐 The Big Picture: Kubernetes as a Full PaaS Runtime&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-harikube---dynamic-database-agnostic-data-backend"&gt;🧱 HariKube - Dynamic, Database-Agnostic Data Backend&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-serverless---nanoservice-layer"&gt;⚡ Serverless - Nanoservice Layer&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-agentic-ai---microservice-layer"&gt;🧠 Agentic AI - Microservice Layer&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-operators---microservice-layer"&gt;🔁 Operators - Microservice Layer&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-kubernetes-aggregation-api-layer---traditional-rest-api-layer"&gt;🌐 Kubernetes Aggregation API Layer - Traditional REST API Layer&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-all-layers-combined-a-hybrid-architecture"&gt;🧠 All Layers Combined: A Hybrid Architecture&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-strategic-impact"&gt;🚀 Strategic Impact&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-a-new-platform-strategy"&gt;✨ A New Platform Strategy&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-finding-a-solution"&gt;💡 Finding a Solution&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-prepare-server-manifests"&gt;🪢 Prepare Server Manifests&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-implement-aggregation-server"&gt;🧑‍🏭 Implement Aggregation Server&lt;/a&gt;&lt;/li&gt;
  &lt;/ul&gt;
 &lt;/nav&gt;
  
+ &lt;ul&gt;&lt;li&gt;&lt;a href="/blog/create-microservice-with-operator-4/"&gt;Part 4 --&gt;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+ 
 &lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;Imagine a world where Kubernetes itself becomes the platform&lt;/strong&gt; - not just for container orchestration, but for &lt;strong&gt;functions, microservices, and APIs&lt;/strong&gt;. With HariKube’s dynamic data layer, serverless function triggers, operator loops, and the Kubernetes Aggregation API layer, that world is not only possible - it’s here.&lt;/p&gt;</description></item><item><title>Unlock your Kubernetes to run custom resource based microservices in any scale</title><link>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</link><pubDate>Sat, 24 May 2025 00:00:00 +0000</pubDate><guid>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</guid><description>&lt;style&gt;
+&lt;h2 id="-the-challenge-with-kubernetes-data"&gt;📈 The Challenge with Kubernetes Data&lt;/h2&gt;
+&lt;p&gt;Kubernetes is an incredibly powerful container orchestration platform, but it has some limitations you should be aware of. One key challenge is its &lt;strong&gt;limited data filtering capabilities&lt;/strong&gt;. While it excels at managing and scaling workloads, the platform doesn&amp;rsquo;t include an advanced query engine out of the box. This means you can&amp;rsquo;t easily perform complex, fine-grained searches or data manipulation directly within Kubernetes, which can be a roadblock when you need to find records based on &lt;strong&gt;full text search&lt;/strong&gt; for example.&lt;/p&gt;</description></item><item><title>Unlock your Kubernetes to run custom resource based microservices in any scale</title><link>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</link><pubDate>Sat, 24 May 2025 00:00:00 +0000</pubDate><guid>/blog/unlock-your-kubernetes-to-run-custom-resource-based-microservices-in-any-scale/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }

@@ -298,8 +298,8 @@ All <code>deployments</code> resources are routed to a SQLite backend.</p></li><
 <span class="text-lg font-medium text-gray-900">Help Us Improve by Enabling Telemetry</span>
 <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden border-t"><div class="p-6 prose prose-sm sm:prose lg:prose-lg max-w-none"><p>To continuously improve our software and deliver the best possible experience, we kindly ask you to enable telemetry. When enabled, your application will periodically send anonymized usage data to our central telemetry collector. This data helps us understand how the software is used in real-world scenarios and allows us to detect bugs, optimize performance, and prioritize new features.</p><p>We <strong>do not collect any sensitive or personally identifiable information</strong>. All collected data is strictly anonymized and used solely for diagnostic and analytical purposes. Examples include feature usage frequency, error events, and environment metadata like OS type or version.</p><p>Telemetry is entirely optional and enabled by <code>ENABLE_TELEMETRY_PUSH</code> environment variable. By enabling it, you contribute to a better and more stable product for everyone. To enable telemetry, please ensure your network allows egress traffic to <code>https://monitoring.harikube.info</code>.</p><p>Thank you for supporting the project!</p></div></div></div></div></div></section><h2 id=-database-configuration>📈 Database Configuration</h2><p>The HariKube removes the &ldquo;Single Connection&rdquo; constraint, introducing native multi-database sharding. This allows you to orchestrate an unlimited fleet of independent databases through a single entry point. By using industry-standard layering, you can scale each individual database in your matrix to handle massive workloads.</p><ul><li><strong>Database Partitioning</strong> (Inside the Shard): Before adding more servers, optimize the one you have. HariKube is designed to work perfectly with native SQL partitioning. Create your schema and partitions manually. When HariKube pushes a query down to the DB, the SQL engine only scans the relevant partition. You get the speed of a sharded system within the simplicity of a single database connection.</li><li><strong>Upgrading to a Distributed Database</strong> (The &ldquo;Drop-In&rdquo; Scale): The most powerful way to scale the database is to replace a standalone MySQL/Postgres instance with a Distributed SQL Engine like TiDB or CockroachDB. To HariKube, TiDB looks like a single MySQL database. You provide one connection string. Behind that single connection, TiDB distributes your data across dozens of nodes.</li><li><strong>Introducing a Smart Load Balancer</strong> (Read/Write Splitting): To maximize throughput, you can place a State-Aware Proxy (like ProxySQL, MaxScale, Pgpool-II, or Pgcat) between HariKube and your database cluster. The Load Balancer identifies &ldquo;Write&rdquo; operations and routes them to the Database Leader/Primary. The Load Balancer identifies &ldquo;Read&rdquo; operations (GET, LIST) and distributes them across multiple Read Replicas. This offloads heavy &ldquo;Watch&rdquo; and &ldquo;List&rdquo; traffic from your primary database, ensuring that write operations remain lightning-fast and uncontended.</li></ul><section><div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6"><div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12"><h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Installation Options</h2></div><div class=space-y-6><div class="border rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-200"><button class="w-full flex justify-between items-center p-6 text-left hover:bg-gray-50 transition-colors duration-200 focus:outline-none" style=background-color:#fff onclick='this.parentElement.querySelector(".faq-content").classList.toggle("hidden"),this.querySelector("svg").classList.toggle("rotate-180")'>
 <span class="text-lg font-medium text-gray-900">Helm</span>
-<svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden border-t"><div class="p-6 prose prose-sm sm:prose lg:prose-lg max-w-none"><p>The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like <a href=https://www.vcluster.com>vCluster</a> to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.</p><p>This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.</p><ul><li>Works Seamlessly on Cloud and Bare-metal</li><li>Decoupled Infrastructure Management</li><li>Enhanced Multi-Tenancy and Isolation</li><li>Independent Scaling and Configuration</li><li>Fine-Grained Resource Synchronization between host and virtual clusters</li></ul><p>Start by bringing your favorite Kubernetes deployment.</p><h3 id=install-harikube>Install HariKube</h3><blockquote><p>💡 Prerequisite: The target cluster must have cert-manager pre-installed.</p></blockquote><blockquote><p>⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our <a href=/editions/>Editions</a> page.</p></blockquote><h4 id=simple-method>Simple method</h4><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("544153c225651a1e28a1e3b25d5b7be8")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-544153c225651a1e28a1e3b25d5b7be8 style=display:none>kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
+<svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden border-t"><div class="p-6 prose prose-sm sm:prose lg:prose-lg max-w-none"><p>The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like <a href=https://www.vcluster.com>vCluster</a> to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.</p><p>This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.</p><ul><li>Works Seamlessly on Cloud and Bare-metal</li><li>Decoupled Infrastructure Management</li><li>Enhanced Multi-Tenancy and Isolation</li><li>Independent Scaling and Configuration</li><li>Fine-Grained Resource Synchronization between host and virtual clusters</li></ul><p>Start by bringing your favorite Kubernetes deployment.</p><h3 id=install-harikube>Install HariKube</h3><blockquote><p>💡 Prerequisite: The target cluster must have cert-manager pre-installed.</p></blockquote><blockquote><p>⚠️ A valid license is required to proceed - at least free Starter Edition. We invite you to explore our various licensing tiers on our <a href=/editions/>Editions</a> page.</p></blockquote><h4 id=simple-method>Simple method</h4><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("82b3ba3355be03e973f40905a832e792")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-82b3ba3355be03e973f40905a832e792 style=display:none>kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
 
 helm install harikube oci://quay.io/harikube/harikube \
   --version 0.16.3 \
@@ -308,6 +308,7 @@ helm install harikube oci://quay.io/harikube/harikube \
   --set enterprise.key=&#34;&lt;LICENSE_KEY&gt;&#34; \
   --set enterprise.user=&lt;REGISTRY_USER&gt; \
   --set enterprise.password=&#34;&lt;REGISTRY_PASSWORD&gt;&#34; \
+  --set middleware.endPoint.url=&#34;multi://sqlite:///db/main.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared&#34; \
   --set operator.create=true \
   --set vcluster.exportKubeConfig.server=https://harikube.harikube:443
 kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 deployment/harikube-operator-deploy --timeout=2m
@@ -327,6 +328,7 @@ kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 stat
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
+</span><span class=lnt>15
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f https://raw.githubusercontent.com/HariKube/harikube-helm-charts/refs/heads/release-v0.16.3/operator-crd.yaml
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>helm install harikube oci://quay.io/harikube/harikube <span class=se>\
@@ -336,13 +338,14 @@ kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 stat
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.key<span class=o>=</span><span class=s2>&#34;&lt;LICENSE_KEY&gt;&#34;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.user<span class=o>=</span>&lt;REGISTRY_USER&gt; <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.password<span class=o>=</span><span class=s2>&#34;&lt;REGISTRY_PASSWORD&gt;&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set middleware.endPoint.url<span class=o>=</span><span class=s2>&#34;multi://sqlite:///db/main.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared&#34;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set operator.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set vcluster.exportKubeConfig.server<span class=o>=</span>https://harikube.harikube:443
 </span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/harikube-operator-deploy --timeout<span class=o>=</span>2m
 </span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/harikube-middleware-deploy --timeout<span class=o>=</span>2m
 </span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n harikube --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> statefulset/harikube --timeout<span class=o>=</span>5m
-</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h4 id=ready-to-use-install>Ready To Use Install</h4><blockquote><p>For more details please follow the <a href=https://github.com/HariKube/harikube-helm-charts/releases/tag/release-v0.16.3>release docs</a>. Please find configuration options in the <a href=https://github.com/HariKube/harikube-helm-charts/blob/release-v0.16.3/harikube/values.yaml>Helm Chart</a> repo.</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("8cef21119df1834b8ec3eb3c64557fdf")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-8cef21119df1834b8ec3eb3c64557fdf style=display:none>kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
+</span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h4 id=ready-to-use-install>Ready To Use Install</h4><blockquote><p>For more details please follow the <a href=https://github.com/HariKube/harikube-helm-charts/releases/tag/release-v0.16.3>release docs</a>. Please find configuration options in the <a href=https://github.com/HariKube/harikube-helm-charts/blob/release-v0.16.3/harikube/values.yaml>Helm Chart</a> repo.</p></blockquote><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("41d193c1c25b7be30366feae2905f024")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-41d193c1c25b7be30366feae2905f024 style=display:none>kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
 kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.77.1/stripped-down-crds.yaml
 kubectl wait -n cert-manager --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 deployment/cert-manager-webhook --timeout=2m
 
@@ -361,6 +364,7 @@ helm install harikube oci://quay.io/harikube/harikube  \
   --set enterprise.password=&#34;&lt;REGISTRY_PASSWORD&gt;&#34; \
   --set middleware.monitoring.create=true \
   --set middleware.networkPolicy.create=true \
+  --set middleware.endPoint.url=&#34;multi://sqlite:///db/main.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared&#34; \
   --set operator.create=true \
   --set operator.monitoring.create=true \
   --set apiServer.create=true \
@@ -404,6 +408,7 @@ kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 stat
 </span><span class=lnt>29
 </span><span class=lnt>30
 </span><span class=lnt>31
+</span><span class=lnt>32
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.3/cert-manager.yaml
 </span></span><span class=line><span class=cl>kubectl apply -f https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.77.1/stripped-down-crds.yaml
 </span></span><span class=line><span class=cl>kubectl <span class=nb>wait</span> -n cert-manager --for<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.status.readyReplicas}&#39;</span><span class=o>=</span><span class=m>1</span> deployment/cert-manager-webhook --timeout<span class=o>=</span>2m
@@ -423,6 +428,7 @@ kubectl wait -n harikube --for=jsonpath=&#39;{.status.readyReplicas}&#39;=1 stat
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set enterprise.password<span class=o>=</span><span class=s2>&#34;&lt;REGISTRY_PASSWORD&gt;&#34;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set middleware.monitoring.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set middleware.networkPolicy.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  --set middleware.endPoint.url<span class=o>=</span><span class=s2>&#34;multi://sqlite:///db/main.db?_journal_mode=WAL&amp;_busy_timeout=30000&amp;_synchronous=NORMAL&amp;_txlock=immediate&amp;_stmt_cache_size=20&amp;cache=shared&#34;</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set operator.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set operator.monitoring.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
 </span></span></span><span class=line><span class=cl><span class=se></span>  --set apiServer.create<span class=o>=</span><span class=nb>true</span> <span class=se>\
@@ -626,47 +632,45 @@ patches:
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>InitConfiguration</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>patches</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>directory</span><span class=p>:</span><span class=w> </span><span class=l>patches</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Inside the <code>patches</code> directory, create a file to override the default images for the API Server and Controller Manager:</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("977cacfc8dc18aa3d25fa32835fdab92")' class="text-sm text-gray-200 font-mono">copy</button>
-<textarea id=code-977cacfc8dc18aa3d25fa32835fdab92 style=display:none>apiVersion: v1
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><p>Inside the <code>patches</code> directory, create a file to override the default images for the API Server and Controller Manager:</p><p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kube-apiserver.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("bbdf11ef6892429ab577d2fb5da20cee")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-bbdf11ef6892429ab577d2fb5da20cee style=display:none>apiVersion: v1
 kind: Pod
 spec:
   containers:
     - name: kube-apiserver
       image: quay.io/harikube/kube-apiserver:v1.36.2
----
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-    - name: kube-controller-manager
-      image: quay.io/harikube/kube-controller-manager:v1.36.2
-</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Pod</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kube-apiserver</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>quay.io/harikube/kube-apiserver:v1.36.2</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono">kube-controller-manager.yaml</div><div class="flex space-x-2"><button onclick='copyContentToClipboard("45c5e2eeb6df2a6ae47814f96a2fb6c5")' class="text-sm text-gray-200 font-mono">copy</button>
+<textarea id=code-45c5e2eeb6df2a6ae47814f96a2fb6c5 style=display:none>apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: kube-controller-manager
+      image: quay.io/harikube/kube-controller-manager:v1.36.2
+</textarea></div></div><div class="p-4 overflow-x-auto"><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Pod</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>kube-controller-manager</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>quay.io/harikube/kube-controller-manager:v1.36.2</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script><h3 id=comipiling-kubernetes-from-source-code-optional>Comipiling Kubernetes From Source Code (optional)</h3><p>For detailed information about how to build Kubernetes please follow
+</span></span></span></code></pre></td></tr></table></div></div></div></div><script type=text/javascript>function copyContentToClipboard(e){const t=document.querySelector("#code-"+e);navigator.clipboard.writeText(t.value)}</script></p><h3 id=comipiling-kubernetes-from-source-code-optional>Comipiling Kubernetes From Source Code (optional)</h3><p>For detailed information about how to build Kubernetes please follow
 <a href=https://github.com/kubernetes/kubernetes/blob/v1.36.2/build/README.md>official documentation</a>. But here are some simple steps to compile it.</p><div class="not-prose my-8 overflow-hidden rounded-lg bg-gray-900 shadow-lg" style=max-width:800px;border-radius:.5rem><div class="flex items-center justify-between px-4 py-2 bg-gray-800 border-b border-gray-700"><div class="text-sm text-gray-200 font-mono"></div><div class="flex space-x-2"><button onclick='copyContentToClipboard("392bdab3c0e13de82709aebe68be6444")' class="text-sm text-gray-200 font-mono">copy</button>
 <textarea id=code-392bdab3c0e13de82709aebe68be6444 style=display:none>git clone https://github.com/kubernetes/kubernetes.git
 cd kubernetes

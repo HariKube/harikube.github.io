@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kubernetes on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/kubernetes/</link><description>Recent content in Kubernetes on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 23 Sep 2026 11:43:29 +0200</lastBuildDate><atom:link href="/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>HariKube v0.16.3: Certified on Rancher &amp; OpenShift, K8s 1.36.2 Upgrade, Adaptive Rate Limiting, and Scalable Control Planes</title><link>/blog/harikube-v0_16_3-release/</link><pubDate>Wed, 23 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-v0_16_3-release/</guid><description>&lt;style&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kubernetes on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</title><link>/tags/kubernetes/</link><description>Recent content in Kubernetes on HariKube - Petabyte-scale, Versioned State-machine for next gen of applications</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 30 Sep 2026 16:46:16 +0200</lastBuildDate><atom:link href="/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>From Weeks to Days: Building Your Service Without Glue Code</title><link>/blog/building-your-service-without-glue-code/</link><pubDate>Wed, 30 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/building-your-service-without-glue-code/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }
@@ -9,21 +9,21 @@
  
  &lt;nav id="TableOfContents"&gt;
  &lt;ul&gt;
- &lt;li&gt;&lt;a href="#-standardized-versioning-scheme-aligned-with-kine"&gt;🏷️ Standardized Versioning Scheme (Aligned with Kine)&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-certified-on-suse-rancher--available-in-rancher-app-store"&gt;🤠 Certified on SUSE Rancher &amp;amp; Available in Rancher App Store&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-certified-on-red-hat-openshift"&gt;🔴 Certified on Red Hat OpenShift&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-built-in-adaptive-rate-limiter-ewma"&gt;🛡️ Built-in Adaptive Rate Limiter (EWMA)&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-performance-boost-accelerated-field-selector-filtering"&gt;⚡ Performance Boost: Accelerated Field Selector Filtering&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-upgraded-to-kubernetes-1362"&gt;☸️ Upgraded to Kubernetes 1.36.2&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-streamlined-helm-deployments--control-plane-architecture"&gt;📦 Streamlined Helm Deployments &amp;amp; Control Plane Architecture&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#-get-started-today"&gt;🚀 Get Started Today&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-why-development-is-slow-in-traditional-platforms"&gt;🚀 Why Development Is Slow in Traditional Platforms&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-harikubes-simplicity-model-one-fabric-for-everything"&gt;⚡ HariKube’s Simplicity Model: One Fabric for Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-flexibility-by-design-choose-the-right-service-model-reuse-everything"&gt;🧩 Flexibility by Design: Choose the Right Service Model, Reuse Everything&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-transformed-everything-by-changing-almost-nothing"&gt;🔁 Transformed Everything by Changing Almost Nothing&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-faster-ai-assisted-delivery-without-a-separate-ai-stack"&gt;🤖 Faster AI-Assisted Delivery, Without a Separate AI Stack&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-developer-experience-focus-on-product-logic"&gt;🧠 Developer Experience: Focus on Product Logic&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-business-impact-of-simpler-engineering"&gt;💼 Business Impact of Simpler Engineering&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;&lt;a href="#-final-thought"&gt;🏁 Final Thought&lt;/a&gt;&lt;/li&gt;
  &lt;/ul&gt;
 &lt;/nav&gt;
  
 &lt;/div&gt;
 
-&lt;hr&gt;
-&lt;p&gt;Today, we are taking a massive leap forward in making HariKube the ultimate high-scale state platform for production cloud-native environments.&lt;/p&gt;</description></item><item><title>The Great Architectural Cycle; And the Next Wave Just Hit</title><link>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</link><pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</guid><description>&lt;style&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 New here? No worries. HariKube, in one sentence:;&lt;br&gt;HariKube is a petabyte-scale, versioned state machine with Kubernetes and Kafka interfaces.&lt;br&gt;For technical deep-dive, please follow the link: &lt;a href="/blog/kubernetes-is-harikubes-query-language-control-protocol-and-application-interface-for-managing-data-streams/"&gt;[→]&lt;/a&gt;&lt;/p&gt;</description></item><item><title>The Great Architectural Cycle; And the Next Wave Just Hit</title><link>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</link><pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/the-great-architectural-cycle-and-the-next-wave-just-hit/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }
@@ -90,30 +90,7 @@
  
 &lt;/div&gt;
 
-&lt;p&gt;HariKube helps us run &lt;strong&gt;more AI workloads&lt;/strong&gt; on the same Kubernetes infrastructure, which can &lt;strong&gt;reduce the need for expensive multi-cluster&lt;/strong&gt; expansion. It also provides a &lt;strong&gt;platform model&lt;/strong&gt; where AI agents can interact through Kubernetes APIs and events instead of relying only on traditional database-driven coordination. This &lt;strong&gt;makes AI platforms more scalable, more observable, and more efficient&lt;/strong&gt; to operate.&lt;/p&gt;</description></item><item><title>Enterprise Kubernetes Scaling: HariKube Joins the SUSE Sapphire Innovate Partner Program</title><link>/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/</link><pubDate>Thu, 23 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/enterprise-kubernetes-scaling-harikube-joins-the-suse-sapphire-innovate-partner-program/</guid><description>&lt;style&gt;
- html {
- scroll-padding-top: 100px;
- }
-&lt;/style&gt;
-
-&lt;div class="bg-gray-50 p-6 rounded-lg mb-8"&gt;
- &lt;h2 class="text-xl font-semibold mb-4"&gt;Table of Contents&lt;/h2&gt;
- 
- &lt;nav id="TableOfContents"&gt;
- &lt;ul&gt;
- &lt;li&gt;&lt;a href="#the-enterprise-kubernetes-scaling-challenge"&gt;The Enterprise Kubernetes Scaling Challenge&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#how-harikube-helps-enterprises-scale-kubernetes"&gt;How HariKube Helps Enterprises Scale Kubernetes&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#key-benefits-for-enterprises"&gt;Key Benefits for Enterprises&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#why-this-suse-partnership-matters"&gt;Why This SUSE Partnership Matters&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#what-this-means-for-enterprise-buyers"&gt;What This Means for Enterprise Buyers&lt;/a&gt;&lt;/li&gt;
- &lt;li&gt;&lt;a href="#looking-ahead"&gt;Looking Ahead&lt;/a&gt;&lt;/li&gt;
- &lt;/ul&gt;
-&lt;/nav&gt;
- 
-&lt;/div&gt;
-
-&lt;p&gt;We are proud to announce that HariKube has officially been accepted as a SUSE Partner under the Sapphire Innovate track.&lt;/p&gt;
-&lt;p&gt;For us, this is more than a partnership milestone. It is strong validation that enterprise Kubernetes is entering a new era, where scalability, predictable performance, and operational efficiency are no longer optional. They are strategic requirements.&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
+&lt;p&gt;HariKube helps us run &lt;strong&gt;more AI workloads&lt;/strong&gt; on the same Kubernetes infrastructure, which can &lt;strong&gt;reduce the need for expensive multi-cluster&lt;/strong&gt; expansion. It also provides a &lt;strong&gt;platform model&lt;/strong&gt; where AI agents can interact through Kubernetes APIs and events instead of relying only on traditional database-driven coordination. This &lt;strong&gt;makes AI platforms more scalable, more observable, and more efficient&lt;/strong&gt; to operate.&lt;/p&gt;</description></item><item><title>HariKube vs. Vanilla Kubernetes: A Deep Dive into Performance and Correctness</title><link>/blog/harikube-vs-vanilla-kubernetes/</link><pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate><guid>/blog/harikube-vs-vanilla-kubernetes/</guid><description>&lt;style&gt;
  html {
  scroll-padding-top: 100px;
  }
