@@ -9,13 +9,13 @@ entries:
       charts.openshift.io/name: harikube
     apiVersion: v2
     appVersion: 0.16.3
-    created: "2026-09-30T17:56:42.764042972Z"
+    created: "2026-10-12T08:57:52.12764415Z"
     dependencies:
     - name: vcluster
       repository: https://charts.loft.sh
       version: 0.32.1
     description: A Helm chart for HariKube
-    digest: 1e1d543196dafbcc184e5ca83dcd80591a575ce49c448b6eaab7c5b392c7e8d3
+    digest: 446d078c38b538a63b027f65671571ea21d31d892ba487fe6a5689078416139f
     icon: file://assets/icons/harikube.png
     kubeVersion: '>=1.34.0-0'
     maintainers:
@@ -33,7 +33,7 @@ entries:
       catalog.cattle.io/release-name: harikube
     apiVersion: v2
     appVersion: 0.15.0
-    created: "2026-09-30T17:56:42.758954573Z"
+    created: "2026-10-12T08:57:52.117186164Z"
     dependencies:
     - name: vcluster
       repository: https://charts.loft.sh
@@ -54,7 +54,7 @@ entries:
       catalog.cattle.io/release-name: harikube
     apiVersion: v2
     appVersion: 0.14.5
-    created: "2026-09-30T17:56:42.754046335Z"
+    created: "2026-10-12T08:57:52.110378816Z"
     dependencies:
     - name: vcluster
       repository: https://charts.loft.sh
@@ -68,4 +68,4 @@ entries:
     urls:
     - https://harikube.info/harikube-helm-charts/harikube-0.14.5.tgz
     version: 0.14.5
-generated: "2026-09-30T17:56:42.748809526Z"
+generated: "2026-10-12T08:57:52.102620595Z"
