@@ -5801,7 +5801,31 @@ HariKube meets this challenge with a flexible, composable architecture that inte
 &lt;/div&gt;
 &lt;h3 id="the-pain-point-microservice-sprawl--state-fragmentation"&gt;The Pain Point: Microservice Sprawl &amp;amp; State Fragmentation&lt;/h3&gt;
 &lt;p&gt;Traditional microservice architectures force applications to manage distributed state, complex network calls, and heavy infrastructure boilerplate (Custom Resources, persistent volumes, connection pools). Adding AI workloads makes this worse - models require low-latency, petabyte-scale state access that microservices split across fragile, high-overhead networks. Developers waste time wrestling with distributed system complexity rather than building core business logic and intelligent features.&lt;/p&gt;</description></item><item><title>Join Our Team</title><link>/careers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/careers/</guid><description>&lt;p&gt;At inspirNation, we believe in empowering our team members to do their best work. We foster an environment of innovation, collaboration, and continuous learning. Our culture is built on trust, transparency, and a shared commitment to excellence.&lt;/p&gt;
-&lt;p&gt;We&amp;rsquo;re looking for passionate individuals who want to make a difference and grow with us. If you&amp;rsquo;re excited about building the future of PaaS and working with cutting-edge technology, we&amp;rsquo;d love to hear from you.&lt;/p&gt;</description></item><item><title>Kubernetes Helm Install</title><link>/docs/details/install-helm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-helm/</guid><description>&lt;p&gt;The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like &lt;a href="https://www.vcluster.com"&gt;vCluster&lt;/a&gt; to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re looking for passionate individuals who want to make a difference and grow with us. If you&amp;rsquo;re excited about building the future of PaaS and working with cutting-edge technology, we&amp;rsquo;d love to hear from you.&lt;/p&gt;</description></item><item><title>Kubernetes Assessments</title><link>/kubernetes-assessments/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/kubernetes-assessments/</guid><description>&lt;style type="text/css"&gt;
+ .shortcode-container {
+ display: flex;
+ gap: 2rem; 
+ flex-wrap: wrap; 
+ }
+
+ .shortcode-container &gt; div {
+ flex: 1; 
+ min-width: 0; 
+ }
+
+ @media (max-width: 1248px) {
+ .shortcode-container {
+ flex-direction: column; 
+ }
+ }
+&lt;/style&gt;
+
+&lt;div class="shortcode-container"&gt;
+ 
+ 
+ &lt;div&gt;
+ &lt;h2 id="see-how-your-kubernetes-platform-is-performing"&gt;See how your Kubernetes platform is performing&lt;/h2&gt;
+&lt;p&gt;Your Kubernetes environment is only as strong as its ability to scale, recover, and keep workloads stable under real-world demand. This quick assessment gives you a clear snapshot of current platform health, performance bottlenecks, and readiness for growth.&lt;/p&gt;</description></item><item><title>Kubernetes Helm Install</title><link>/docs/details/install-helm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/details/install-helm/</guid><description>&lt;p&gt;The recommended, most effective, and simple architectural approach for deploying services within a HariKube environment is by leveraging virtual clusters. This strategy uses tools like &lt;a href="https://www.vcluster.com"&gt;vCluster&lt;/a&gt; to create lightweight, isolated Kubernetes environments that operate inside a larger, physical host cluster.&lt;/p&gt;
 &lt;p&gt;This model provides clear separation between services and the underlying infrastructure orchestration, delivering significant operational and security benefits.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Works Seamlessly on Cloud and Bare-metal&lt;/li&gt;
